@@ -1,0 +1,16 @@
+{
+  "name": "Telecom Customer Insights",
+  "description": "Models telecom customer behavior, usage patterns, churn risk, offers, campaigns, devices, and revenue relationships.",
+  "icon": "📶",
+  "category": "general",
+  "tags": [
+    "telecom",
+    "customer-behavior",
+    "offers",
+    "campaigns",
+    "churn-risk",
+    "revenue",
+    "knowledge-graph"
+  ],
+  "author": "aala-ali"
+}

@@ -1,0 +1,77 @@
+---
+title: 订单明细与分类
+slug: order-details-and-categories
+description: 加入 OrderLine，作为 Order 与 Product 之间的连接实体，并引入 ProductCategory 做分组。
+order: 3
+embed: official/iq-lab-retail-step-2
+---
+
+## 多对多的麻烦
+
+第一步里，我们用一条多对多关系把 Order 直接连到 Product。这对"这笔订单里有哪些商品？"这类简单查询够用——但**数量**和**行小计**怎么办？
+
+直接的多对多关系带不了属性。客户 A 买了 3 件商品 X、客户 B 买了 1 件，这个数量存在哪里？放在 Order 上不行（一笔订单有多个商品），放在 Product 上也不行（一个商品出现在多笔订单里）。
+
+## 连接实体模式
+
+解法是一个**连接实体**——夹在两个实体之间、承载"这一条关联"上属性的实体类型：
+
+**OrderLine** 把 Order 与 Product 连起来，并存放：
+
+| 属性 | 类型 | 是否标识属性 |
+|---|---|---|
+| `orderLineId` | string | ✓ |
+| `quantity` | integer | |
+| `lineTotal` | decimal (USD) | |
+
+### 新增关系
+
+- **OrderHasLineItem** — `Order` → `OrderLine`（一对多）
+  每笔订单有一条或多条明细。
+
+- **OrderLineReferencesProduct** — `OrderLine` → `Product`（多对一）
+  每条明细对应且仅对应一个商品。
+
+现在遍历路径是 `Order` → `OrderLine` → `Product`，每条明细带着自己的 `quantity` 和 `lineTotal`。
+
+> **设计模式：** 只要多对多关系需要携带属性（数量、价格、日期），就引入连接实体。在本体里，这相当于关系数据库中的关联表。
+
+## 用分类来组织
+
+商品很少是孤立存在的——它们属于"冷冻食品""家居""电子产品"这样的**分类**。加入 ProductCategory 实体，就能把商品分组，回答"哪个分类的退货最多？"这类问题。
+
+**ProductCategory**：
+
+| 属性 | 类型 | 是否标识属性 |
+|---|---|---|
+| `categoryId` | string | ✓ |
+| `categoryName` | string | |
+
+### 新增关系
+
+- **ProductInCategory** — `Product` → `ProductCategory`（多对一）
+  每个商品属于且仅属于一个分类。
+
+## 第二步的图谱
+
+<ontology-embed id="official/iq-lab-retail-step-2" diff="official/iq-lab-retail-step-1" height="400px"></ontology-embed>
+
+*五个实体类型、五条关系。OrderLine 作为 Order 与 Product 之间的桥，承载数量数据；ProductCategory 把商品分组。*
+
+## 我们学到了什么
+
+- **连接实体**解决多对多关系的属性问题
+- 关系本身需要数据时，就把它建成实体
+- **层级结构**（Product → ProductCategory）支持上卷查询
+- 图谱在生长——每新增一个实体，都连到已有实体上
+
+```quiz
+Q: 什么时候该引入连接实体（比如 OrderLine），而不是直接用一条关系？
+- 实体类型超过三个的时候
+- 两个实体之间的关系需要带自己的属性的时候 [correct]
+- 两个实体类型都有标识属性的时候
+- 实体处在不同命名空间的时候
+> 当多对多关系需要携带自己的数据（比如数量或行小计）时，就需要连接实体。直接的关系放不下属性。
+```
+
+接下来，我们用 Region 和 Store 加入地理结构。

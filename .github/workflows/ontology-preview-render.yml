@@ -1,0 +1,72 @@
+name: Ontology Preview Render
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'catalogue/**/*.rdf'
+      - 'catalogue/**/*.owl'
+      - 'catalogue/**/metadata.json'
+      - 'src/components/OntologyGraph.tsx'
+      - 'scripts/list-changed-catalogue-entries.ts'
+      - 'scripts/render-ontology-previews.ts'
+      - '.github/workflows/ontology-preview-render.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    if: github.repository == 'microsoft/Ontology-Playground'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci --ignore-scripts
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Fetch PR base commit
+        run: git fetch --no-tags --depth=1 https://github.com/${{ github.repository }}.git ${{ github.event.pull_request.base.sha }}
+
+      - name: Compile catalogue
+        run: npm run catalogue:build
+
+      - name: Build app
+        run: npm run build
+
+      - name: List changed catalogue entries
+        run: >-
+          npx tsx scripts/list-changed-catalogue-entries.ts
+          --base "${{ github.event.pull_request.base.sha }}"
+          --head "${{ github.event.pull_request.head.sha }}"
+          --pr-number "${{ github.event.pull_request.number }}"
+          --repository "${{ github.repository }}"
+          --output ontology-preview/manifest.json
+
+      - name: Start preview server
+        run: npm run preview -- --host 127.0.0.1 --port 4173 &
+
+      - name: Render ontology PNG previews
+        run: >-
+          npx tsx scripts/render-ontology-previews.ts
+          --manifest ontology-preview/manifest.json
+          --output-dir ontology-preview/images
+          --base-url "http://127.0.0.1:4173/${{ github.event.repository.name }}"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ontology-preview
+          path: ontology-preview/images
+          if-no-files-found: error
+          retention-days: 14
