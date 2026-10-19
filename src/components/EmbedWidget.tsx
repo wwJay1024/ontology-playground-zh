@@ -52,6 +52,7 @@ import {
 } from './embedTheme';
 import { SemanticDepthSlider } from './SemanticDepthSlider';
 import { useGraphNodeActionPosition } from './useGraphNodeActionPosition';
+import { useT } from '../i18n';
 
 cytoscape.use(fcose);
 
@@ -233,6 +234,7 @@ function EmbedHeader({
   isSubset,
   onCopyRdf,
 }: EmbedHeaderProps) {
+  const t = useT();
   const tabStyle = (active: boolean): React.CSSProperties => ({
     padding: '6px 14px',
     fontSize: 12,
@@ -257,7 +259,7 @@ function EmbedHeader({
         </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-        <button style={tabStyle(tab === 'graph')} onClick={() => setTab('graph')}>Graph</button>
+        <button style={tabStyle(tab === 'graph')} onClick={() => setTab('graph')}>{t('Graph')}</button>
         <button style={tabStyle(tab === 'rdf')} onClick={() => setTab('rdf')}>
           {isSubset ? 'Generated RDF subset' : 'Generated RDF'}
         </button>
@@ -831,6 +833,7 @@ function EmbedLargeGraphControls({
   onCollapseSelectedEntity,
   onOverview,
 }: EmbedLargeGraphControlsProps) {
+  const t = useT();
   const [collapsed, setCollapsed] = useState(false);
   const buttonStyle: React.CSSProperties = {
     minWidth: 44,
@@ -860,7 +863,7 @@ function EmbedLargeGraphControls({
 
   return (
     <section
-      aria-label="Large ontology controls"
+      aria-label={t('Large ontology controls')}
       style={{
         position: 'absolute',
         zIndex: 2,
@@ -883,7 +886,7 @@ function EmbedLargeGraphControls({
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
         <div>
-          <strong style={{ fontSize: 14 }}>Semantic overview</strong>
+          <strong style={{ fontSize: 14 }}>{t('Semantic overview')}</strong>
           {!collapsed && (
             <div style={{
               marginTop: 2,
@@ -910,13 +913,13 @@ function EmbedLargeGraphControls({
           <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 6, marginTop: 10 }}>
             <input
               type="search"
-              aria-label="Jump to an entity"
+              aria-label={t('Jump to an entity')}
               value={searchInput}
               onChange={(event) => onSearchInputChange(event.target.value)}
-              placeholder="Name, ID, or keyword"
+              placeholder={t('Name, ID, or keyword')}
               style={{ ...inputStyle, flex: 1 }}
             />
-            <button type="submit" style={buttonStyle}>Find</button>
+            <button type="submit" style={buttonStyle}>{t('Find')}</button>
           </form>
           <div style={{ marginTop: 8 }}>
             <div style={{
@@ -930,7 +933,7 @@ function EmbedLargeGraphControls({
                 htmlFor={depthSliderId}
                 style={{ color: theme.textSecondary, whiteSpace: 'nowrap' }}
               >
-                Detail: <strong>{depth} {depth === 1 ? 'hop' : 'hops'}</strong>
+                {t('Detail:')} <strong>{depth} {depth === 1 ? 'hop' : 'hops'}</strong>
                 <span style={{ color: theme.textTertiary }}>
                   {' '}· max {maxDepth}
                 </span>
@@ -944,7 +947,7 @@ function EmbedLargeGraphControls({
                 }}
                 onClick={onOverview}
               >
-                Reset view
+                {t('Reset view')}
               </button>
             </div>
             <SemanticDepthSlider
@@ -978,7 +981,7 @@ function EmbedLargeGraphControls({
                 style={{ ...buttonStyle, width: '100%' }}
                 onClick={onCollapseSelectedEntity}
               >
-                Hide shown neighbors
+                {t('Hide shown neighbors')}
               </button>
             ) : selectedEntity
               && selectedEntity.hiddenNeighborCount > 0
@@ -1079,6 +1082,7 @@ function EmbedRdfSource({
   theme: EmbedThemeTokens;
   isSubset: boolean;
 }) {
+  const t = useT();
   const rdf = useMemo(() => serializeToRDF(ontology, []), [ontology]);
   const isDark = theme === EMBED_THEMES.dark;
   const hlTheme = isDark ? RDF_HIGHLIGHT_DARK : RDF_HIGHLIGHT_LIGHT;
@@ -1098,9 +1102,7 @@ function EmbedRdfSource({
             padding: '8px 16px',
           }}
         >
-          Generated from the visual subset, not the complete upstream ontology.
-          Source-only RDF remains in the reviewed source and is not executed
-          here; imports are recorded but not fetched.
+          {t('Generated from the visual subset, not the complete upstream ontology. Source-only RDF remains in the reviewed source and is not executed here; imports are recorded but not fetched.')}
         </div>
       )}
       <pre style={{

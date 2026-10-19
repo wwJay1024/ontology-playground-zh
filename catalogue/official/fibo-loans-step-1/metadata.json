@@ -1,9 +1,14 @@
 {
-  "name": "FIBO Loans Lab — Step 1: Loan, Borrower, Lender",
-  "description": "The core FIBO loan triangle — Loan, Borrower, and Lender — adapted from EDM Council FIBO LOAN/LoansGeneral/Loans.",
+  "name": "FIBO 贷款实验室 — 第 1 步：贷款、借款人、出借人",
+  "description": "FIBO 贷款三角的核心——贷款、借款人与出借人，改编自 EDM Council FIBO LOAN/LoansGeneral/Loans。",
   "icon": "🏦",
   "category": "school",
-  "tags": ["fibo", "loan", "school", "step-1"],
+  "tags": [
+    "fibo",
+    "loan",
+    "school",
+    "step-1"
+  ],
   "author": "EDM Council FIBO (adapted by ontology-quest)",
   "license": "MIT",
   "sourceUrl": "https://github.com/edmcouncil/fibo"

@@ -1,8 +1,13 @@
 {
-  "name": "Manufacturing — Step 3: Quality Control",
-  "description": "Complete model with Quality-Check inspections",
+  "name": "制造 — 第 3 步：质量控制",
+  "description": "完整模型，含质检检验",
   "icon": "✅",
   "category": "school",
-  "tags": ["manufacturing", "iot", "school", "step-3"],
+  "tags": [
+    "manufacturing",
+    "iot",
+    "school",
+    "step-3"
+  ],
   "author": "ontology-quest"
 }

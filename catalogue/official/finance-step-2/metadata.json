@@ -1,8 +1,13 @@
 {
-  "name": "Banking — Step 2: Transactions",
-  "description": "Adding Transaction records to track account activity",
+  "name": "银行 — 第 2 步：交易",
+  "description": "加入交易记录，追踪账户资金往来",
   "icon": "💳",
   "category": "school",
-  "tags": ["banking", "finance", "school", "step-2"],
+  "tags": [
+    "banking",
+    "finance",
+    "school",
+    "step-2"
+  ],
   "author": "ontology-quest"
 }

@@ -9,6 +9,7 @@ import {
   FabricApiError,
   type FabricOntologyResponse,
 } from '../lib/fabric';
+import { useT } from '../i18n';
 
 interface FabricExportModalProps {
   onClose: () => void;
@@ -17,6 +18,7 @@ interface FabricExportModalProps {
 type Step = 'credentials' | 'workspace' | 'pushing' | 'done' | 'error';
 
 export function FabricExportModal({ onClose }: FabricExportModalProps) {
+  const t = useT();
   const { currentOntology } = useAppStore();
 
   const [step, setStep] = useState<Step>('credentials');
@@ -121,9 +123,9 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
               <Cloud size={20} color="var(--ms-blue)" />
             </div>
             <div>
-              <h2 style={{ fontSize: 20, fontWeight: 600 }}>Push to Microsoft Fabric</h2>
+              <h2 style={{ fontSize: 20, fontWeight: 600 }}>{t('Push to Microsoft Fabric')}</h2>
               <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>
-                Create or update an ontology in your Fabric workspace
+                {t('Create or update an ontology in your Fabric workspace')}
               </p>
             </div>
           </div>
@@ -164,7 +166,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
           <div>
             <div style={{ marginBottom: 16 }}>
               <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                Workspace ID
+                {t('Workspace ID')}
               </label>
               <input
                 type="text"
@@ -189,13 +191,13 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
 
             <div style={{ marginBottom: 20 }}>
               <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                Access Token
+                {t('Access Token')}
               </label>
               <input
                 type="password"
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
-                placeholder="Paste your bearer token here"
+                placeholder={t('Paste your bearer token here')}
                 spellCheck={false}
                 style={{
                   width: '100%', padding: '8px 12px',
@@ -208,7 +210,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
                 }}
               />
               <p style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 4 }}>
-                Bearer token with <code>Item.ReadWrite.All</code> scope.
+                {t('Bearer token with')} <code>{t('Item.ReadWrite.All')}</code> scope.
                 Get one from the Fabric REST API &quot;Try It&quot; page or via MSAL.
               </p>
             </div>
@@ -219,7 +221,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
               disabled={loading}
               style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
             >
-              {loading ? <><Loader2 size={14} className="spin" /> Connecting...</> : 'Connect to Workspace'}
+              {loading ? <><Loader2 size={14} className="spin" /> {t('Connecting...')}</> : 'Connect to Workspace'}
             </button>
           </div>
         )}
@@ -229,7 +231,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
           <div>
             <div style={{ marginBottom: 16 }}>
               <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 8 }}>
-                Action
+                {t('Action')}
               </label>
               <div style={{ display: 'flex', gap: 8 }}>
                 <button
@@ -243,7 +245,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
                     cursor: 'pointer', fontSize: 13, fontWeight: 600,
                   }}
                 >
-                  Create New
+                  {t('Create New')}
                 </button>
                 <button
                   onClick={() => setMode('update')}
@@ -266,7 +268,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
             {mode === 'update' && existingOntologies.length > 0 && (
               <div style={{ marginBottom: 16 }}>
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                  Select Ontology
+                  {t('Select Ontology')}
                 </label>
                 <select
                   value={selectedOntologyId}
@@ -296,7 +298,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
                 onClick={() => { setStep('credentials'); setError(''); }}
                 style={{ flex: 1 }}
               >
-                Back
+                {t('Back')}
               </button>
               <button
                 className="btn btn-primary"
@@ -318,7 +320,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
               {mode === 'create' ? 'Creating ontology in Fabric...' : 'Updating ontology definition...'}
             </p>
             <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginTop: 4 }}>
-              This may take a moment while Fabric provisions the resource.
+              {t('This may take a moment while Fabric provisions the resource.')}
             </p>
 
             <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
@@ -339,9 +341,9 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
                 borderRadius: 'var(--radius-md)',
                 fontSize: 13, textAlign: 'left',
               }}>
-                <div><strong>Name:</strong> {result.displayName}</div>
-                <div><strong>ID:</strong> <code style={{ fontSize: 11 }}>{result.id}</code></div>
-                <div><strong>Workspace:</strong> <code style={{ fontSize: 11 }}>{result.workspaceId}</code></div>
+                <div><strong>{t('Name:')}</strong> {result.displayName}</div>
+                <div><strong>{t('ID:')}</strong> <code style={{ fontSize: 11 }}>{result.id}</code></div>
+                <div><strong>{t('Workspace:')}</strong> <code style={{ fontSize: 11 }}>{result.workspaceId}</code></div>
               </div>
             )}
             <button
@@ -349,7 +351,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
               onClick={onClose}
               style={{ marginTop: 20 }}
             >
-              Done
+              {t('Done')}
             </button>
           </div>
         )}
@@ -359,7 +361,7 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
           <div style={{ textAlign: 'center', padding: '24px 0' }}>
             <AlertCircle size={40} color="#D13438" />
             <p style={{ marginTop: 12, fontSize: 14, color: '#D13438' }}>
-              Push failed. Check the error above and try again.
+              {t('Push failed. Check the error above and try again.')}
             </p>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 20 }}>
               <button
@@ -368,10 +370,10 @@ export function FabricExportModal({ onClose }: FabricExportModalProps) {
                 style={{ display: 'flex', alignItems: 'center', gap: 6 }}
               >
                 <RefreshCw size={14} />
-                Start Over
+                {t('Start Over')}
               </button>
               <button className="btn btn-primary" onClick={onClose}>
-                Close
+                {t('Close')}
               </button>
             </div>
           </div>

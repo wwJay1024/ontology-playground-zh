@@ -12,13 +12,13 @@ export interface SampleOntologyEntry {
 
 // E-Commerce Ontology
 const ecommerceOntology: Ontology = {
-  name: "E-Commerce Platform",
-  description: "Online retail business model with customers, products, and orders",
+  name: "电商平台",
+  description: "由买家、商品、购物车、订单与评价构成的在线零售业务模型",
   entityTypes: [
     {
       id: "buyer",
-      name: "Buyer",
-      description: "Registered customer who makes purchases",
+      name: "买家",
+      description: "完成下单的注册用户",
       icon: "🛒",
       color: "#0078D4",
       properties: [
@@ -31,8 +31,8 @@ const ecommerceOntology: Ontology = {
     },
     {
       id: "product",
-      name: "Product",
-      description: "Item available for purchase",
+      name: "商品",
+      description: "可供销售的商品",
       icon: "📦",
       color: "#107C10",
       properties: [
@@ -45,8 +45,8 @@ const ecommerceOntology: Ontology = {
     },
     {
       id: "cart",
-      name: "Shopping-Cart",
-      description: "Active shopping session",
+      name: "购物车",
+      description: "正在进行的购物会话",
       icon: "🛍️",
       color: "#FFB900",
       properties: [
@@ -58,8 +58,8 @@ const ecommerceOntology: Ontology = {
     },
     {
       id: "order",
-      name: "Order",
-      description: "Completed purchase transaction",
+      name: "订单",
+      description: "已完成的购买交易",
       icon: "📋",
       color: "#8764B8",
       properties: [
@@ -72,8 +72,8 @@ const ecommerceOntology: Ontology = {
     },
     {
       id: "review",
-      name: "Review",
-      description: "Customer product review and rating",
+      name: "评价",
+      description: "用户对商品的评价与评分",
       icon: "⭐",
       color: "#00B7C3",
       properties: [
@@ -86,24 +86,24 @@ const ecommerceOntology: Ontology = {
     }
   ],
   relationships: [
-    { id: "buyer_has_cart", name: "has_cart", from: "buyer", to: "cart", cardinality: "one-to-one", description: "Buyer's active shopping cart" },
-    { id: "cart_contains", name: "contains", from: "cart", to: "product", cardinality: "many-to-many", description: "Products in cart" },
-    { id: "buyer_places", name: "places", from: "buyer", to: "order", cardinality: "one-to-many", description: "Orders placed by buyer" },
-    { id: "order_includes", name: "includes", from: "order", to: "product", cardinality: "many-to-many", description: "Products in order" },
-    { id: "buyer_writes", name: "writes", from: "buyer", to: "review", cardinality: "one-to-many", description: "Reviews authored by buyer" },
-    { id: "review_for", name: "reviews", from: "review", to: "product", cardinality: "many-to-one", description: "Product being reviewed" }
+    { id: "buyer_has_cart", name: "拥有购物车", from: "buyer", to: "cart", cardinality: "one-to-one", description: "买家当前的购物车" },
+    { id: "cart_contains", name: "选购", from: "cart", to: "product", cardinality: "many-to-many", description: "购物车里的商品" },
+    { id: "buyer_places", name: "下单", from: "buyer", to: "order", cardinality: "one-to-many", description: "买家提交的订单" },
+    { id: "order_includes", name: "包含", from: "order", to: "product", cardinality: "many-to-many", description: "订单中的商品" },
+    { id: "buyer_writes", name: "撰写", from: "buyer", to: "review", cardinality: "one-to-many", description: "买家写的评价" },
+    { id: "review_for", name: "评价对象", from: "review", to: "product", cardinality: "many-to-one", description: "被评价的商品" }
   ]
 };
 
 // Healthcare Ontology
 const healthcareOntology: Ontology = {
-  name: "Healthcare System",
-  description: "Patient care management with providers, appointments, and treatments",
+  name: "医疗系统",
+  description: "由诊疗提供方、预约、诊断与处方构成的诊疗管理模型",
   entityTypes: [
     {
       id: "patient",
-      name: "Patient",
-      description: "Individual receiving medical care",
+      name: "患者",
+      description: "接受诊疗的人",
       icon: "🏥",
       color: "#0078D4",
       properties: [
@@ -116,8 +116,8 @@ const healthcareOntology: Ontology = {
     },
     {
       id: "provider",
-      name: "Provider",
-      description: "Healthcare professional",
+      name: "诊疗提供方",
+      description: "提供医疗服务的机构或人员",
       icon: "👨‍⚕️",
       color: "#107C10",
       properties: [
@@ -130,8 +130,8 @@ const healthcareOntology: Ontology = {
     },
     {
       id: "appointment",
-      name: "Appointment",
-      description: "Scheduled patient visit",
+      name: "预约",
+      description: "已排期的就诊",
       icon: "📅",
       color: "#FFB900",
       properties: [
@@ -144,8 +144,8 @@ const healthcareOntology: Ontology = {
     },
     {
       id: "diagnosis",
-      name: "Diagnosis",
-      description: "Medical condition identified",
+      name: "诊断",
+      description: "已确认的病情",
       icon: "🩺",
       color: "#D13438",
       properties: [
@@ -158,8 +158,8 @@ const healthcareOntology: Ontology = {
     },
     {
       id: "prescription",
-      name: "Prescription",
-      description: "Medication order",
+      name: "处方",
+      description: "用药医嘱",
       icon: "💊",
       color: "#8764B8",
       properties: [
@@ -172,24 +172,24 @@ const healthcareOntology: Ontology = {
     }
   ],
   relationships: [
-    { id: "patient_has_appt", name: "has_appointment", from: "patient", to: "appointment", cardinality: "one-to-many", description: "Patient's scheduled visits" },
-    { id: "provider_sees", name: "sees", from: "provider", to: "appointment", cardinality: "one-to-many", description: "Provider's appointments" },
-    { id: "patient_diagnosed", name: "diagnosed_with", from: "patient", to: "diagnosis", cardinality: "one-to-many", description: "Patient diagnoses" },
-    { id: "provider_diagnoses", name: "diagnoses", from: "provider", to: "diagnosis", cardinality: "one-to-many", description: "Diagnoses made by provider" },
-    { id: "diagnosis_treated", name: "treated_by", from: "diagnosis", to: "prescription", cardinality: "one-to-many", description: "Prescriptions for diagnosis" },
-    { id: "provider_prescribes", name: "prescribes", from: "provider", to: "prescription", cardinality: "one-to-many", description: "Provider prescriptions" }
+    { id: "patient_has_appt", name: "预约就诊", from: "patient", to: "appointment", cardinality: "one-to-many", description: "患者的预约记录" },
+    { id: "provider_sees", name: "接诊", from: "provider", to: "appointment", cardinality: "one-to-many", description: "医生接诊的预约" },
+    { id: "patient_diagnosed", name: "诊断为", from: "patient", to: "diagnosis", cardinality: "one-to-many", description: "患者的诊断" },
+    { id: "provider_diagnoses", name: "作出诊断", from: "provider", to: "diagnosis", cardinality: "one-to-many", description: "医生作出的诊断" },
+    { id: "diagnosis_treated", name: "对应处方", from: "diagnosis", to: "prescription", cardinality: "one-to-many", description: "该诊断对应的处方" },
+    { id: "provider_prescribes", name: "开具处方", from: "provider", to: "prescription", cardinality: "one-to-many", description: "医生开具的处方" }
   ]
 };
 
 // Financial Services Ontology
 const financeOntology: Ontology = {
-  name: "Banking & Finance",
-  description: "Financial services with accounts, transactions, and investments",
+  name: "银行与金融",
+  description: "由账户、交易、贷款与投资构成的金融服务模型",
   entityTypes: [
     {
       id: "customer",
-      name: "Customer",
-      description: "Bank account holder",
+      name: "客户",
+      description: "银行账户持有人",
       icon: "👤",
       color: "#0078D4",
       properties: [
@@ -202,8 +202,8 @@ const financeOntology: Ontology = {
     },
     {
       id: "account",
-      name: "Account",
-      description: "Financial account",
+      name: "账户",
+      description: "金融账户",
       icon: "🏦",
       color: "#107C10",
       properties: [
@@ -216,8 +216,8 @@ const financeOntology: Ontology = {
     },
     {
       id: "transaction",
-      name: "Transaction",
-      description: "Financial transaction",
+      name: "交易",
+      description: "资金往来记录",
       icon: "💳",
       color: "#FFB900",
       properties: [
@@ -230,8 +230,8 @@ const financeOntology: Ontology = {
     },
     {
       id: "loan",
-      name: "Loan",
-      description: "Credit product",
+      name: "贷款",
+      description: "信贷产品",
       icon: "📄",
       color: "#D13438",
       properties: [
@@ -244,8 +244,8 @@ const financeOntology: Ontology = {
     },
     {
       id: "investment",
-      name: "Investment",
-      description: "Investment holding",
+      name: "投资",
+      description: "所持有的投资项目",
       icon: "📈",
       color: "#8764B8",
       properties: [
@@ -258,24 +258,24 @@ const financeOntology: Ontology = {
     }
   ],
   relationships: [
-    { id: "customer_owns_acct", name: "owns", from: "customer", to: "account", cardinality: "one-to-many", description: "Customer's accounts" },
-    { id: "account_has_txn", name: "has_transaction", from: "account", to: "transaction", cardinality: "one-to-many", description: "Account transactions" },
-    { id: "customer_has_loan", name: "has_loan", from: "customer", to: "loan", cardinality: "one-to-many", description: "Customer loans" },
-    { id: "account_funds_loan", name: "funds", from: "account", to: "loan", cardinality: "one-to-many", description: "Payment source" },
-    { id: "customer_holds", name: "holds", from: "customer", to: "investment", cardinality: "one-to-many", description: "Investment portfolio" },
-    { id: "account_linked", name: "linked_to", from: "account", to: "investment", cardinality: "one-to-many", description: "Brokerage account link" }
+    { id: "customer_owns_acct", name: "持有账户", from: "customer", to: "account", cardinality: "one-to-many", description: "客户名下的账户" },
+    { id: "account_has_txn", name: "发生交易", from: "account", to: "transaction", cardinality: "one-to-many", description: "账户的交易流水" },
+    { id: "customer_has_loan", name: "申请贷款", from: "customer", to: "loan", cardinality: "one-to-many", description: "客户的贷款" },
+    { id: "account_funds_loan", name: "放款来源", from: "account", to: "loan", cardinality: "one-to-many", description: "还款资金来源" },
+    { id: "customer_holds", name: "持有投资", from: "customer", to: "investment", cardinality: "one-to-many", description: "投资组合" },
+    { id: "account_linked", name: "关联账户", from: "account", to: "investment", cardinality: "one-to-many", description: "关联的证券账户" }
   ]
 };
 
 // Manufacturing Ontology
 const manufacturingOntology: Ontology = {
-  name: "Smart Manufacturing",
-  description: "Production line with assets, sensors, and quality control",
+  name: "智能制造",
+  description: "由设备、传感器、工单与质检构成的生产线模型",
   entityTypes: [
     {
       id: "machine",
-      name: "Machine",
-      description: "Production equipment",
+      name: "设备",
+      description: "生产设备",
       icon: "🏭",
       color: "#0078D4",
       properties: [
@@ -288,8 +288,8 @@ const manufacturingOntology: Ontology = {
     },
     {
       id: "sensor",
-      name: "Sensor",
-      description: "IoT monitoring device",
+      name: "传感器",
+      description: "物联网监测装置",
       icon: "📡",
       color: "#00B7C3",
       properties: [
@@ -302,8 +302,8 @@ const manufacturingOntology: Ontology = {
     },
     {
       id: "workorder",
-      name: "Work-Order",
-      description: "Production job",
+      name: "工单",
+      description: "生产作业单",
       icon: "📋",
       color: "#FFB900",
       properties: [
@@ -316,8 +316,8 @@ const manufacturingOntology: Ontology = {
     },
     {
       id: "part",
-      name: "Part",
-      description: "Component or material",
+      name: "零件",
+      description: "零部件或物料",
       icon: "🔩",
       color: "#107C10",
       properties: [
@@ -330,8 +330,8 @@ const manufacturingOntology: Ontology = {
     },
     {
       id: "qualitycheck",
-      name: "Quality-Check",
-      description: "Inspection result",
+      name: "质检",
+      description: "检验结果",
       icon: "✅",
       color: "#8764B8",
       properties: [
@@ -344,23 +344,23 @@ const manufacturingOntology: Ontology = {
     }
   ],
   relationships: [
-    { id: "machine_has_sensor", name: "monitored_by", from: "machine", to: "sensor", cardinality: "one-to-many", description: "Sensors on machine" },
-    { id: "machine_runs", name: "executes", from: "machine", to: "workorder", cardinality: "one-to-many", description: "Work orders on machine" },
-    { id: "workorder_uses", name: "uses", from: "workorder", to: "part", cardinality: "many-to-many", description: "Parts consumed" },
-    { id: "workorder_checked", name: "inspected_by", from: "workorder", to: "qualitycheck", cardinality: "one-to-many", description: "Quality inspections" },
-    { id: "machine_maintains", name: "requires", from: "machine", to: "part", cardinality: "many-to-many", description: "Spare parts needed" }
+    { id: "machine_has_sensor", name: "被监测", from: "machine", to: "sensor", cardinality: "one-to-many", description: "设备上的传感器" },
+    { id: "machine_runs", name: "执行工单", from: "machine", to: "workorder", cardinality: "one-to-many", description: "设备执行的工单" },
+    { id: "workorder_uses", name: "消耗零件", from: "workorder", to: "part", cardinality: "many-to-many", description: "消耗的零件" },
+    { id: "workorder_checked", name: "接受质检", from: "workorder", to: "qualitycheck", cardinality: "one-to-many", description: "质量检验" },
+    { id: "machine_maintains", name: "需要备件", from: "machine", to: "part", cardinality: "many-to-many", description: "所需备件" }
   ]
 };
 
 // University Ontology
 const universityOntology: Ontology = {
-  name: "University System",
-  description: "Academic institution with students, courses, and faculty",
+  name: "高校系统",
+  description: "由学生、教授、课程与院系构成的教学管理模型",
   entityTypes: [
     {
       id: "student",
-      name: "Student",
-      description: "Enrolled learner",
+      name: "学生",
+      description: "在读学生",
       icon: "🎓",
       color: "#0078D4",
       properties: [
@@ -373,8 +373,8 @@ const universityOntology: Ontology = {
     },
     {
       id: "professor",
-      name: "Professor",
-      description: "Faculty member",
+      name: "教授",
+      description: "教职员工",
       icon: "👨‍🏫",
       color: "#107C10",
       properties: [
@@ -387,8 +387,8 @@ const universityOntology: Ontology = {
     },
     {
       id: "course",
-      name: "Course",
-      description: "Academic class",
+      name: "课程",
+      description: "教学课程",
       icon: "📚",
       color: "#FFB900",
       properties: [
@@ -401,8 +401,8 @@ const universityOntology: Ontology = {
     },
     {
       id: "department",
-      name: "Department",
-      description: "Academic unit",
+      name: "院系",
+      description: "教学单位",
       icon: "🏛️",
       color: "#8764B8",
       properties: [
@@ -414,8 +414,8 @@ const universityOntology: Ontology = {
     },
     {
       id: "enrollment",
-      name: "Enrollment",
-      description: "Course registration",
+      name: "选课",
+      description: "课程注册记录",
       icon: "📝",
       color: "#00B7C3",
       properties: [
@@ -427,20 +427,20 @@ const universityOntology: Ontology = {
     }
   ],
   relationships: [
-    { id: "student_enrolls", name: "enrolled_in", from: "student", to: "enrollment", cardinality: "one-to-many", description: "Student registrations" },
-    { id: "enrollment_for", name: "for_course", from: "enrollment", to: "course", cardinality: "many-to-one", description: "Course enrollment" },
-    { id: "prof_teaches", name: "teaches", from: "professor", to: "course", cardinality: "one-to-many", description: "Courses taught" },
-    { id: "prof_belongs", name: "belongs_to", from: "professor", to: "department", cardinality: "many-to-one", description: "Faculty department" },
-    { id: "course_offered", name: "offered_by", from: "course", to: "department", cardinality: "many-to-one", description: "Course department" },
-    { id: "student_advised", name: "advised_by", from: "student", to: "professor", cardinality: "many-to-one", description: "Academic advisor" }
+    { id: "student_enrolls", name: "选课记录", from: "student", to: "enrollment", cardinality: "one-to-many", description: "学生的选课记录" },
+    { id: "enrollment_for", name: "对应课程", from: "enrollment", to: "course", cardinality: "many-to-one", description: "选课对应的课程" },
+    { id: "prof_teaches", name: "授课", from: "professor", to: "course", cardinality: "one-to-many", description: "教授的课程" },
+    { id: "prof_belongs", name: "所属院系", from: "professor", to: "department", cardinality: "many-to-one", description: "教职员工所属院系" },
+    { id: "course_offered", name: "开课院系", from: "course", to: "department", cardinality: "many-to-one", description: "课程的开课院系" },
+    { id: "student_advised", name: "受指导于", from: "student", to: "professor", cardinality: "many-to-one", description: "学业导师" }
   ]
 };
 
 export const sampleOntologies: SampleOntologyEntry[] = [
   {
     id: "ecommerce",
-    name: "E-Commerce Platform",
-    description: "Online retail with buyers, products, carts, orders, and reviews",
+    name: "电商平台",
+    description: "买家、商品、购物车、订单与评价构成的在线零售模型",
     icon: "🛒",
     category: "retail",
     ontology: ecommerceOntology,
@@ -448,8 +448,8 @@ export const sampleOntologies: SampleOntologyEntry[] = [
   },
   {
     id: "healthcare",
-    name: "Healthcare System",
-    description: "Patient care with providers, appointments, diagnoses, and prescriptions",
+    name: "医疗系统",
+    description: "诊疗提供方、预约、诊断与处方构成的诊疗流程",
     icon: "🏥",
     category: "healthcare",
     ontology: healthcareOntology,
@@ -457,8 +457,8 @@ export const sampleOntologies: SampleOntologyEntry[] = [
   },
   {
     id: "finance",
-    name: "Banking & Finance",
-    description: "Financial services with accounts, transactions, loans, and investments",
+    name: "银行与金融",
+    description: "账户、交易、贷款与投资构成的金融服务",
     icon: "🏦",
     category: "finance",
     ontology: financeOntology,
@@ -466,8 +466,8 @@ export const sampleOntologies: SampleOntologyEntry[] = [
   },
   {
     id: "manufacturing",
-    name: "Smart Manufacturing",
-    description: "Production with machines, sensors, work orders, and quality checks",
+    name: "智能制造",
+    description: "设备、传感器、工单与质检构成的生产线",
     icon: "🏭",
     category: "manufacturing",
     ontology: manufacturingOntology,
@@ -475,8 +475,8 @@ export const sampleOntologies: SampleOntologyEntry[] = [
   },
   {
     id: "university",
-    name: "University System",
-    description: "Academic institution with students, professors, courses, and departments",
+    name: "高校系统",
+    description: "学生、教授、课程与院系构成的教学体系",
     icon: "🎓",
     category: "education",
     ontology: universityOntology,

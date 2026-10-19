@@ -1,8 +1,12 @@
 {
-  "name": "Healthcare — Step 2: Diagnoses",
-  "description": "Adding Diagnosis to track medical conditions",
+  "name": "医疗 — 第 2 步：诊断",
+  "description": "加入诊断，记录病情",
   "icon": "🩺",
   "category": "school",
-  "tags": ["healthcare", "school", "step-2"],
+  "tags": [
+    "healthcare",
+    "school",
+    "step-2"
+  ],
   "author": "ontology-quest"
 }

@@ -1,8 +1,13 @@
 {
-  "name": "Banking — Step 1: Customer & Accounts",
-  "description": "Customer and Account — the banking foundation",
+  "name": "银行 — 第 1 步：客户与账户",
+  "description": "客户与账户——银行业务的基础",
   "icon": "🏦",
   "category": "school",
-  "tags": ["banking", "finance", "school", "step-1"],
+  "tags": [
+    "banking",
+    "finance",
+    "school",
+    "step-1"
+  ],
   "author": "ontology-quest"
 }

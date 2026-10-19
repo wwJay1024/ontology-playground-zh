@@ -121,8 +121,8 @@ export function EntityForm() {
                     onChange={(e) => updateEntity(entity.id, { name: e.target.value })}
                     placeholder={t('Entity name')}
                   />
-                  {entity.name && fabricIQNameError('Entity type', entity.name) && (
-                    <span className="designer-field-hint error">{fabricIQNameError('Entity type', entity.name)}</span>
+                  {entity.name && fabricIQNameError('实体', entity.name) && (
+                    <span className="designer-field-hint error">{fabricIQNameError('实体', entity.name)}</span>
                   )}
                 </label>
 
@@ -183,7 +183,7 @@ export function EntityForm() {
 
                   <div className="designer-property-list">
                     {entity.properties.map((prop, idx) => {
-                      const propNameErr = prop.name ? fabricIQNameError('Property', prop.name) : null;
+                      const propNameErr = prop.name ? fabricIQNameError('属性', prop.name) : null;
                       const idTypeErr = prop.isIdentifier && prop.type !== 'string' && prop.type !== 'integer'
                         ? t('Identifier must be string or integer (currently {type}).', { type: prop.type })
                         : null;

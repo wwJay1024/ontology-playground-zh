@@ -8,22 +8,22 @@
     xmlns:ont="http://example.org/ontology/finance-step-1/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>Banking &amp; Finance – Step 1</rdfs:label>
-    <rdfs:comment>Customer and Account basics</rdfs:comment>
+    <rdfs:label>银行与金融 – 第 1 步</rdfs:label>
+    <rdfs:comment>客户与账户基础</rdfs:comment>
   </owl:Ontology>
 
   <!-- ════════════════  CLASSES  ════════════════ -->
 
   <owl:Class rdf:about="Customer">
-    <rdfs:label>Customer</rdfs:label>
-    <rdfs:comment>A bank customer</rdfs:comment>
+    <rdfs:label>客户</rdfs:label>
+    <rdfs:comment>银行客户</rdfs:comment>
     <ont:icon>👤</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Account">
-    <rdfs:label>Account</rdfs:label>
-    <rdfs:comment>A financial account</rdfs:comment>
+    <rdfs:label>账户</rdfs:label>
+    <rdfs:comment>客户名下的金融账户</rdfs:comment>
     <ont:icon>🏦</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
@@ -109,10 +109,10 @@
   <!-- ════════════════  OBJECT PROPERTIES  ════════════════ -->
 
   <owl:ObjectProperty rdf:about="customer_owns_acct">
-    <rdfs:label>owns</rdfs:label>
+    <rdfs:label>持有</rdfs:label>
     <rdfs:domain rdf:resource="Customer"/>
     <rdfs:range rdf:resource="Account"/>
-    <rdfs:comment>Customer's accounts</rdfs:comment>
+    <rdfs:comment>客户名下账户</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Customer</ont:fromEntityId>
     <ont:toEntityId>Account</ont:toEntityId>

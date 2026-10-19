@@ -1,6 +1,6 @@
 {
-  "name": "Retail Supply Chain — Step 4: Fulfillment & Logistics",
-  "description": "Shipment, Carrier, Warehouse model the delivery pipeline",
+  "name": "零售供应链 — 第 4 步：履约与物流",
+  "description": "发运、承运商、仓库，刻画配送链路",
   "icon": "🚚",
   "category": "school",
   "tags": [

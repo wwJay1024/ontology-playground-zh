@@ -10,6 +10,7 @@ import {
   parseOntologyValue,
   type OntologySchemaIssue,
 } from '../lib/ontologySchema';
+import { useT } from '../i18n';
 
 // Web Speech API types
 interface SpeechRecognitionEvent extends Event {
@@ -104,6 +105,7 @@ function formatValidationErrors(errors: ValidationError[]): string {
 }
 
 export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
+  const t = useT();
   const [description, setDescription] = useState('');
   const [step, setStep] = useState<Step>('input');
   const [generatedOntology, setGeneratedOntology] = useState<Ontology | null>(null);
@@ -340,7 +342,7 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
         <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Sparkles size={20} style={{ color: 'var(--accent)' }} />
-            <h2>Describe Your Ontology</h2>
+            <h2>{t('Describe Your Ontology')}</h2>
           </div>
           <button className="modal-close" onClick={handleClose}>
             <X size={20} />
@@ -357,7 +359,7 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
                 <div className="nl-input-wrapper">
                   <textarea
                     className="nl-input-textarea"
-                    placeholder="Describe your business scenario..."
+                    placeholder={t('Describe your business scenario...')}
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     rows={5}
@@ -377,7 +379,7 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
                 {isRecording && (
                   <div className="recording-indicator">
                     <span className="recording-dot" />
-                    Listening... Speak your ontology description
+                    {t('Listening... Speak your ontology description')}
                   </div>
                 )}
                 
@@ -388,7 +390,7 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
                 )}
 
                 <div className="example-prompts">
-                  <span style={{ color: 'var(--text-tertiary)', fontSize: '12px' }}>Try an example:</span>
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '12px' }}>{t('Try an example:')}</span>
                   <div className="example-chips">
                     {examplePrompts.map((prompt, i) => (
                       <button
@@ -408,7 +410,7 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
                   disabled={!description.trim()}
                 >
                   <Sparkles size={16} />
-                  Generate Ontology
+                  {t('Generate Ontology')}
                   <Send size={16} />
                 </button>
               </div>
@@ -417,9 +419,9 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
             {step === 'loading' && (
               <div className="nl-builder-content nl-loading">
                 <Loader2 size={48} className="spin" style={{ color: 'var(--accent)' }} />
-                <p>Analyzing your description...</p>
+                <p>{t('Analyzing your description...')}</p>
                 <p style={{ color: 'var(--text-tertiary)', fontSize: '14px' }}>
-                  Extracting entities, relationships, and properties
+                  {t('Extracting entities, relationships, and properties')}
                 </p>
               </div>
             )}
@@ -487,7 +489,7 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
                   </button>
                   <button className="btn-primary" onClick={handleApply}>
                     <Check size={16} />
-                    Apply Ontology
+                    {t('Apply Ontology')}
                   </button>
                 </div>
               </div>
@@ -496,12 +498,12 @@ export function NLBuilderModal({ onClose }: NLBuilderModalProps) {
         {step === 'error' && (
           <div className="nl-builder-content nl-error">
             <AlertCircle size={48} style={{ color: '#FF6B6B' }} />
-            <p style={{ color: '#FF6B6B' }}>Generation Failed</p>
+            <p style={{ color: '#FF6B6B' }}>{t('Generation Failed')}</p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
               {error || 'An unknown error occurred'}
             </p>
             <button className="btn-secondary" onClick={() => setStep('input')}>
-              Try Again
+              {t('Try Again')}
             </button>
           </div>
         )}

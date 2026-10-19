@@ -1,8 +1,13 @@
 {
-  "name": "University — Step 1: Students & Courses",
-  "description": "Student, Course, Enrollment — the academic core",
+  "name": "高校 — 第 1 步：学生与课程",
+  "description": "学生、课程、选课——教学核心",
   "icon": "🎓",
   "category": "school",
-  "tags": ["education", "university", "school", "step-1"],
+  "tags": [
+    "education",
+    "university",
+    "school",
+    "step-1"
+  ],
   "author": "ontology-quest"
 }

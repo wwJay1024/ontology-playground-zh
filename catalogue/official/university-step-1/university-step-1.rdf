@@ -9,8 +9,8 @@
 
     <!-- Ontology Declaration -->
     <owl:Ontology rdf:about="">
-        <rdfs:label>University System – Step 1</rdfs:label>
-        <rdfs:comment>Core student enrollment model: Student, Course, and Enrollment entities.</rdfs:comment>
+        <rdfs:label>高校系统 – 第 1 步</rdfs:label>
+        <rdfs:comment>核心选课模型：学生、课程与选课实体。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ======================== -->
@@ -18,22 +18,22 @@
     <!-- ======================== -->
 
     <owl:Class rdf:about="#Student">
-        <rdfs:label>Student</rdfs:label>
-        <rdfs:comment>A student enrolled at the university</rdfs:comment>
+        <rdfs:label>学生</rdfs:label>
+        <rdfs:comment>在本校注册就读的学生</rdfs:comment>
         <ont:icon>🎓</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="#Course">
-        <rdfs:label>Course</rdfs:label>
-        <rdfs:comment>An academic course offered by the university</rdfs:comment>
+        <rdfs:label>课程</rdfs:label>
+        <rdfs:comment>学校开设的一门课程</rdfs:comment>
         <ont:icon>📚</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="#Enrollment">
-        <rdfs:label>Enrollment</rdfs:label>
-        <rdfs:comment>A student's registration in a specific course</rdfs:comment>
+        <rdfs:label>选课</rdfs:label>
+        <rdfs:comment>学生在某门课程上的选课记录</rdfs:comment>
         <ont:icon>📝</ont:icon>
         <ont:color>#00B7C3</ont:color>
     </owl:Class>
@@ -151,20 +151,20 @@
     <!-- ======================== -->
 
     <owl:ObjectProperty rdf:about="#student_enrolls">
-        <rdfs:label>enrolled_in</rdfs:label>
+        <rdfs:label>选修</rdfs:label>
         <rdfs:domain rdf:resource="#Student"/>
         <rdfs:range rdf:resource="#Enrollment"/>
-        <rdfs:comment>Student registrations</rdfs:comment>
+        <rdfs:comment>学生的选课记录</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>Student</ont:fromEntityId>
         <ont:toEntityId>Enrollment</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="#enrollment_for">
-        <rdfs:label>for_course</rdfs:label>
+        <rdfs:label>对应课程</rdfs:label>
         <rdfs:domain rdf:resource="#Enrollment"/>
         <rdfs:range rdf:resource="#Course"/>
-        <rdfs:comment>Course enrollment</rdfs:comment>
+        <rdfs:comment>课程的选课记录</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>Enrollment</ont:fromEntityId>
         <ont:toEntityId>Course</ont:toEntityId>

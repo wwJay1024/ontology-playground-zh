@@ -10,36 +10,36 @@
     <!-- Classes -->
 
     <owl:Class rdf:about="http://example.org/ontology/manufacturing-step-3/Machine">
-        <rdfs:label>Machine</rdfs:label>
-        <rdfs:comment>A manufacturing machine on the factory floor</rdfs:comment>
+        <rdfs:label>设备</rdfs:label>
+        <rdfs:comment>车间里的一台生产设备</rdfs:comment>
         <ont:icon>🏭</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/manufacturing-step-3/Sensor">
-        <rdfs:label>Sensor</rdfs:label>
-        <rdfs:comment>A sensor device that monitors machine parameters</rdfs:comment>
+        <rdfs:label>传感器</rdfs:label>
+        <rdfs:comment>监测设备运行参数的传感器</rdfs:comment>
         <ont:icon>📡</ont:icon>
         <ont:color>#00B7C3</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/manufacturing-step-3/Workorder">
-        <rdfs:label>Work-Order</rdfs:label>
-        <rdfs:comment>A work order for manufacturing a product</rdfs:comment>
+        <rdfs:label>工单</rdfs:label>
+        <rdfs:comment>为生产某个产品而下达的工单</rdfs:comment>
         <ont:icon>📋</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/manufacturing-step-3/Part">
-        <rdfs:label>Part</rdfs:label>
-        <rdfs:comment>A component or spare part used in manufacturing</rdfs:comment>
+        <rdfs:label>零件</rdfs:label>
+        <rdfs:comment>生产中使用的零部件或备件</rdfs:comment>
         <ont:icon>🔩</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/manufacturing-step-3/Qualitycheck">
-        <rdfs:label>Quality-Check</rdfs:label>
-        <rdfs:comment>A quality inspection performed on a work order</rdfs:comment>
+        <rdfs:label>质检</rdfs:label>
+        <rdfs:comment>针对工单执行的一次质检</rdfs:comment>
         <ont:icon>✅</ont:icon>
         <ont:color>#8764B8</ont:color>
     </owl:Class>
@@ -238,50 +238,50 @@
     <!-- Object Properties -->
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/manufacturing-step-3/machine_has_sensor">
-        <rdfs:label>monitored_by</rdfs:label>
+        <rdfs:label>由…监测</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/manufacturing-step-3/Machine"/>
         <rdfs:range rdf:resource="http://example.org/ontology/manufacturing-step-3/Sensor"/>
-        <rdfs:comment>Sensors on machine</rdfs:comment>
+        <rdfs:comment>设备上安装的传感器</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>Machine</ont:fromEntityId>
         <ont:toEntityId>Sensor</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/manufacturing-step-3/machine_runs">
-        <rdfs:label>executes</rdfs:label>
+        <rdfs:label>执行</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/manufacturing-step-3/Machine"/>
         <rdfs:range rdf:resource="http://example.org/ontology/manufacturing-step-3/Workorder"/>
-        <rdfs:comment>Work orders on machine</rdfs:comment>
+        <rdfs:comment>设备执行的工单</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>Machine</ont:fromEntityId>
         <ont:toEntityId>Workorder</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/manufacturing-step-3/workorder_uses">
-        <rdfs:label>uses</rdfs:label>
+        <rdfs:label>耗用</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/manufacturing-step-3/Workorder"/>
         <rdfs:range rdf:resource="http://example.org/ontology/manufacturing-step-3/Part"/>
-        <rdfs:comment>Parts consumed</rdfs:comment>
+        <rdfs:comment>耗用的零件</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>Workorder</ont:fromEntityId>
         <ont:toEntityId>Part</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/manufacturing-step-3/machine_maintains">
-        <rdfs:label>requires</rdfs:label>
+        <rdfs:label>需要备件</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/manufacturing-step-3/Machine"/>
         <rdfs:range rdf:resource="http://example.org/ontology/manufacturing-step-3/Part"/>
-        <rdfs:comment>Spare parts needed</rdfs:comment>
+        <rdfs:comment>所需备件</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>Machine</ont:fromEntityId>
         <ont:toEntityId>Part</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/manufacturing-step-3/workorder_checked">
-        <rdfs:label>inspected_by</rdfs:label>
+        <rdfs:label>由…质检</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/manufacturing-step-3/Workorder"/>
         <rdfs:range rdf:resource="http://example.org/ontology/manufacturing-step-3/Qualitycheck"/>
-        <rdfs:comment>Quality inspections</rdfs:comment>
+        <rdfs:comment>质检记录</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>Workorder</ont:fromEntityId>
         <ont:toEntityId>Qualitycheck</ont:toEntityId>

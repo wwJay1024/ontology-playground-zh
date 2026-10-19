@@ -3,12 +3,14 @@ import { X, FileText, Copy, Check } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
 import { useState } from 'react';
 import { limitOntologyList } from '../lib/ontologyScale';
+import { useT } from '../i18n';
 
 interface OntologySummaryModalProps {
   onClose: () => void;
 }
 
 export function OntologySummaryModal({ onClose }: OntologySummaryModalProps) {
+  const t = useT();
   const { currentOntology } = useAppStore();
   const [copied, setCopied] = useState(false);
   const summaryEntities = limitOntologyList(currentOntology.entityTypes);
@@ -78,13 +80,13 @@ export function OntologySummaryModal({ onClose }: OntologySummaryModalProps) {
         <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <FileText size={20} style={{ color: 'var(--accent)' }} />
-            <h2>Ontology Summary</h2>
+            <h2>{t('Ontology Summary')}</h2>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
             <button 
               className="icon-btn" 
               onClick={handleCopy} 
-              title="Copy to clipboard"
+              title={t('Copy to clipboard')}
               style={{ background: copied ? 'var(--ms-green)' : 'var(--bg-tertiary)' }}
             >
               {copied ? <Check size={18} color="white" /> : <Copy size={18} />}

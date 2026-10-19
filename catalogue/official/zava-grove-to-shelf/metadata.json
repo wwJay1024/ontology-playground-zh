@@ -1,6 +1,6 @@
 {
-  "name": "Zava Grove-to-Shelf",
-  "description": "Zava's complete grove-to-shelf ontology — multi-origin sourcing, four-stage QC, cold-chain logistics, retail orders, and sustainability — in 12 entities and 13 relationships.",
+  "name": "Zava 从果园到货架",
+  "description": "Zava 完整的果园到货架本体：多产地采购、四道质检、冷链物流、零售订单与可持续计划，共 12 个实体、13 条关系。",
   "icon": "🌾",
   "category": "food",
   "tags": [

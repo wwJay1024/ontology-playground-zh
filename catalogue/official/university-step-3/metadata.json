@@ -1,8 +1,13 @@
 {
-  "name": "University — Step 3: Departments",
-  "description": "Complete model with Department organizational structure",
+  "name": "高校 — 第 3 步：院系",
+  "description": "完整模型，含院系组织结构",
   "icon": "🏛️",
   "category": "school",
-  "tags": ["education", "university", "school", "step-3"],
+  "tags": [
+    "education",
+    "university",
+    "school",
+    "step-3"
+  ],
   "author": "ontology-quest"
 }

@@ -20,6 +20,7 @@ import type {
   LoadedCatalogueSource,
 } from '../types/catalogue';
 import { CATEGORY_COLORS, CATEGORY_LABELS } from '../types/catalogue';
+import { useT } from '../i18n';
 
 interface GalleryModalProps {
   onClose: () => void;
@@ -32,6 +33,7 @@ type RdfView = {
 };
 
 export function GalleryModal({ onClose }: GalleryModalProps) {
+  const t = useT();
   const { currentOntology, loadOntology } = useAppStore();
 
   const [catalogue, setCatalogue] = useState<CatalogueEntry[]>([]);
@@ -329,9 +331,9 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <div>
-            <h2 style={{ fontSize: 24, fontWeight: 600 }}>Ontology Gallery</h2>
+            <h2 style={{ fontSize: 24, fontWeight: 600 }}>{t('Ontology Gallery')}</h2>
             <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginTop: 4 }}>
-              Browse and load ontologies from the catalogue
+              {t('Browse and load ontologies from the catalogue')}
             </p>
           </div>
           <button className="icon-btn" onClick={handleClose}>
@@ -345,7 +347,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
             <Search size={16} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} />
             <input
               type="text"
-              placeholder="Search by name, tag, author, license…"
+              placeholder={t('Search by name, tag, author, license…')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
@@ -379,10 +381,10 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
               fontSize: 13,
             }}
           >
-            <option value="all">All sources</option>
-            <option value="official">Official</option>
-            <option value="external">External</option>
-            <option value="community">Community</option>
+            <option value="all">{t('All sources')}</option>
+            <option value="official">{t('Official')}</option>
+            <option value="external">{t('External')}</option>
+            <option value="community">{t('Community')}</option>
           </select>
           <select
             value={categoryFilter}
@@ -404,7 +406,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
               fontSize: 13,
             }}
           >
-            <option value="all">All categories</option>
+            <option value="all">{t('All categories')}</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
                 {CATEGORY_LABELS[cat] ?? cat}
@@ -416,7 +418,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
         {/* Loading / Error / Empty */}
         {loading && (
           <div style={{ textAlign: 'center', padding: 40, color: 'var(--text-secondary)' }}>
-            Loading catalogue…
+            {t('Loading catalogue…')}
           </div>
         )}
         {error && (
@@ -426,7 +428,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
         )}
         {!loading && !error && filtered.length === 0 && (
           <div style={{ textAlign: 'center', padding: 40, color: 'var(--text-secondary)' }}>
-            No ontologies match your filters.
+            {t('No ontologies match your filters.')}
           </div>
         )}
 
@@ -524,7 +526,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                                 fontWeight: 500,
                               }}
                             >
-                              Community
+                              {t('Community')}
                             </span>
                           )}
                           {entry.source === 'external' && (
@@ -538,7 +540,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                                 fontWeight: 500,
                               }}
                             >
-                              External
+                              {t('External')}
                             </span>
                           )}
                         </div>
@@ -555,7 +557,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                           fontWeight: 600,
                         }}
                       >
-                        Active
+                        {t('Active')}
                       </div>
                     )}
                   </div>
@@ -629,10 +631,8 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
 
                   {entry.source === 'external' && (
                     <SourceFidelityNote className="catalogue-source-fidelity-note">
-                      <strong>About this view:</strong> The graph, Designer, and
-                      generated RDF use a visual subset. Source-only SHACL rules
-                      and unsupported triples remain intact in the reviewed
-                      source.
+                      <strong>{t('About this view:')}</strong>{' '}
+                      {t('The graph, Designer, and generated RDF use a visual subset. Source-only SHACL rules and unsupported triples remain intact in the reviewed source.')}
                     </SourceFidelityNote>
                   )}
 
@@ -666,7 +666,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                         <button
                           className="btn btn-secondary"
                           style={{ padding: '5px 8px', fontSize: 11 }}
-                          title="View the hash-verified original RDF source"
+                          title={t('View the hash-verified original RDF source')}
                           aria-label={`View original RDF source for ${entry.name}`}
                           disabled={isLoadingSource}
                           onClick={(e) => {
@@ -682,11 +682,11 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                         className="btn btn-secondary"
                         style={{ padding: '5px 8px', fontSize: 11 }}
                         title={isLoadingEntry
-                          ? 'Loading ontology payload'
+                          ? t('Loading ontology payload')
                           : entry.source === 'external'
-                            ? 'View the Playground-generated RDF subset'
-                            : 'View Playground-generated RDF'}
-                        aria-label={`View generated RDF for ${entry.name}`}
+                            ? t('View the Playground-generated RDF subset')
+                            : t('View Playground-generated RDF')}
+                        aria-label={t('View generated RDF for {name}', { name: entry.name })}
                         disabled={isLoadingEntry}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -694,7 +694,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                         }}
                       >
                         <Code size={13} />
-                        Generated
+                        {t('Generated')}
                       </button>
                       <button
                         className="btn btn-secondary"
@@ -710,7 +710,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                       <button
                         className="btn btn-secondary"
                         style={{ padding: '5px 8px', fontSize: 11 }}
-                        title="Edit in Designer"
+                        title={t('Edit in Designer')}
                         disabled={isLoadingEntry}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -829,7 +829,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
 
         <div style={{ marginTop: 20, textAlign: 'center' }}>
           <button className="btn btn-primary" onClick={handleClose}>
-            Done
+            {t('Done')}
           </button>
         </div>
       </motion.div>
@@ -838,6 +838,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
 }
 
 function CatalogueAttribution({ entry }: { entry: CatalogueEntry }) {
+  const t = useT();
   if (!entry.license && !entry.sourceUrl && !entry.version) return null;
 
   return (
@@ -874,7 +875,7 @@ function CatalogueAttribution({ entry }: { entry: CatalogueEntry }) {
             textDecoration: 'underline',
           }}
         >
-          Upstream source
+          {t('Upstream source')}
           <ExternalLink size={11} aria-hidden="true" />
         </a>
       )}
@@ -893,6 +894,7 @@ function GalleryRdfSource({
   bindings: Parameters<typeof serializeToRDF>[1];
   isSubset: boolean;
 }) {
+  const t = useT();
   const darkMode = useAppStore((s) => s.darkMode);
   const hlTheme = darkMode ? RDF_HIGHLIGHT_DARK : RDF_HIGHLIGHT_LIGHT;
   const rdf = useMemo(() => serializeToRDF(ontology, bindings), [ontology, bindings]);
@@ -902,13 +904,13 @@ function GalleryRdfSource({
     <div style={{ marginTop: 12 }}>
       <strong style={{ display: 'block', fontSize: 12 }}>
         {isSubset
-          ? 'Playground-generated RDF subset'
-          : 'Playground-generated RDF'}
+          ? t('Playground-generated RDF subset')
+          : t('Playground-generated RDF')}
       </strong>
       <p style={{ margin: '4px 0 8px', fontSize: 11, color: 'var(--text-secondary)' }}>
         {isSubset
-          ? 'Generated from the visual model, not the complete upstream ontology. It includes mapped classes, object properties, subclass edges, and ontology metadata. Source-only RDF remains in the reviewed source; imports are recorded but never fetched.'
-          : 'Generated from the Playground visual model and data bindings.'}
+          ? t('Generated from the visual model, not the complete upstream ontology. It includes mapped classes, object properties, subclass edges, and ontology metadata. Source-only RDF remains in the reviewed source; imports are recorded but never fetched.')
+          : t('Generated from the Playground visual model and data bindings.')}
       </p>
       <RdfCodeBlock>{highlighted}</RdfCodeBlock>
     </div>
@@ -924,6 +926,7 @@ function GalleryOriginalSource({
   entry: CatalogueEntry;
   source: LoadedCatalogueSource;
 }) {
+  const t = useT();
   const preview = source.text.slice(0, ORIGINAL_SOURCE_PREVIEW_CHARACTERS);
   const previewIsTruncated = preview.length < source.text.length;
 
@@ -944,7 +947,7 @@ function GalleryOriginalSource({
   return (
     <div style={{ marginTop: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-        <strong style={{ fontSize: 12 }}>Original reviewed RDF source</strong>
+        <strong style={{ fontSize: 12 }}>{t('Original reviewed RDF source')}</strong>
         <button
           className="btn btn-secondary"
           style={{ padding: '4px 8px', fontSize: 11 }}
@@ -952,18 +955,15 @@ function GalleryOriginalSource({
           onClick={handleDownload}
         >
           <Download size={12} />
-          Download verified source
+          {t('Download verified source')}
         </button>
       </div>
       <p style={{ margin: '4px 0', fontSize: 11, color: 'var(--text-secondary)' }}>
-        Exact catalogue bytes; SHA-256 and byte length were verified before
-        display. SHACL rules and unsupported triples remain inert source data:
-        they are not executed, and imports are not dereferenced.
+        {t('Exact catalogue bytes; SHA-256 and byte length were verified before display. SHACL rules and unsupported triples remain inert source data: they are not executed, and imports are not dereferenced.')}
       </p>
       {previewIsTruncated && (
         <p style={{ margin: '4px 0', fontSize: 11, color: 'var(--text-secondary)' }}>
-          Preview limited to the first {ORIGINAL_SOURCE_PREVIEW_CHARACTERS.toLocaleString()} characters.
-          Download the verified artifact for the complete source.
+          {t('Preview limited to the first {count} characters. Download the verified artifact for the complete source.', { count: ORIGINAL_SOURCE_PREVIEW_CHARACTERS.toLocaleString() })}
         </p>
       )}
       <code style={{ display: 'block', marginBottom: 8, fontSize: 10, color: 'var(--text-tertiary)' }}>

@@ -62,7 +62,7 @@
   --radius-xl: 16px;
   
   /* Font Family */
-  --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   --font-mono: 'Cascadia Code', 'Fira Code', monospace;
   
   /* Graph-specific dark mode colors */

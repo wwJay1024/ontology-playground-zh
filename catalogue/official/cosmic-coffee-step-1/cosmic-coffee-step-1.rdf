@@ -8,29 +8,29 @@
     xmlns:ont="http://example.org/ontology/cosmic-coffee-step-1/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/cosmic-coffee-step-1/">
-        <rdfs:label>Fourth Coffee – Step 1</rdfs:label>
-        <rdfs:comment>Core customer ordering model: Customer, Order, and Product with basic relationships.</rdfs:comment>
+        <rdfs:label>Fourth Coffee – 第 1 步</rdfs:label>
+        <rdfs:comment>客户下单的核心模型：客户、订单与商品，以及它们之间的基本关系。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ======== Classes ======== -->
 
     <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-step-1/Customer">
-        <rdfs:label>Customer</rdfs:label>
-        <rdfs:comment>A loyalty-program member who places orders</rdfs:comment>
+        <rdfs:label>客户</rdfs:label>
+        <rdfs:comment>加入会员计划并下单的客户</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-step-1/Order">
-        <rdfs:label>Order</rdfs:label>
-        <rdfs:comment>A purchase transaction containing one or more products</rdfs:comment>
+        <rdfs:label>订单</rdfs:label>
+        <rdfs:comment>包含一件或多件商品的一次购买交易</rdfs:comment>
         <ont:icon>🧾</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-step-1/Product">
-        <rdfs:label>Product</rdfs:label>
-        <rdfs:comment>A menu item or merchandise available for sale</rdfs:comment>
+        <rdfs:label>商品</rdfs:label>
+        <rdfs:comment>可供销售的菜单饮品或周边商品</rdfs:comment>
         <ont:icon>☕</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
@@ -173,20 +173,20 @@
     <!-- ======== Relationships ======== -->
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-step-1/customer_places_order">
-        <rdfs:label>places</rdfs:label>
+        <rdfs:label>下单</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-step-1/Customer"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-step-1/Order"/>
-        <rdfs:comment>A customer places one or more orders</rdfs:comment>
+        <rdfs:comment>客户可以下一笔或多笔订单</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>customer</ont:fromEntityId>
         <ont:toEntityId>order</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-step-1/order_contains_product">
-        <rdfs:label>contains</rdfs:label>
+        <rdfs:label>包含</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-step-1/Order"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-step-1/Product"/>
-        <rdfs:comment>An order contains one or more products</rdfs:comment>
+        <rdfs:comment>一笔订单包含一件或多件商品</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>order</ont:fromEntityId>
         <ont:toEntityId>product</ont:toEntityId>

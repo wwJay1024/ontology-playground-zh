@@ -9,8 +9,8 @@
 
     <!-- Ontology Declaration -->
     <owl:Ontology rdf:about="">
-        <rdfs:label>University System – Step 3</rdfs:label>
-        <rdfs:comment>Adds Department entity with faculty and course organizational relationships.</rdfs:comment>
+        <rdfs:label>高校系统 – 第 3 步</rdfs:label>
+        <rdfs:comment>增加院系实体，并建立教职员工与课程的组织关系。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ======================== -->
@@ -18,36 +18,36 @@
     <!-- ======================== -->
 
     <owl:Class rdf:about="#Student">
-        <rdfs:label>Student</rdfs:label>
-        <rdfs:comment>A student enrolled at the university</rdfs:comment>
+        <rdfs:label>学生</rdfs:label>
+        <rdfs:comment>在本校注册就读的学生</rdfs:comment>
         <ont:icon>🎓</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="#Course">
-        <rdfs:label>Course</rdfs:label>
-        <rdfs:comment>An academic course offered by the university</rdfs:comment>
+        <rdfs:label>课程</rdfs:label>
+        <rdfs:comment>学校开设的一门课程</rdfs:comment>
         <ont:icon>📚</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="#Enrollment">
-        <rdfs:label>Enrollment</rdfs:label>
-        <rdfs:comment>A student's registration in a specific course</rdfs:comment>
+        <rdfs:label>选课</rdfs:label>
+        <rdfs:comment>学生在某门课程上的选课记录</rdfs:comment>
         <ont:icon>📝</ont:icon>
         <ont:color>#00B7C3</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="#Professor">
-        <rdfs:label>Professor</rdfs:label>
-        <rdfs:comment>A faculty member who teaches courses and advises students</rdfs:comment>
+        <rdfs:label>教授</rdfs:label>
+        <rdfs:comment>承担授课并指导学生的教职员工</rdfs:comment>
         <ont:icon>👨‍🏫</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="#Department">
-        <rdfs:label>Department</rdfs:label>
-        <rdfs:comment>An academic department within the university</rdfs:comment>
+        <rdfs:label>院系</rdfs:label>
+        <rdfs:comment>学校下设的院系</rdfs:comment>
         <ont:icon>🏛️</ont:icon>
         <ont:color>#8764B8</ont:color>
     </owl:Class>
@@ -233,60 +233,60 @@
     <!-- ======================== -->
 
     <owl:ObjectProperty rdf:about="#student_enrolls">
-        <rdfs:label>enrolled_in</rdfs:label>
+        <rdfs:label>选修</rdfs:label>
         <rdfs:domain rdf:resource="#Student"/>
         <rdfs:range rdf:resource="#Enrollment"/>
-        <rdfs:comment>Student registrations</rdfs:comment>
+        <rdfs:comment>学生的选课记录</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>Student</ont:fromEntityId>
         <ont:toEntityId>Enrollment</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="#enrollment_for">
-        <rdfs:label>for_course</rdfs:label>
+        <rdfs:label>对应课程</rdfs:label>
         <rdfs:domain rdf:resource="#Enrollment"/>
         <rdfs:range rdf:resource="#Course"/>
-        <rdfs:comment>Course enrollment</rdfs:comment>
+        <rdfs:comment>课程的选课记录</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>Enrollment</ont:fromEntityId>
         <ont:toEntityId>Course</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="#prof_teaches">
-        <rdfs:label>teaches</rdfs:label>
+        <rdfs:label>授课</rdfs:label>
         <rdfs:domain rdf:resource="#Professor"/>
         <rdfs:range rdf:resource="#Course"/>
-        <rdfs:comment>Courses taught</rdfs:comment>
+        <rdfs:comment>讲授的课程</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>Professor</ont:fromEntityId>
         <ont:toEntityId>Course</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="#student_advised">
-        <rdfs:label>advised_by</rdfs:label>
+        <rdfs:label>由…指导</rdfs:label>
         <rdfs:domain rdf:resource="#Student"/>
         <rdfs:range rdf:resource="#Professor"/>
-        <rdfs:comment>Academic advisor</rdfs:comment>
+        <rdfs:comment>学业导师</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>Student</ont:fromEntityId>
         <ont:toEntityId>Professor</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="#prof_belongs">
-        <rdfs:label>belongs_to</rdfs:label>
+        <rdfs:label>隶属院系</rdfs:label>
         <rdfs:domain rdf:resource="#Professor"/>
         <rdfs:range rdf:resource="#Department"/>
-        <rdfs:comment>Faculty department</rdfs:comment>
+        <rdfs:comment>教职员工所属院系</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>Professor</ont:fromEntityId>
         <ont:toEntityId>Department</ont:toEntityId>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="#course_offered">
-        <rdfs:label>offered_by</rdfs:label>
+        <rdfs:label>由…开设</rdfs:label>
         <rdfs:domain rdf:resource="#Course"/>
         <rdfs:range rdf:resource="#Department"/>
-        <rdfs:comment>Course department</rdfs:comment>
+        <rdfs:comment>课程所属院系</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>Course</ont:fromEntityId>
         <ont:toEntityId>Department</ont:toEntityId>

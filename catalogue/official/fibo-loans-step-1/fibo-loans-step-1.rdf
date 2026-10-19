@@ -15,27 +15,27 @@
     xmlns:ont="http://example.org/ontology/fibo-loans-step-1/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Loans Lab — Step 1</rdfs:label>
-    <rdfs:comment>Core loan actors and obligations adapted from EDM Council FIBO LOAN/LoansGeneral/Loans. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 贷款实验 — 第 1 步</rdfs:label>
+    <rdfs:comment>改编自 EDM Council FIBO LOAN/LoansGeneral/Loans 的核心贷款参与方与义务模型。来源：https://github.com/edmcouncil/fibo — MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <owl:Class rdf:about="Loan">
-    <rdfs:label>Loan</rdfs:label>
-    <rdfs:comment>Debt instrument extended to a borrower and repaid according to contract terms.</rdfs:comment>
+    <rdfs:label>贷款</rdfs:label>
+    <rdfs:comment>向借款人发放、并按合同条款偿还的债务工具。</rdfs:comment>
     <ont:icon>📄</ont:icon>
     <ont:color>#00A9E0</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Borrower">
-    <rdfs:label>Borrower</rdfs:label>
-    <rdfs:comment>Party that receives funds and assumes repayment obligations.</rdfs:comment>
+    <rdfs:label>借款人</rdfs:label>
+    <rdfs:comment>收取资金并承担还款义务的一方。</rdfs:comment>
     <ont:icon>👤</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Lender">
-    <rdfs:label>Lender</rdfs:label>
-    <rdfs:comment>Party that provides funds or credit under loan agreement terms.</rdfs:comment>
+    <rdfs:label>出借人</rdfs:label>
+    <rdfs:comment>按贷款协议条款提供资金或授信的一方。</rdfs:comment>
     <ont:icon>🏦</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
@@ -108,20 +108,20 @@
   </owl:DatatypeProperty>
 
   <owl:ObjectProperty rdf:about="owedBy">
-    <rdfs:label>owedBy</rdfs:label>
+    <rdfs:label>由…负担</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Borrower"/>
-    <rdfs:comment>Relates a loan to the borrower obligated to repay it.</rdfs:comment>
+    <rdfs:comment>指明贷款的还款义务人。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Borrower</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="originatedBy">
-    <rdfs:label>originatedBy</rdfs:label>
+    <rdfs:label>由…发起</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Lender"/>
-    <rdfs:comment>Relates a loan to the lending organization that originated it.</rdfs:comment>
+    <rdfs:comment>指明发起该笔贷款的出借机构。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Lender</ont:toEntityId>

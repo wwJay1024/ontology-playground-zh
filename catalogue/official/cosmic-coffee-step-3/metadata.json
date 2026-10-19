@@ -1,8 +1,13 @@
 {
-  "name": "Fourth Coffee — Step 3: Supply Chain",
-  "description": "Complete model with Supplier and Shipment logistics",
+  "name": "Fourth Coffee — 第 3 步：供应链",
+  "description": "完整模型，含供应商与发运物流",
   "icon": "🚚",
   "category": "school",
-  "tags": ["coffee", "retail", "school", "step-3"],
+  "tags": [
+    "coffee",
+    "retail",
+    "school",
+    "step-3"
+  ],
   "author": "ontology-quest"
 }

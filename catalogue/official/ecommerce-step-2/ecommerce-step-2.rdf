@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/ecommerce-step-2/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>E-Commerce Platform – Step 2</rdfs:label>
-    <rdfs:comment>Adds Shopping Cart to the foundation, enabling cart-based workflows before checkout.</rdfs:comment>
+    <rdfs:label>电商平台 – 第 2 步</rdfs:label>
+    <rdfs:comment>在基础模型中加入购物车，支持下单前先加购的流程。</rdfs:comment>
   </owl:Ontology>
 
   <!-- ============================================================ -->
@@ -17,29 +17,29 @@
   <!-- ============================================================ -->
 
   <owl:Class rdf:about="Buyer">
-    <rdfs:label>Buyer</rdfs:label>
-    <rdfs:comment>A customer who purchases products on the platform.</rdfs:comment>
+    <rdfs:label>买家</rdfs:label>
+    <rdfs:comment>在平台上购买商品的客户。</rdfs:comment>
     <ont:icon>🛒</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Product">
-    <rdfs:label>Product</rdfs:label>
-    <rdfs:comment>An item available for purchase on the platform.</rdfs:comment>
+    <rdfs:label>商品</rdfs:label>
+    <rdfs:comment>平台上可供购买的商品。</rdfs:comment>
     <ont:icon>📦</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Order">
-    <rdfs:label>Order</rdfs:label>
-    <rdfs:comment>A purchase order placed by a buyer.</rdfs:comment>
+    <rdfs:label>订单</rdfs:label>
+    <rdfs:comment>买家提交的一笔订单。</rdfs:comment>
     <ont:icon>📋</ont:icon>
     <ont:color>#8764B8</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="ShoppingCart">
-    <rdfs:label>ShoppingCart</rdfs:label>
-    <rdfs:comment>A temporary collection of products a buyer intends to purchase.</rdfs:comment>
+    <rdfs:label>购物车</rdfs:label>
+    <rdfs:comment>买家打算购买、暂存待结算的商品集合。</rdfs:comment>
     <ont:icon>🛍️</ont:icon>
     <ont:color>#FFB900</ont:color>
   </owl:Class>
@@ -206,40 +206,40 @@
   <!-- ============================================================ -->
 
   <owl:ObjectProperty rdf:about="places">
-    <rdfs:label>places</rdfs:label>
+    <rdfs:label>下单</rdfs:label>
     <rdfs:domain rdf:resource="Buyer"/>
     <rdfs:range rdf:resource="Order"/>
-    <rdfs:comment>A buyer places an order.</rdfs:comment>
+    <rdfs:comment>买家下单。</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Buyer</ont:fromEntityId>
     <ont:toEntityId>Order</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="includes">
-    <rdfs:label>includes</rdfs:label>
+    <rdfs:label>包含</rdfs:label>
     <rdfs:domain rdf:resource="Order"/>
     <rdfs:range rdf:resource="Product"/>
-    <rdfs:comment>An order includes one or more products.</rdfs:comment>
+    <rdfs:comment>一笔订单包含一件或多件商品。</rdfs:comment>
     <ont:cardinality>many-to-many</ont:cardinality>
     <ont:fromEntityId>Order</ont:fromEntityId>
     <ont:toEntityId>Product</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="has_cart">
-    <rdfs:label>has_cart</rdfs:label>
+    <rdfs:label>拥有购物车</rdfs:label>
     <rdfs:domain rdf:resource="Buyer"/>
     <rdfs:range rdf:resource="ShoppingCart"/>
-    <rdfs:comment>A buyer has a shopping cart.</rdfs:comment>
+    <rdfs:comment>买家拥有一个购物车。</rdfs:comment>
     <ont:cardinality>one-to-one</ont:cardinality>
     <ont:fromEntityId>Buyer</ont:fromEntityId>
     <ont:toEntityId>ShoppingCart</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="contains">
-    <rdfs:label>contains</rdfs:label>
+    <rdfs:label>包含</rdfs:label>
     <rdfs:domain rdf:resource="ShoppingCart"/>
     <rdfs:range rdf:resource="Product"/>
-    <rdfs:comment>A shopping cart contains products.</rdfs:comment>
+    <rdfs:comment>购物车中放有商品。</rdfs:comment>
     <ont:cardinality>many-to-many</ont:cardinality>
     <ont:fromEntityId>ShoppingCart</ont:fromEntityId>
     <ont:toEntityId>Product</ont:toEntityId>

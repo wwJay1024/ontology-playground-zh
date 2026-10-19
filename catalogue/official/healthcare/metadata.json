@@ -1,6 +1,6 @@
 {
-  "name": "Healthcare System",
-  "description": "Patient care with providers, appointments, diagnoses, and prescriptions",
+  "name": "医疗系统",
+  "description": "由诊疗提供方、预约、诊断与处方构成的诊疗管理",
   "icon": "🏥",
   "category": "healthcare",
   "author": "ontology-quest"

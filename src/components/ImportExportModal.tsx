@@ -9,6 +9,7 @@ import {
 import { parseRDF, RDFParseError } from '../lib/rdf/parser';
 import type { Ontology, DataBinding } from '../data/ontology';
 import { SourceFidelityNote } from './SourceFidelityNote';
+import { useT } from '../i18n';
 
 const LEGACY_FORMATS_ENABLED = import.meta.env.VITE_ENABLE_LEGACY_FORMATS === 'true';
 
@@ -48,6 +49,7 @@ const sampleSchema = `{
 }`;
 
 export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalProps) {
+  const t = useT();
   const {
     currentOntology,
     dataBindings,
@@ -274,9 +276,9 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
-            <h2 style={{ fontSize: 24, fontWeight: 600 }}>Import / Export Ontology</h2>
+            <h2 style={{ fontSize: 24, fontWeight: 600 }}>{t('Import / Export Ontology')}</h2>
             <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginTop: 4 }}>
-              Load your own ontology or export the current one
+              {t('Load your own ontology or export the current one')}
             </p>
           </div>
           <button className="icon-btn" onClick={onClose}>
@@ -295,7 +297,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
           alignItems: 'center'
         }}>
           <div>
-            <div style={{ fontSize: 13, color: 'var(--text-tertiary)', marginBottom: 4 }}>Currently Loaded</div>
+            <div style={{ fontSize: 13, color: 'var(--text-tertiary)', marginBottom: 4 }}>{t('Currently Loaded')}</div>
             <div style={{ fontSize: 16, fontWeight: 600 }}>{currentOntology.name}</div>
             <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
               {currentOntology.entityTypes.length} entity types, {currentOntology.relationships.length} relationships
@@ -307,7 +309,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
             style={{ display: 'flex', alignItems: 'center', gap: 6 }}
           >
             <RotateCcw size={14} />
-            Reset to Default
+            {t('Reset to Default')}
           </button>
         </div>
 
@@ -324,7 +326,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
             color: 'var(--ms-green)'
           }}>
             <CheckCircle size={18} />
-            <span>Ontology loaded successfully!</span>
+            <span>{t('Ontology loaded successfully!')}</span>
           </div>
         )}
 
@@ -388,7 +390,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
             }}>
               <Upload size={24} color="var(--ms-blue)" />
             </div>
-            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Import Ontology</div>
+            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>{t('Import Ontology')}</div>
             <div style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>
               {LEGACY_FORMATS_ENABLED ? 'Drop JSON or RDF/OWL file here' : 'Drop RDF/OWL (.rdf, .owl, .iq) file here'}
             </div>
@@ -415,7 +417,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
             }}>
               <Download size={24} color="var(--ms-green)" />
             </div>
-            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Export Current</div>
+            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>{t('Export Current')}</div>
             
             {/* Format Selector — only shown when legacy formats are enabled */}
             {LEGACY_FORMATS_ENABLED && (
@@ -436,7 +438,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                   }}
                 >
                   <FileJson size={12} />
-                  JSON
+                  {t('JSON')}
                 </button>
                 <button
                   onClick={() => setExportFormat('yaml')}
@@ -454,7 +456,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                   }}
                 >
                   <FileText size={12} />
-                  YAML
+                  {t('YAML')}
                 </button>
                 <button
                   onClick={() => setExportFormat('csv')}
@@ -472,7 +474,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                   }}
                 >
                   <Table size={12} />
-                  CSV
+                  {t('CSV')}
                 </button>
                 <button
                   onClick={() => setExportFormat('rdf')}
@@ -488,19 +490,18 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                     alignItems: 'center',
                     gap: 4
                   }}
-                  title="RDF/XML export"
+                  title={t('RDF/XML export')}
                 >
                   <Share2 size={12} />
-                  RDF
+                  {t('RDF')}
                 </button>
               </div>
             )}
 
             {exportFormat === 'rdf' && currentCatalogueEntry?.source === 'external' && (
               <SourceFidelityNote className="import-export-source-fidelity-note">
-                <strong>About this download:</strong> This RDF represents the
-                editable visual subset of {currentCatalogueEntry.name}.
-                Source-only RDF remains intact in the reviewed source.
+                <strong>{t('About this download:')}</strong>{' '}
+                {t('This RDF represents the editable visual subset of {name}. Source-only RDF remains intact in the reviewed source.', { name: currentCatalogueEntry.name })}
               </SourceFidelityNote>
             )}
 
@@ -517,7 +518,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                   fontWeight: 600,
                   marginBottom: 6,
                 }}>
-                  RDF export profile
+                  {t('RDF export profile')}
                 </legend>
                 <button
                   type="button"
@@ -541,10 +542,10 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                   }}
                 >
                   <span style={{ display: 'block', fontSize: 12, fontWeight: 600 }}>
-                    Playground round-trip
+                    {t('Playground round-trip')}
                   </span>
                   <span style={{ color: 'var(--text-tertiary)', display: 'block', fontSize: 10, marginTop: 2 }}>
-                    Preserves icons, colors, bindings, and other Playground metadata.
+                    {t('Preserves icons, colors, bindings, and other Playground metadata.')}
                   </span>
                 </button>
                 <button
@@ -568,10 +569,10 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                   }}
                 >
                   <span style={{ display: 'block', fontSize: 12, fontWeight: 600 }}>
-                    Standards-oriented OWL + SHACL
+                    {t('Standards-oriented OWL + SHACL')}
                   </span>
                   <span style={{ color: 'var(--text-tertiary)', display: 'block', fontSize: 10, marginTop: 2 }}>
-                    Uses standard vocabulary for order, enums, identifiers, and cardinality.
+                    {t('Uses standard vocabulary for order, enums, identifiers, and cardinality.')}
                   </span>
                 </button>
               </fieldset>
@@ -592,7 +593,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
                 style={{ width: '100%', marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
               >
                 <Cloud size={14} />
-                Push to Microsoft Fabric
+                {t('Push to Microsoft Fabric')}
               </button>
             )}
           </div>
@@ -610,7 +611,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <FileJson size={16} color="var(--text-tertiary)" />
                 <span style={{ fontSize: 13, color: 'var(--text-secondary)', fontWeight: 600 }}>
-                  JSON Schema Reference
+                  {t('JSON Schema Reference')}
                 </span>
               </div>
               <button 
@@ -640,7 +641,7 @@ export function ImportExportModal({ onClose, onFabricPush }: ImportExportModalPr
 
         <div style={{ marginTop: 20, textAlign: 'center' }}>
           <button className="btn btn-primary" onClick={onClose}>
-            Done
+            {t('Done')}
           </button>
         </div>
       </motion.div>

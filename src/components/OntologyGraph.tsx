@@ -48,6 +48,7 @@ import {
 import { GraphLegend } from './GraphLegend';
 import { LargeGraphControls } from './LargeGraphControls';
 import { useGraphNodeActionPosition } from './useGraphNodeActionPosition';
+import { useT } from '../i18n';
 
 // Register fcose layout
 cytoscape.use(fcose);
@@ -163,6 +164,7 @@ function readGraphColors(darkMode: boolean, el?: HTMLElement | null): GraphColor
 }
 
 export function OntologyGraph() {
+  const t = useT();
   const cyRef = useRef<Core | null>(null);
   const [graphInstance, setGraphInstance] = useState<Core | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1449,18 +1451,18 @@ export function OntologyGraph() {
         >
           {layoutStatus === 'error' ? (
             <>
-              <strong>Graph rendering failed</strong>
+              <strong>{t('Graph rendering failed')}</strong>
               <span>{layoutError}</span>
               <button type="button" onClick={handleResumeLayout}>
-                Try again
+                {t('Try again')}
               </button>
             </>
           ) : layoutStatus === 'cancelled' ? (
             <>
-              <strong>Rendering paused</strong>
-              <span>The bounded graph was not rendered.</span>
+              <strong>{t('Rendering paused')}</strong>
+              <span>{t('The bounded graph was not rendered.')}</span>
               <button type="button" onClick={handleResumeLayout}>
-                Resume rendering
+                {t('Resume rendering')}
               </button>
             </>
           ) : (
@@ -1473,10 +1475,10 @@ export function OntologyGraph() {
                   : 'Laying out graph'}
               </strong>
               <span>
-                Navigation and size-aware controls remain available.
+                {t('Navigation and size-aware controls remain available.')}
               </span>
               <button type="button" onClick={handleCancelLayout}>
-                Cancel rendering
+                {t('Cancel rendering')}
               </button>
             </>
           )}
@@ -1486,7 +1488,7 @@ export function OntologyGraph() {
       {focusNodeId && !isBoundedView && (
         <div className="graph-focus-badge">
           <Crosshair size={13} />
-          <span>Focus mode</span>
+          <span>{t('Focus mode')}</span>
           <button
             className="graph-focus-exit"
             onClick={() => {
@@ -1504,8 +1506,8 @@ export function OntologyGraph() {
         <button
           className="graph-control-btn"
           onClick={handleZoomIn}
-          title="Zoom In"
-          aria-label="Zoom in"
+          title={t('Zoom In')}
+          aria-label={t('Zoom in')}
           disabled={graphZoom >= MAX_GRAPH_ZOOM - 0.001}
         >
           <ZoomIn size={18} />
@@ -1513,16 +1515,16 @@ export function OntologyGraph() {
         <button
           className="graph-control-btn"
           onClick={handleZoomOut}
-          title="Zoom Out"
-          aria-label="Zoom out"
+          title={t('Zoom Out')}
+          aria-label={t('Zoom out')}
           disabled={graphZoom <= MIN_GRAPH_ZOOM + 0.001}
         >
           <ZoomOut size={18} />
         </button>
-        <button className="graph-control-btn" onClick={handleFit} title="Fit to View" aria-label="Fit graph to view">
+        <button className="graph-control-btn" onClick={handleFit} title={t('Fit to View')} aria-label={t('Fit graph to view')}>
           <Maximize2 size={18} />
         </button>
-        <button className="graph-control-btn" onClick={handleReset} title="Reset Layout" aria-label="Reset graph layout">
+        <button className="graph-control-btn" onClick={handleReset} title={t('Reset Layout')} aria-label={t('Reset graph layout')}>
           <RotateCcw size={18} />
         </button>
         <button
@@ -1557,7 +1559,7 @@ export function OntologyGraph() {
           <button
             type="button"
             onClick={() => setPngExportError(null)}
-            aria-label="Dismiss PNG export error"
+            aria-label={t('Dismiss PNG export error')}
           >
             <X size={16} aria-hidden="true" />
           </button>

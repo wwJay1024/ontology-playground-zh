@@ -9,79 +9,79 @@
 
     <owl:Ontology rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/">
         <rdfs:label>Zava Grove-to-Shelf</rdfs:label>
-        <rdfs:comment>Zava's complete grove-to-shelf ontology — multi-origin sourcing, four-stage QC, cold-chain logistics, retail orders, and sustainability — in 12 entities and 13 relationships.</rdfs:comment>
+        <rdfs:comment>Zava 完整的从果园到货架本体，覆盖多产地采购、四道质检、冷链物流、零售订单与可持续发展，共 12 个实体、13 条关系。</rdfs:comment>
     </owl:Ontology>
 
     <!-- Entity Types -->
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Grower">
-        <rdfs:label>Grower</rdfs:label>
-        <rdfs:comment>A partner producer of fresh fruit and vegetables</rdfs:comment>
+        <rdfs:label>种植户</rdfs:label>
+        <rdfs:comment>生产新鲜果蔬的合作种植方</rdfs:comment>
         <ont:icon>👨‍🌾</ont:icon>
         <ont:color>#498205</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Farm">
-        <rdfs:label>Farm</rdfs:label>
-        <rdfs:comment>A geographic site owned or contracted by a grower</rdfs:comment>
+        <rdfs:label>农场</rdfs:label>
+        <rdfs:comment>种植户自有或签约的一处产地</rdfs:comment>
         <ont:icon>🌾</ont:icon>
         <ont:color>#6EAA1F</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Plot">
-        <rdfs:label>Plot</rdfs:label>
-        <rdfs:comment>A managed parcel within a farm planted with one variety</rdfs:comment>
+        <rdfs:label>地块</rdfs:label>
+        <rdfs:comment>农场内种植单一品种的一块管理地块</rdfs:comment>
         <ont:icon>🌱</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Fruitvariety">
-        <rdfs:label>FruitVariety</rdfs:label>
-        <rdfs:comment>A commercial fruit or vegetable variety</rdfs:comment>
+        <rdfs:label>水果品种</rdfs:label>
+        <rdfs:comment>商业化种植的水果或蔬菜品种</rdfs:comment>
         <ont:icon>🍊</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Harvestlot">
-        <rdfs:label>HarvestLot</rdfs:label>
-        <rdfs:comment>A traceable harvest event from a single plot</rdfs:comment>
+        <rdfs:label>采收批次</rdfs:label>
+        <rdfs:comment>来自单一地块、可追溯的一次采收</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Qualitycheck">
-        <rdfs:label>QualityCheck</rdfs:label>
-        <rdfs:comment>One of the four-stage quality inspections</rdfs:comment>
+        <rdfs:label>质检</rdfs:label>
+        <rdfs:comment>四道质检环节中的一次检查</rdfs:comment>
         <ont:icon>🔍</ont:icon>
         <ont:color>#C239B3</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Shipment">
-        <rdfs:label>Shipment</rdfs:label>
-        <rdfs:comment>A reefer container or truck moving lots to a retail DC</rdfs:comment>
+        <rdfs:label>发运</rdfs:label>
+        <rdfs:comment>将批次运往零售配送中心的冷藏集装箱或冷藏车</rdfs:comment>
         <ont:icon>🚛</ont:icon>
         <ont:color>#0099BC</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Coldchainsensor">
-        <rdfs:label>ColdChainSensor</rdfs:label>
-        <rdfs:comment>Live temperature and humidity sensor on a shipment</rdfs:comment>
+        <rdfs:label>冷链传感器</rdfs:label>
+        <rdfs:comment>安装在发运货物上、实时采集温湿度的传感器</rdfs:comment>
         <ont:icon>🌡️</ont:icon>
         <ont:color>#005A9E</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Retaildc">
-        <rdfs:label>RetailDC</rdfs:label>
-        <rdfs:comment>A retailer's distribution centre receiving shipments</rdfs:comment>
+        <rdfs:label>零售配送中心</rdfs:label>
+        <rdfs:comment>接收发运货物的零售商配送中心</rdfs:comment>
         <ont:icon>🏬</ont:icon>
         <ont:color>#2D7D9A</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Store">
-        <rdfs:label>Store</rdfs:label>
-        <rdfs:comment>A retailer storefront supplied by a DC</rdfs:comment>
+        <rdfs:label>门店</rdfs:label>
+        <rdfs:comment>由配送中心供货的零售门店</rdfs:comment>
         <ont:icon>🏪</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Order">
-        <rdfs:label>Order</rdfs:label>
-        <rdfs:comment>A purchase order placed by a store for a fruit variety</rdfs:comment>
+        <rdfs:label>订单</rdfs:label>
+        <rdfs:comment>门店针对某个水果品种下的采购订单</rdfs:comment>
         <ont:icon>📋</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/Sustainabilityprogram">
-        <rdfs:label>SustainabilityProgram</rdfs:label>
-        <rdfs:comment>A grower-development or CSR program farms can join (e.g. Zava Dreams)</rdfs:comment>
+        <rdfs:label>可持续发展项目</rdfs:label>
+        <rdfs:comment>农场可加入的种植户扶持或企业社会责任项目（如 Zava Dreams）</rdfs:comment>
         <ont:icon>🌍</ont:icon>
         <ont:color>#486860</ont:color>
     </owl:Class>
@@ -415,73 +415,73 @@
     <!-- Object Properties (cumulative + new participatesIn) -->
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/grower-owns-farm">
-        <rdfs:label>GrowerOwnsFarm</rdfs:label>
+        <rdfs:label>拥有农场</rdfs:label>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>grower</ont:fromEntityId>
         <ont:toEntityId>farm</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/farm-contains-plot">
-        <rdfs:label>FarmContainsPlot</rdfs:label>
+        <rdfs:label>包含地块</rdfs:label>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>farm</ont:fromEntityId>
         <ont:toEntityId>plot</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/plot-grows-fruitvariety">
-        <rdfs:label>PlotGrowsFruitVariety</rdfs:label>
+        <rdfs:label>种植品种</rdfs:label>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>plot</ont:fromEntityId>
         <ont:toEntityId>fruitvariety</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/harvestlot-fromplot-plot">
-        <rdfs:label>HarvestLotFromPlot</rdfs:label>
+        <rdfs:label>来自地块</rdfs:label>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>harvestlot</ont:fromEntityId>
         <ont:toEntityId>plot</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/harvestlot-ofvariety-fruitvariety">
-        <rdfs:label>HarvestLotOfVariety</rdfs:label>
+        <rdfs:label>属于品种</rdfs:label>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>harvestlot</ont:fromEntityId>
         <ont:toEntityId>fruitvariety</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/qualitycheck-checks-harvestlot">
-        <rdfs:label>QualityCheckChecksHarvestLot</rdfs:label>
+        <rdfs:label>检查批次</rdfs:label>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>qualitycheck</ont:fromEntityId>
         <ont:toEntityId>harvestlot</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/shipment-carries-harvestlot">
-        <rdfs:label>ShipmentCarriesHarvestLot</rdfs:label>
+        <rdfs:label>运载批次</rdfs:label>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>shipment</ont:fromEntityId>
         <ont:toEntityId>harvestlot</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/shipment-monitoredby-coldchainsensor">
-        <rdfs:label>ShipmentMonitoredBySensor</rdfs:label>
+        <rdfs:label>被传感器监测</rdfs:label>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>shipment</ont:fromEntityId>
         <ont:toEntityId>coldchainsensor</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/shipment-deliveredto-retaildc">
-        <rdfs:label>ShipmentDeliveredToRetailDC</rdfs:label>
+        <rdfs:label>送达配送中心</rdfs:label>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>shipment</ont:fromEntityId>
         <ont:toEntityId>retaildc</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/retaildc-supplies-store">
-        <rdfs:label>RetailDCSuppliesStore</rdfs:label>
+        <rdfs:label>供应门店</rdfs:label>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>retaildc</ont:fromEntityId>
         <ont:toEntityId>store</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/store-places-order">
-        <rdfs:label>StorePlacesOrder</rdfs:label>
+        <rdfs:label>下单</rdfs:label>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>store</ont:fromEntityId>
         <ont:toEntityId>order</ont:toEntityId>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/order-forvariety-fruitvariety">
-        <rdfs:label>OrderForVariety</rdfs:label>
+        <rdfs:label>订购品种</rdfs:label>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>order</ont:fromEntityId>
         <ont:toEntityId>fruitvariety</ont:toEntityId>
@@ -489,8 +489,8 @@
 
     <!-- New in step 5 -->
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-5/farm-participatesin-sustainabilityprogram">
-        <rdfs:label>FarmParticipatesInProgram</rdfs:label>
-        <rdfs:comment>A farm participates in zero or more sustainability programs (e.g. Zava Dreams)</rdfs:comment>
+        <rdfs:label>参与项目</rdfs:label>
+        <rdfs:comment>农场可以加入零个或多个可持续发展项目（如 Zava Dreams）</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>farm</ont:fromEntityId>
         <ont:toEntityId>sustainabilityprogram</ont:toEntityId>

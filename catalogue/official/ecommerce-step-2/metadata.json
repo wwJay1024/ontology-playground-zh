@@ -1,8 +1,13 @@
 {
-  "name": "E-Commerce — Step 2: Cart & Orders",
-  "description": "Shopping-Cart and Order complete the purchase flow",
+  "name": "电商 — 第 2 步：购物车与订单",
+  "description": "购物车与订单补全购买流程",
   "icon": "📋",
   "category": "school",
-  "tags": ["ecommerce", "retail", "school", "step-2"],
+  "tags": [
+    "ecommerce",
+    "retail",
+    "school",
+    "step-2"
+  ],
   "author": "ontology-quest"
 }

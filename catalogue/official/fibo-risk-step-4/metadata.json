@@ -1,9 +1,16 @@
 {
-  "name": "FIBO Risk Lab — Step 4: Regulatory Context",
-  "description": "Complete the risk model with banking regulations, concentration limits, and cross-domain connections.",
+  "name": "FIBO 风险实验室 — 第 4 步：监管环境",
+  "description": "补上银行监管规则、集中度限额与跨域连接，完成风险模型。",
   "icon": "⚖️",
   "category": "school",
-  "tags": ["fibo", "risk", "regulation", "compliance", "school", "step-4"],
+  "tags": [
+    "fibo",
+    "risk",
+    "regulation",
+    "compliance",
+    "school",
+    "step-4"
+  ],
   "author": "EDM Council FIBO (adapted by ontology-quest)",
   "license": "MIT",
   "sourceUrl": "https://github.com/edmcouncil/fibo"

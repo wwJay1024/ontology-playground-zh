@@ -8,12 +8,14 @@ import type { Route } from '../lib/router';
 import type { LearnManifest, LearnCourse, LearnArticle } from '../types/learn';
 import { loadCatalogueEntry } from '../lib/catalogue';
 import type { Core as CytoscapeCore, StylesheetCSS, LayoutOptions } from 'cytoscape';
+import { useT } from '../i18n';
 
 interface LearnPageProps {
   route: Route & { page: 'learn' };
 }
 
 export function LearnPage({ route }: LearnPageProps) {
+  const t = useT();
   const { darkMode, toggleDarkMode, theme } = useAppStore();
   const [manifest, setManifest] = useState<LearnManifest | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -85,9 +87,9 @@ export function LearnPage({ route }: LearnPageProps) {
         </button>
         <button className="learn-header-title" onClick={() => navigate({ page: 'learn' })}>
           <BookOpen size={20} />
-          <span>Ontology School</span>
+          <span>{t('Ontology School')}</span>
         </button>
-        <button className="icon-btn" onClick={toggleDarkMode} title="Toggle Theme">
+        <button className="icon-btn" onClick={toggleDarkMode} title={t('Toggle Theme')}>
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
       </header>
@@ -108,6 +110,7 @@ export function LearnPage({ route }: LearnPageProps) {
 // -------------------------------------------------------------------
 
 function CourseCatalogue({ courses }: { courses: LearnCourse[] }) {
+  const t = useT();
   const orderedCourses = useMemo(() => {
     const pinnedSlug = 'ontology-fundamentals';
     return [...courses].sort((a, b) => {
@@ -121,8 +124,7 @@ function CourseCatalogue({ courses }: { courses: LearnCourse[] }) {
     <div className="learn-index">
       <div className="learn-index-hero">
         <p>
-          Learning paths and hands-on labs to help you understand and build
-          ontologies for Microsoft Fabric IQ.
+          {t('Learning paths and hands-on labs to help you understand and build ontologies for Microsoft Fabric IQ.')}
         </p>
       </div>
       <div className="learn-card-grid">
@@ -231,6 +233,7 @@ function ArticleView({
   course: LearnCourse;
   darkMode: boolean;
 }) {
+  const t = useT();
   const contentRef = useRef<HTMLDivElement>(null);
   // Auto-open presentation if URL has ?slide= param
   const [presenting, setPresenting] = useState(() => {
@@ -325,10 +328,10 @@ function ArticleView({
         <button
           className="learn-present-btn"
           onClick={() => setPresenting(true)}
-          title="Present as slides"
+          title={t('Present as slides')}
         >
           <Play size={16} />
-          <span>Present</span>
+          <span>{t('Present')}</span>
         </button>
       </div>
       <ArticleContent article={article} contentRef={contentRef} />
@@ -355,7 +358,7 @@ function ArticleView({
           >
             <ArrowLeft size={16} />
             <div>
-              <span className="learn-nav-label">Previous</span>
+              <span className="learn-nav-label">{t('Previous')}</span>
               <span className="learn-nav-title">{prevArticle.title}</span>
             </div>
           </button>
@@ -368,7 +371,7 @@ function ArticleView({
             onClick={() => navigate({ page: 'learn', courseSlug: course.slug, articleSlug: nextArticle.slug })}
           >
             <div>
-              <span className="learn-nav-label">Next</span>
+              <span className="learn-nav-label">{t('Next')}</span>
               <span className="learn-nav-title">{nextArticle.title}</span>
             </div>
             <ChevronRight size={16} />
@@ -427,6 +430,7 @@ function renderInlineCode(text: string): { __html: string } {
 }
 
 export function QuizSlide({ quiz }: { quiz: QuizData }) {
+  const t = useT();
   const [answered, setAnswered] = useState<number | null>(null);
   const chose = answered !== null;
   const isCorrect = chose && quiz.options[answered].correct;
@@ -463,8 +467,8 @@ export function QuizSlide({ quiz }: { quiz: QuizData }) {
       {chose && (
         <div className={`quiz-result ${isCorrect ? 'quiz-result--correct' : 'quiz-result--wrong'}`}>
           {isCorrect
-            ? <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Correct!</>
-            : <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Not quite</>}
+            ? <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> {t('Correct!')}</>
+            : <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> {t('Not quite')}</>}
         </div>
       )}
       {chose && quiz.explanation && (
@@ -598,6 +602,7 @@ function PresentationMode({
   prevArticle?: LearnArticle;
   courseSlug: string;
 }) {
+  const t = useT();
   const slides = useMemo(() => splitIntoSlides(article.html, article.title), [article.html, article.title]);
   const total = slides.length;
 
@@ -720,13 +725,13 @@ function PresentationMode({
   return (
     <div className={`presentation-overlay ${presenterDark ? '' : 'light-theme'}`}>
       <div className="presentation-chrome">
-        <button className="presentation-close" onClick={onClose} title="Exit (Esc)">
+        <button className="presentation-close" onClick={onClose} title={t('Exit (Esc)')}>
           <X size={20} />
         </button>
         <button
           className="presentation-theme-toggle"
           onClick={() => setPresenterDark((d) => !d)}
-          title="Toggle theme"
+          title={t('Toggle theme')}
         >
           {presenterDark ? <Sun size={18} /> : <Moon size={18} />}
         </button>

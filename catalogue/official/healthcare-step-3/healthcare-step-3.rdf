@@ -8,43 +8,43 @@
     xmlns:ont="http://example.org/ontology/healthcare-step-3/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>Healthcare System — Step 3</rdfs:label>
-    <rdfs:comment>Adds Prescription entity with treatment and prescribing relationships.</rdfs:comment>
+    <rdfs:label>医疗系统 — 第 3 步</rdfs:label>
+    <rdfs:comment>增加处方实体，并建立治疗与开方关系。</rdfs:comment>
   </owl:Ontology>
 
   <!-- =============== CLASSES =============== -->
 
   <owl:Class rdf:about="Patient">
-    <rdfs:label>Patient</rdfs:label>
-    <rdfs:comment>A patient in the healthcare system</rdfs:comment>
+    <rdfs:label>患者</rdfs:label>
+    <rdfs:comment>在医疗系统就诊的患者</rdfs:comment>
     <ont:icon>🏥</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Provider">
-    <rdfs:label>Provider</rdfs:label>
-    <rdfs:comment>A healthcare provider</rdfs:comment>
+    <rdfs:label>诊疗提供方</rdfs:label>
+    <rdfs:comment>提供医疗服务的机构或人员</rdfs:comment>
     <ont:icon>👨‍⚕️</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Appointment">
-    <rdfs:label>Appointment</rdfs:label>
-    <rdfs:comment>A scheduled appointment between a patient and a provider</rdfs:comment>
+    <rdfs:label>预约就诊</rdfs:label>
+    <rdfs:comment>患者与诊疗提供方之间的一次预约就诊</rdfs:comment>
     <ont:icon>📅</ont:icon>
     <ont:color>#FFB900</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Diagnosis">
-    <rdfs:label>Diagnosis</rdfs:label>
-    <rdfs:comment>A medical diagnosis assigned to a patient</rdfs:comment>
+    <rdfs:label>诊断</rdfs:label>
+    <rdfs:comment>归属于患者的医学诊断</rdfs:comment>
     <ont:icon>🩺</ont:icon>
     <ont:color>#D13438</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Prescription">
-    <rdfs:label>Prescription</rdfs:label>
-    <rdfs:comment>A medication prescription for treating a diagnosis</rdfs:comment>
+    <rdfs:label>处方</rdfs:label>
+    <rdfs:comment>针对某项诊断开具的用药处方</rdfs:comment>
     <ont:icon>💊</ont:icon>
     <ont:color>#8764B8</ont:color>
   </owl:Class>
@@ -243,60 +243,60 @@
   <!-- =============== OBJECT PROPERTIES =============== -->
 
   <owl:ObjectProperty rdf:about="patient_has_appt">
-    <rdfs:label>has_appointment</rdfs:label>
+    <rdfs:label>有预约</rdfs:label>
     <rdfs:domain rdf:resource="Patient"/>
     <rdfs:range rdf:resource="Appointment"/>
-    <rdfs:comment>Patient's scheduled visits</rdfs:comment>
+    <rdfs:comment>患者的预约就诊</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Patient</ont:fromEntityId>
     <ont:toEntityId>Appointment</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="provider_sees">
-    <rdfs:label>sees</rdfs:label>
+    <rdfs:label>接诊</rdfs:label>
     <rdfs:domain rdf:resource="Provider"/>
     <rdfs:range rdf:resource="Appointment"/>
-    <rdfs:comment>Provider's appointments</rdfs:comment>
+    <rdfs:comment>诊疗提供方的接诊安排</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Provider</ont:fromEntityId>
     <ont:toEntityId>Appointment</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="patient_diagnosed">
-    <rdfs:label>diagnosed_with</rdfs:label>
+    <rdfs:label>诊断为</rdfs:label>
     <rdfs:domain rdf:resource="Patient"/>
     <rdfs:range rdf:resource="Diagnosis"/>
-    <rdfs:comment>Patient diagnoses</rdfs:comment>
+    <rdfs:comment>患者的诊断记录</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Patient</ont:fromEntityId>
     <ont:toEntityId>Diagnosis</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="provider_diagnoses">
-    <rdfs:label>diagnoses</rdfs:label>
+    <rdfs:label>作出诊断</rdfs:label>
     <rdfs:domain rdf:resource="Provider"/>
     <rdfs:range rdf:resource="Diagnosis"/>
-    <rdfs:comment>Diagnoses made by provider</rdfs:comment>
+    <rdfs:comment>诊疗提供方作出的诊断</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Provider</ont:fromEntityId>
     <ont:toEntityId>Diagnosis</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="diagnosis_treated">
-    <rdfs:label>treated_by</rdfs:label>
+    <rdfs:label>由…治疗</rdfs:label>
     <rdfs:domain rdf:resource="Diagnosis"/>
     <rdfs:range rdf:resource="Prescription"/>
-    <rdfs:comment>Prescriptions for diagnosis</rdfs:comment>
+    <rdfs:comment>该诊断对应的处方</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Diagnosis</ont:fromEntityId>
     <ont:toEntityId>Prescription</ont:toEntityId>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="provider_prescribes">
-    <rdfs:label>prescribes</rdfs:label>
+    <rdfs:label>开具处方</rdfs:label>
     <rdfs:domain rdf:resource="Provider"/>
     <rdfs:range rdf:resource="Prescription"/>
-    <rdfs:comment>Provider prescriptions</rdfs:comment>
+    <rdfs:comment>诊疗提供方开具的处方</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Provider</ont:fromEntityId>
     <ont:toEntityId>Prescription</ont:toEntityId>

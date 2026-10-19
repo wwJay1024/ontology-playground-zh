@@ -1,8 +1,12 @@
 {
-  "name": "Healthcare — Step 1: Patients & Appointments",
-  "description": "Patient, Provider, Appointment — scheduling care",
+  "name": "医疗 — 第 1 步：患者与预约",
+  "description": "患者、诊疗提供方、预约——排期就诊",
   "icon": "🏥",
   "category": "school",
-  "tags": ["healthcare", "school", "step-1"],
+  "tags": [
+    "healthcare",
+    "school",
+    "step-1"
+  ],
   "author": "ontology-quest"
 }

@@ -12,6 +12,7 @@ import {
   isLargeOntologyGraph,
   ontologyGraphElementCount,
 } from '../../lib/ontologyScale';
+import { useT } from '../../i18n';
 
 cytoscape.use(fcose);
 
@@ -22,6 +23,7 @@ interface DesignerPreviewProps {
 export function DesignerPreview({
   onOntologyReplaced,
 }: DesignerPreviewProps = {}) {
+  const t = useT();
   const [activeTab, setActiveTab] = useState<'graph' | 'rdf'>('graph');
   const { ontology, selectEntity, selectRelationship } = useDesignerStore();
   const theme = useAppStore((s) => s.theme);
@@ -33,13 +35,13 @@ export function DesignerPreview({
           className={`designer-tab ${activeTab === 'graph' ? 'active' : ''}`}
           onClick={() => setActiveTab('graph')}
         >
-          Graph
+          {t('Graph')}
         </button>
         <button
           className={`designer-tab ${activeTab === 'rdf' ? 'active' : ''}`}
           onClick={() => setActiveTab('rdf')}
         >
-          RDF
+          {t('RDF')}
         </button>
       </div>
 
@@ -203,6 +205,7 @@ interface RdfPreviewProps {
 }
 
 function RdfPreview({ ontology, onImported }: RdfPreviewProps) {
+  const t = useT();
   const [copied, setCopied] = useState(false);
   const [importMode, setImportMode] = useState(false);
   const [importText, setImportText] = useState('');
@@ -264,16 +267,16 @@ function RdfPreview({ ontology, onImported }: RdfPreviewProps) {
         {importMode ? (
           <>
             <button className="designer-add-btn small" onClick={handleImport}>
-              Load into Designer
+              {t('Load into Designer')}
             </button>
             <button className="designer-add-btn small secondary" onClick={handleCancel}>
-              Cancel
+              {t('Cancel')}
             </button>
           </>
         ) : (
           <>
             <button className="designer-add-btn small" onClick={() => { setImportMode(true); setImportText(rdfOutput); }}>
-              Edit RDF
+              {t('Edit RDF')}
             </button>
             <button className="designer-add-btn small" onClick={handleCopy}>
               {copied ? 'Copied!' : 'Copy RDF'}
@@ -289,7 +292,7 @@ function RdfPreview({ ontology, onImported }: RdfPreviewProps) {
           className="designer-rdf-source designer-rdf-textarea"
           value={importText}
           onChange={(e) => { setImportText(e.target.value); setImportError(null); }}
-          placeholder="Paste or edit RDF/XML content here…"
+          placeholder={t('Paste or edit RDF/XML content here…')}
           autoFocus
           spellCheck={false}
         />
