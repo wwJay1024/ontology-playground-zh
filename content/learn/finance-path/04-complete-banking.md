@@ -43,13 +43,13 @@ embed: official/finance-step-3
 
 四个关系把金融产品连接起来：
 
-- **has_loan**：`Customer` → `Loan`（一对多）
+- **has_loan**：`客户` → `Loan`（一对多）
   一个客户可以有多笔贷款。
 
 - **funds**：`Account` → `Loan`（一对多）
   账户是贷款还款的资金来源。
 
-- **holds**：`Customer` → `Investment`（一对多）
+- **holds**：`客户` → `Investment`（一对多）
   客户的投资组合。
 
 - **linked_to**：`Account` → `Investment`（一对多）
@@ -67,17 +67,17 @@ embed: official/finance-step-3
 
 | 问题 | 图路径 |
 |---|---|
-| 哪些高风险客户有大额贷款？ | `Customer (riskProfile=high)` → `Loan (principal > 100K)` |
-| 头部客户的投资组合市值是多少？ | `Customer` → `Investment`（currentValue 求和） |
+| 哪些高风险客户有大额贷款？ | `客户 (riskProfile=high)` → `Loan (principal > 100K)` |
+| 头部客户的投资组合市值是多少？ | `客户` → `Investment`（currentValue 求和） |
 | 哪些账户同时为贷款和投资提供资金？ | `Account` → `Loan` 且 `Account` → `Investment` |
-| 哪些客户的投资收益超过其贷款成本？ | `Customer` → `Investment (currentValue)` 对比 `Customer` → `Loan (principal × apr)` |
+| 哪些客户的投资收益超过其贷款成本？ | `客户` → `Investment (currentValue)` 对比 `客户` → `Loan (principal × apr)` |
 
 ## GQL 查询示例
 
 找出投资组合市值超过其贷款本金总额的客户：
 
 ```gql
-MATCH (c:Customer)-[:holds]->(inv:Investment),
+MATCH (c:客户)-[:holds]->(inv:Investment),
       (c)-[:has_loan]->(loan:Loan)
 WITH c, SUM(inv.currentValue) AS portfolio, SUM(loan.principal) AS debt
 WHERE portfolio > debt
@@ -94,7 +94,7 @@ RETURN c.name, portfolio, debt
 
 ## 关键收获
 
-1. **所有权链**（`Customer → Account → Transaction`）支撑合规查询
+1. **所有权链**（`客户 → Account → Transaction`）支撑合规查询
 2. **Datetime 精度**对金融数据至关重要
 3. **多路径关系**表达同一条连接的不同侧面
 4. **时长属性**（以月为单位的 term）用整数加单位表示

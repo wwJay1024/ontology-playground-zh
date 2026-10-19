@@ -11,13 +11,13 @@ embed: official/ecommerce
 **RDF**（Resource Description Framework，资源描述框架）是 W3C 的标准，用来把信息描述成一张由相互连接的资源构成的图。RDF 里的一切都写成**三元组**：主语 → 谓语 → 宾语。
 
 ```
-:Customer  rdf:type       owl:Class .
+:客户  rdf:type       owl:Class .
 :name      rdf:type       owl:DatatypeProperty .
-:name      rdfs:domain    :Customer .
+:name      rdfs:domain    :客户 .
 :name      rdfs:range     xsd:string .
 ```
 
-上面这组三元组的意思是：存在一个叫 Customer 的类，它有一个叫 name 的属性，取值为字符串。
+上面这组三元组的意思是：存在一个叫 客户 的类，它有一个叫 name 的属性，取值为字符串。
 
 ## OWL 建立在 RDF 之上
 
@@ -25,10 +25,10 @@ embed: official/ecommerce
 
 | OWL 概念 | 对应什么 | 示例 |
 |-------------|---------|---------|
-| `owl:Class` | 实体类型 | `Customer`、`Product` |
+| `owl:Class` | 实体类型 | `客户`、`商品` |
 | `owl:DatatypeProperty` | 取值为基本类型的属性 | `name`（字符串）、`price`（小数） |
-| `owl:ObjectProperty` | 实体之间的关系 | `placedBy`（Order → Customer） |
-| `rdfs:domain` / `rdfs:range` | 属性属于哪个实体 / 它的取值类型 | `price` 属于 `Product`，类型为 `xsd:decimal` |
+| `owl:ObjectProperty` | 实体之间的关系 | `placedBy`（订单 → 客户） |
+| `rdfs:domain` / `rdfs:range` | 属性属于哪个实体 / 它的取值类型 | `price` 属于 `商品`，类型为 `xsd:decimal` |
 
 ## 命名空间消除歧义
 
@@ -40,7 +40,7 @@ RDF 里每个资源都有全局唯一的 **URI**。为了不必到处写长 URI�
          xmlns="https://mycompany.com/ontology/">
 ```
 
-默认命名空间 `xmlns=` 的含义是：`<owl:Class rdf:about="Customer">` 实际指向 `https://mycompany.com/ontology/Customer`。
+默认命名空间 `xmlns=` 的含义是：`<owl:Class rdf:about="客户">` 实际指向 `https://mycompany.com/ontology/客户`。
 
 ## 读懂一个 RDF/OWL 文件
 
@@ -53,14 +53,14 @@ RDF 里每个资源都有全局唯一的 **URI**。为了不必到处写长 URI�
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
          xmlns="https://example.com/shop/">
 
-  <!-- Entity type: Product -->
-  <owl:Class rdf:about="Product">
-    <rdfs:label>Product</rdfs:label>
+  <!-- Entity type: 商品 -->
+  <owl:Class rdf:about="商品">
+    <rdfs:label>商品</rdfs:label>
   </owl:Class>
 
   <!-- Property: productName (string, identifier) -->
   <owl:DatatypeProperty rdf:about="productName">
-    <rdfs:domain rdf:resource="Product"/>
+    <rdfs:domain rdf:resource="商品"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:label>productName</rdfs:label>
   </owl:DatatypeProperty>
@@ -106,5 +106,5 @@ Q: owl:ObjectProperty 表示什么？
 - 两个实体类型之间的关系 [correct]
 - 本体的命名空间
 - 对数据类型的约束
-> 在 OWL 中，ObjectProperty 定义两个类（实体类型）之间的关系，例如把 Order 连到 Customer 的 `placedBy`。基本类型的取值用 DatatypeProperty。
+> 在 OWL 中，ObjectProperty 定义两个类（实体类型）之间的关系，例如把 订单 连到 客户 的 `placedBy`。基本类型的取值用 DatatypeProperty。
 ```

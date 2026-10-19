@@ -261,17 +261,17 @@ describe('OntologyGraph adaptive rendering', () => {
     });
     expect(canvas).toHaveClass('graph-canvas');
     expect(canvas).not.toHaveAttribute('tabindex');
-    const zoomIn = screen.getByRole('button', { name: 'Zoom in' });
-    const zoomOut = screen.getByRole('button', { name: 'Zoom out' });
-    const fit = screen.getByRole('button', { name: 'Fit graph to view' });
-    const reset = screen.getByRole('button', { name: 'Reset graph layout' });
+    const zoomIn = screen.getByRole('button', { name: '放大' });
+    const zoomOut = screen.getByRole('button', { name: '缩小' });
+    const fit = screen.getByRole('button', { name: '缩放图谱以适应窗口' });
+    const reset = screen.getByRole('button', { name: '重置图谱布局' });
     const download = screen.getByRole('button', { name: 'Download Graph as PNG' });
     for (const control of [zoomIn, zoomOut, fit, reset, download]) {
       expect(canvas).not.toContainElement(control);
       expect(control).toHaveAttribute('title');
     }
     expect(canvas).not.toContainElement(
-      screen.getByRole('button', { name: 'Hide Entity Types legend' }),
+      screen.getByRole('button', { name: '收起实体类型图例' }),
     );
     zoomIn.focus();
     await user.keyboard('{Enter}');
@@ -327,7 +327,7 @@ describe('OntologyGraph adaptive rendering', () => {
     expect(canvas).toHaveAttribute('data-catalogue-id', entry.id);
     expect(canvas).toHaveAttribute('data-layout-status', 'idle');
     expect(screen.getByRole('button', {
-      name: 'Show Entity Types legend',
+      name: '展开实体类型图例',
     })).toHaveAttribute('aria-expanded', 'false');
     expect(document.querySelector('.legend-item')).toBeNull();
     act(() => useAppStore.getState().loadOntology(createDenseFixture()));
@@ -344,13 +344,13 @@ describe('OntologyGraph adaptive rendering', () => {
       describeOntologyGraph(ontology, initialView),
     );
     expect(canvas).not.toContainElement(
-      screen.getByRole('region', { name: 'Large ontology controls' }),
+      screen.getByRole('region', { name: '大本体控制面板' }),
     );
     expect(screen.getByRole('button', {
       name: 'Download Visible Graph as PNG',
     })).toBeEnabled();
     await waitFor(() => expect(graphMocks.cytoscape).toHaveBeenCalledTimes(1));
-    fireEvent.change(screen.getByRole('slider', { name: 'Detail: 1 hop' }), {
+    fireEvent.change(screen.getByRole('slider', { name: '细节：1 跳' }), {
       target: { value: '2' },
     });
     const detailedView = createGraphView(ontology, { depth: 2 });
@@ -372,10 +372,10 @@ describe('OntologyGraph adaptive rendering', () => {
     expect(config.layout.name).toBe('fcose');
     expect(config.layout.quality).toBe('proof');
     expect(
-      screen.getByRole('button', { name: 'Hide Entity Types legend' }),
+      screen.getByRole('button', { name: '收起实体类型图例' }),
     ).toHaveAttribute('aria-expanded', 'true');
     expect(
-      screen.queryByRole('region', { name: 'Large ontology controls' }),
+      screen.queryByRole('region', { name: '大本体控制面板' }),
     ).not.toBeInTheDocument();
   });
 
@@ -385,10 +385,10 @@ describe('OntologyGraph adaptive rendering', () => {
     render(<OntologyGraph />);
 
     expect(
-      screen.getByRole('region', { name: 'Large ontology controls' }),
-    ).toHaveTextContent('Showing');
+      screen.getByRole('region', { name: '大本体控制面板' }),
+    ).toHaveTextContent('已显示');
     expect(
-      screen.queryByRole('button', { name: /Entity Types legend/ }),
+      screen.queryByRole('button', { name: /实体类型图例/ }),
     ).not.toBeInTheDocument();
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(1);
@@ -428,14 +428,14 @@ describe('OntologyGraph adaptive rendering', () => {
       expect.any(Function),
     );
 
-    const resetView = screen.getByRole('button', { name: 'Reset view' });
-    const detailSlider = screen.getByRole('slider', { name: 'Detail: 1 hop' });
+    const resetView = screen.getByRole('button', { name: '重置视图' });
+    const detailSlider = screen.getByRole('slider', { name: '细节：1 跳' });
     expect(detailSlider.parentElement).toHaveClass('large-graph-options');
     expect(detailSlider.previousElementSibling).toHaveClass('large-graph-detail-header');
     expect(resetView).toBeDisabled();
     expect(
       screen.getByRole('button', {
-        name: 'Select a +N entity to show neighbors',
+        name: '选中一个 +N 实体以显示邻居',
       }),
     ).toBeDisabled();
     expect(Number(detailSlider.getAttribute('max'))).toBeGreaterThan(1);
@@ -445,7 +445,7 @@ describe('OntologyGraph adaptive rendering', () => {
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(2);
     });
-    expect(screen.getByRole('slider', { name: 'Detail: 2 hops' })).toHaveValue('2');
+    expect(screen.getByRole('slider', { name: '细节：2 跳' })).toHaveValue('2');
     expect(resetView).toBeEnabled();
   });
 
@@ -505,10 +505,10 @@ describe('OntologyGraph adaptive rendering', () => {
     }
 
     fireEvent.change(
-      screen.getByRole('searchbox', { name: 'Jump to an entity' }),
+      screen.getByRole('searchbox', { name: '跳转到实体' }),
       { target: { value: 'Node 100' } },
     );
-    fireEvent.click(screen.getByRole('button', { name: 'Find' }));
+    fireEvent.click(screen.getByRole('button', { name: '查找' }));
     await waitFor(() => {
       expect(window.__ONTOLOGY_GRAPH_METRICS__?.layoutCount).toBe(2);
     });
@@ -527,17 +527,17 @@ describe('OntologyGraph adaptive rendering', () => {
       expect(canvas).toHaveAttribute('data-layout-status', 'scheduled');
 
       fireEvent.click(
-        screen.getByRole('button', { name: 'Cancel rendering' }),
+        screen.getByRole('button', { name: '取消渲染' }),
       );
       act(() => {
         vi.runAllTimers();
       });
-      expect(screen.getByText('Rendering paused')).toBeInTheDocument();
+      expect(screen.getByText('渲染已暂停')).toBeInTheDocument();
       expect(canvas).toHaveAttribute('data-layout-status', 'cancelled');
       expect(graphMocks.cytoscape).not.toHaveBeenCalled();
 
       fireEvent.click(
-        screen.getByRole('button', { name: 'Resume rendering' }),
+        screen.getByRole('button', { name: '继续渲染' }),
       );
       act(() => {
         vi.advanceTimersByTime(1_000);
@@ -565,20 +565,20 @@ describe('OntologyGraph adaptive rendering', () => {
       expect(graphMocks.layout.run).toHaveBeenCalledTimes(1);
 
       fireEvent.click(
-        screen.getByRole('button', { name: 'Cancel rendering' }),
+        screen.getByRole('button', { name: '取消渲染' }),
       );
       expect(graphMocks.layout.stop).toHaveBeenCalledTimes(1);
-      expect(screen.getByText('Rendering paused')).toBeInTheDocument();
+      expect(screen.getByText('渲染已暂停')).toBeInTheDocument();
 
       graphMocks.setAutoCompleteLayout(true);
       fireEvent.click(
-        screen.getByRole('button', { name: 'Resume rendering' }),
+        screen.getByRole('button', { name: '继续渲染' }),
       );
       act(() => {
         vi.advanceTimersByTime(0);
       });
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(2);
-      expect(screen.queryByText('Rendering paused')).not.toBeInTheDocument();
+      expect(screen.queryByText('渲染已暂停')).not.toBeInTheDocument();
     } finally {
       vi.useRealTimers();
     }
@@ -594,7 +594,7 @@ describe('OntologyGraph adaptive rendering', () => {
       'Layout failed once',
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    fireEvent.click(screen.getByRole('button', { name: '重试' }));
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(2);
     });
@@ -609,10 +609,10 @@ describe('OntologyGraph adaptive rendering', () => {
       render(<OntologyGraph />);
 
       fireEvent.change(
-        screen.getByRole('searchbox', { name: 'Jump to an entity' }),
+        screen.getByRole('searchbox', { name: '跳转到实体' }),
         { target: { value: 'Node 349' } },
       );
-      fireEvent.click(screen.getByRole('button', { name: 'Find' }));
+      fireEvent.click(screen.getByRole('button', { name: '查找' }));
       act(() => {
         vi.advanceTimersByTime(1_000);
       });
@@ -665,7 +665,7 @@ describe('OntologyGraph adaptive rendering', () => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(1);
     });
     const initialConfig = graphMocks.cytoscape.mock.calls[0][0] as CapturedConfig;
-    fireEvent.click(screen.getByRole('button', { name: 'Hide' }));
+    fireEvent.click(screen.getByRole('button', { name: '收起' }));
 
     act(() => {
       useAppStore.getState().selectEntity(boundaryId);
@@ -699,9 +699,9 @@ describe('OntologyGraph adaptive rendering', () => {
         hiddenNeighborCount === 1 ? 'neighbor' : 'neighbors'
       }`,
     })).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Open' }));
+    fireEvent.click(screen.getByRole('button', { name: '打开' }));
     const collapseButton = screen.getByRole('button', {
-      name: `Hide shown neighbors for ${boundaryName}`,
+      name: `隐藏 ${boundaryName} 已显示的邻居`,
     });
     expect(collapseButton).toBeEnabled();
     fireEvent.click(collapseButton);
@@ -714,9 +714,7 @@ describe('OntologyGraph adaptive rendering', () => {
       initialConfig.elements.length,
     );
     const panelExpandButton = screen.getByRole('button', {
-      name: `Show ${hiddenNeighborCount} hidden ${
-        hiddenNeighborCount === 1 ? 'neighbor' : 'neighbors'
-      } for ${boundaryName}`,
+      name: `显示 ${boundaryName} 的 ${hiddenNeighborCount} 个隐藏邻居`,
     });
     expect(panelExpandButton).toBeEnabled();
     fireEvent.click(panelExpandButton);
@@ -724,7 +722,7 @@ describe('OntologyGraph adaptive rendering', () => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(4);
     });
 
-    fireEvent.change(screen.getByRole('slider', { name: 'Detail: 1 hop' }), {
+    fireEvent.change(screen.getByRole('slider', { name: '细节：1 跳' }), {
       target: { value: '2' },
     });
     await waitFor(() => {
@@ -734,10 +732,10 @@ describe('OntologyGraph adaptive rendering', () => {
     expect(useAppStore.getState().selectedRelationshipId).toBeNull();
     expect(
       screen.getByRole('button', {
-        name: 'Select a +N entity to show neighbors',
+        name: '选中一个 +N 实体以显示邻居',
       }),
     ).toBeDisabled();
-    fireEvent.change(screen.getByRole('slider', { name: 'Detail: 2 hops' }), {
+    fireEvent.change(screen.getByRole('slider', { name: '细节：2 跳' }), {
       target: { value: '1' },
     });
     await waitFor(() => {
@@ -749,7 +747,7 @@ describe('OntologyGraph adaptive rendering', () => {
     expect(collapsedConfig.elements).toHaveLength(initialConfig.elements.length);
     expect(
       screen.getByRole('button', {
-        name: 'Select a +N entity to show neighbors',
+        name: '选中一个 +N 实体以显示邻居',
       }),
     ).toBeDisabled();
   });
@@ -770,17 +768,17 @@ describe('OntologyGraph adaptive rendering', () => {
     });
 
     fireEvent.click(screen.getByRole('button', {
-      name: `Show ${initialHiddenCount} hidden neighbors for Root`,
+      name: `显示 Root 的 ${initialHiddenCount} 个隐藏邻居`,
     }));
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(2);
     });
 
     expect(screen.getByRole('button', {
-      name: 'Hide shown neighbors for Root',
+      name: '隐藏 Root 已显示的邻居',
     })).toBeEnabled();
     expect(screen.getByRole('status')).toHaveTextContent(
-      '170 neighbors remain hidden because the 180-entity view limit is full.',
+      '还有 170 个邻居没有显示，180 个实体的视图上限已满。先收起一片已展开的邻域腾出空间。',
     );
     expect(screen.queryByRole('button', {
       name: /Expand Root to show/,
@@ -814,9 +812,7 @@ describe('OntologyGraph adaptive rendering', () => {
     });
 
     const expandButton = await screen.findByRole('button', {
-      name: `Show ${hiddenNeighborCount} hidden ${
-        hiddenNeighborCount === 1 ? 'neighbor' : 'neighbors'
-      } for ${boundaryName}`,
+      name: `显示 ${boundaryName} 的 ${hiddenNeighborCount} 个隐藏邻居`,
     });
     const callsBeforeExpansion = graphMocks.cytoscape.mock.calls.length;
     fireEvent.click(expandButton);
@@ -828,7 +824,7 @@ describe('OntologyGraph adaptive rendering', () => {
 
     const callsBeforeCollapse = graphMocks.cytoscape.mock.calls.length;
     fireEvent.click(screen.getByRole('button', {
-      name: `Hide shown neighbors for ${boundaryName}`,
+      name: `隐藏 ${boundaryName} 已显示的邻居`,
     }));
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(
@@ -872,7 +868,7 @@ describe('OntologyGraph adaptive rendering', () => {
     const callsBeforeDepthChange = graphMocks.cytoscape.mock.calls.length;
     graphMocks.addClass.mockClear();
 
-    fireEvent.change(screen.getByRole('slider', { name: 'Detail: 1 hop' }), {
+    fireEvent.change(screen.getByRole('slider', { name: '细节：1 跳' }), {
       target: { value: '2' },
     });
     await waitFor(() => {
@@ -943,7 +939,7 @@ describe('OntologyGraph adaptive rendering', () => {
     });
     const initialConfig = graphMocks.cytoscape.mock.calls[0][0] as CapturedConfig;
 
-    fireEvent.change(screen.getByRole('slider', { name: 'Detail: 1 hop' }), {
+    fireEvent.change(screen.getByRole('slider', { name: '细节：1 跳' }), {
       target: { value: '2' },
     });
     await waitFor(() => {
@@ -954,7 +950,7 @@ describe('OntologyGraph adaptive rendering', () => {
     });
     expect(graphMocks.cytoscape).toHaveBeenCalledTimes(2);
 
-    fireEvent.change(screen.getByRole('slider', { name: 'Detail: 2 hops' }), {
+    fireEvent.change(screen.getByRole('slider', { name: '细节：2 跳' }), {
       target: { value: '1' },
     });
     await waitFor(() => {
@@ -988,7 +984,7 @@ describe('OntologyGraph adaptive rendering', () => {
       }),
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Reset view' }));
+    fireEvent.click(screen.getByRole('button', { name: '重置视图' }));
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(3);
     });
@@ -1007,10 +1003,10 @@ describe('OntologyGraph adaptive rendering', () => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(1);
     });
 
-    fireEvent.change(screen.getByLabelText('Jump to an entity'), {
+    fireEvent.change(screen.getByLabelText('跳转到实体'), {
       target: { value: 'Node 349' },
     });
-    fireEvent.click(screen.getByRole('button', { name: 'Find' }));
+    fireEvent.click(screen.getByRole('button', { name: '查找' }));
 
     await waitFor(() => {
       expect(graphMocks.cytoscape).toHaveBeenCalledTimes(2);
@@ -1022,7 +1018,7 @@ describe('OntologyGraph adaptive rendering', () => {
       }),
     );
     expect(
-      screen.getByText('1 matching entity.').closest('.large-graph-status'),
+      screen.getByText('匹配到 1 个实体。').closest('.large-graph-status'),
     ).not.toBeNull();
   });
 
@@ -1091,7 +1087,7 @@ describe('OntologyGraph adaptive rendering', () => {
     );
 
     fireEvent.click(
-      screen.getByRole('button', { name: 'Dismiss PNG export error' }),
+      screen.getByRole('button', { name: '关闭 PNG 导出错误提示' }),
     );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 

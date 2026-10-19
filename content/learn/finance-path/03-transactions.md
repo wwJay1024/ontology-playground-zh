@@ -34,18 +34,18 @@ embed: official/finance-step-2
 - **has_transaction**：`Account` → `Transaction`（一对多）
   每个账户随时间产生多笔交易，但每笔交易只属于一个账户。
 
-这把所有权链延长了：`Customer → Account → Transaction`。
+这把所有权链延长了：`客户 → Account → Transaction`。
 
 ## 不断生长的图谱
 
 <ontology-embed id="official/finance-step-2" diff="official/finance-step-1" height="400px"></ontology-embed>
 
-*交易补上了活动层。所有权链随之延长：`Customer → Account → Transaction`。*
+*交易补上了活动层。所有权链随之延长：`客户 → Account → Transaction`。*
 
 ## 小结
 
 - **Datetime 精度**在金融与合规场景中很重要
-- **所有权链**（`Customer → Account → Transaction`）支持逐层下钻的查询
+- **所有权链**（`客户 → Account → Transaction`）支持逐层下钻的查询
 - `merchant` 属性让消费分析成为可能，不必额外增加一个商户实体
 - 每增加一个实体，能回答的问题就更深一层
 

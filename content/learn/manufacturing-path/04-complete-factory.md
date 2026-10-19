@@ -27,7 +27,7 @@ embed: official/manufacturing-step-3
 - **inspects**——`Quality-Check` → `Part`（多对一）
   每次质量检查针对一个具体零件。一个零件可能经历多次检验（首检、返工后复检）。
 
-> **反馈回路：** 质量检查不合格时，生产链会反向追溯：`Quality-Check (passed=false) → Part → Work-Order → Machine`。智能工厂正是靠这条反馈回路找出有问题的设备，逐步提升生产质量。
+> **反馈回路：** 质量检查不合格时，生产链会反向追溯：`Quality-Check (passed=false) → Part → Work-订单 → Machine`。智能工厂正是靠这条反馈回路找出有问题的设备，逐步提升生产质量。
 
 ## 完整图谱
 

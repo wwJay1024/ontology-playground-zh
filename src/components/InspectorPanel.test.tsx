@@ -24,7 +24,7 @@ describe('InspectorPanel quest progression', () => {
 
     expect(useAppStore.getState().currentStepIndex).toBe(1);
 
-    const propertiesHeader = screen.getByText(/Properties \(\d+\)/i);
+    const propertiesHeader = screen.getByText(/属性（\d+）/);
     const propertiesSection = propertiesHeader.closest('.inspector-section');
     expect(propertiesSection).toBeTruthy();
 
@@ -41,7 +41,7 @@ describe('InspectorPanel quest progression', () => {
 
     expect(useAppStore.getState().currentStepIndex).toBe(1);
 
-    const bindingsHeader = screen.getByText('Data Bindings');
+    const bindingsHeader = screen.getByText('数据绑定');
     const bindingsSection = bindingsHeader.closest('.inspector-section');
     expect(bindingsSection).toBeTruthy();
 

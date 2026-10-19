@@ -129,9 +129,9 @@ describe('RDF validation profiles', () => {
     const result = validateRdfFile(filePath, 'official');
 
     expect(result.errors.some((candidate) =>
-      candidate.message.includes('has no identifier property'))).toBe(true);
+      candidate.message.includes('没有标识属性'))).toBe(true);
     expect(result.errors.some((candidate) =>
-      candidate.message.includes('exceeds 26 characters'))).toBe(true);
+      candidate.message.includes('超过 26 个字符'))).toBe(true);
   });
 
   it('rejects malformed RDF under every profile', () => {

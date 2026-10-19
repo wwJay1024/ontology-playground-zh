@@ -41,8 +41,8 @@ describe('QuizSlide', () => {
 
   it('does not show result or explanation before answering', () => {
     render(<QuizSlide quiz={sampleQuiz} />);
-    expect(screen.queryByText('Correct!')).toBeNull();
-    expect(screen.queryByText('Not quite')).toBeNull();
+    expect(screen.queryByText('答对了')).toBeNull();
+    expect(screen.queryByText('还差一点')).toBeNull();
     expect(screen.queryByText(sampleQuiz.explanation)).toBeNull();
   });
 
@@ -50,7 +50,7 @@ describe('QuizSlide', () => {
     const user = userEvent.setup();
     render(<QuizSlide quiz={sampleQuiz} />);
     await user.click(screen.getByText('A formal model of a domain'));
-    expect(screen.getByText('Correct!')).toBeTruthy();
+    expect(screen.getByText('答对了')).toBeTruthy();
     expect(screen.getByText(sampleQuiz.explanation)).toBeTruthy();
   });
 
@@ -58,7 +58,7 @@ describe('QuizSlide', () => {
     const user = userEvent.setup();
     render(<QuizSlide quiz={sampleQuiz} />);
     await user.click(screen.getByText('A database schema'));
-    expect(screen.getByText('Not quite')).toBeTruthy();
+    expect(screen.getByText('还差一点')).toBeTruthy();
     expect(screen.getByText(sampleQuiz.explanation)).toBeTruthy();
   });
 
@@ -93,7 +93,7 @@ describe('QuizSlide', () => {
     const noExplanation: QuizData = { ...sampleQuiz, explanation: '' };
     render(<QuizSlide quiz={noExplanation} />);
     await user.click(screen.getByText('A formal model of a domain'));
-    expect(screen.getByText('Correct!')).toBeTruthy();
+    expect(screen.getByText('答对了')).toBeTruthy();
     expect(screen.queryByText(sampleQuiz.explanation)).toBeNull();
   });
 });

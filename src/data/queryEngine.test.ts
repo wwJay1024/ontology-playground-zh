@@ -54,7 +54,7 @@ describe('processQuery', () => {
   it('answers definition-style entity questions', () => {
     const response = processQuery('What is a Problem?', testOntology);
 
-    expect(response.interpretation).toContain('definition query for Problem');
+    expect(response.interpretation).toContain('Problem 的定义查询');
     expect(response.result).toContain('**Problem**');
     expect(response.result).toContain('Known error or root cause for recurring incidents.');
     expect(response.highlightEntities).toEqual(['problem']);
@@ -63,15 +63,15 @@ describe('processQuery', () => {
   it('does not duplicate ontology wording in fallback text', () => {
     const response = processQuery('Completely unknown question', testOntology);
 
-    expect(response.result).toContain('for **Incident Management Ontology**.');
-    expect(response.result).not.toContain('Ontology** ontology');
+    expect(response.result).toContain('在这个本体中的含义');
+    expect(response.result).not.toContain('本体** 本体');
   });
 
   it('answers relationship-name connection queries', () => {
     const response = processQuery('Show me all is supported by connections', testOntology);
 
-    expect(response.interpretation).toContain('relationship-name query for is supported by');
-    expect(response.result).toContain('connects **Service** to **ConfigurationItem**');
+    expect(response.interpretation).toContain('关系「is supported by」查询');
+    expect(response.result).toContain('把 **Service** 连到 **ConfigurationItem**');
     expect(response.highlightRelationships).toEqual(['service_supported_by_configuration_item']);
   });
 });

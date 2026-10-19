@@ -11,7 +11,7 @@ embed: official/healthcare
 设计时最重要的决定就是命名。实体类型和属性既给人看，也给机器读——名字清楚，自然语言查询就更准。
 
 **推荐做法：**
-- 实体类型用单数名词：`Customer`、`Product`、`Order`
+- 实体类型用单数名词：`客户`、`商品`、`订单`
 - 属性用小驼峰命名：`firstName`、`totalAmount`、`createdDate`
 - 关系用动词短语：`placedBy`、`worksAt`、`contains`
 
@@ -46,8 +46,8 @@ embed: official/healthcare
 
 | 关系型做法 | 本体做法 |
 |-----------|----------|
-| `orders.customer_id → customers.id` | `Order` → `placedBy` → `Customer` |
-| `order_items.product_id → products.id` | `OrderItem` → `contains` → `Product` |
+| `orders.customer_id → customers.id` | `订单` → `placedBy` → `客户` |
+| `order_items.product_id → products.id` | `OrderItem` → `contains` → `商品` |
 
 关系的**名称**很关键：它告诉查询引擎（也告诉人）这条连接是什么意思。「placedBy」比一个叫 `fk_cust_id` 的列清楚得多。
 
@@ -94,7 +94,7 @@ embed: official/healthcare
 Q: 一个 Person 实体带着 salary、patientId、courseGrade、accountBalance 四个属性，应该采用哪种设计模式？
 - 补一个标识属性
 - 把所有属性合并进一个描述字段
-- 拆成独立的实体类型（Employee、Patient、Student、Customer），再建立关系 [correct]
+- 拆成独立的实体类型（Employee、Patient、学生、客户），再建立关系 [correct]
 - 只留一个属性，其余删掉
 > 实体一旦堆积了互不相干的属性，就成了「上帝实体」。正确的做法是把每个概念拆成独立的实体类型，需要时再用关系连起来。
 ```

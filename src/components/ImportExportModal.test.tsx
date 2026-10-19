@@ -98,10 +98,10 @@ describe('ImportExportModal integration', () => {
     render(<ImportExportModal onClose={onClose} />);
 
     const playgroundProfile = screen.getByRole('button', {
-      name: /Playground round-trip/,
+      name: /演练场往返/,
     });
     const standardsProfile = screen.getByRole('button', {
-      name: /Standards-oriented OWL \+ SHACL/,
+      name: /标准 OWL \+ SHACL/,
     });
 
     expect(playgroundProfile.getAttribute('aria-pressed')).toBe('true');
@@ -126,10 +126,10 @@ describe('ImportExportModal integration', () => {
     expect(note.classList.contains('source-fidelity-note')).toBe(true);
     expect(note.querySelector('.lucide-info')).toBeTruthy();
     expect(note.textContent).toContain(
-      'About this download',
+      '关于这份导出',
     );
     expect(note.textContent).toContain(
-      'Source-only RDF remains intact in the reviewed source',
+      '仍完整保留在审阅过的源文件里',
     );
   });
 
@@ -157,7 +157,7 @@ describe('ImportExportModal integration', () => {
     expect(state.currentOntology.relationships[0].name).toBe('produces');
 
     // Success message should be shown
-    expect(screen.getByText('Ontology loaded successfully!')).toBeTruthy();
+    expect(screen.getByText('本体载入成功')).toBeTruthy();
   });
 
   it('shows an error for malformed RDF', async () => {

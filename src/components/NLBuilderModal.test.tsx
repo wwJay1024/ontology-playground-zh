@@ -87,13 +87,13 @@ describe('NLBuilderModal validation', () => {
 
     render(<NLBuilderModal onClose={onClose} />);
     await user.type(
-      screen.getByPlaceholderText('Describe your business scenario...'),
+      screen.getByPlaceholderText('描述你的业务场景…'),
       'Track products in inventory',
     );
-    await user.click(screen.getByRole('button', { name: 'Generate Ontology' }));
+    await user.click(screen.getByRole('button', { name: '生成本体' }));
 
-    expect(await screen.findByText('Generation Failed')).toBeInTheDocument();
-    expect(screen.getByText(/has no identifier property/)).toBeInTheDocument();
+    expect(await screen.findByText('生成失败')).toBeInTheDocument();
+    expect(screen.getByText(/没有标识属性/)).toBeInTheDocument();
     expect(useAppStore.getState().currentOntology.name).toBe('Fourth Coffee');
     expect(onClose).not.toHaveBeenCalled();
   });
@@ -104,12 +104,12 @@ describe('NLBuilderModal validation', () => {
 
     render(<NLBuilderModal onClose={onClose} />);
     await user.type(
-      screen.getByPlaceholderText('Describe your business scenario...'),
+      screen.getByPlaceholderText('描述你的业务场景…'),
       'Track products in inventory',
     );
-    await user.click(screen.getByRole('button', { name: 'Generate Ontology' }));
+    await user.click(screen.getByRole('button', { name: '生成本体' }));
 
-    expect(await screen.findByText('Generation Failed')).toBeInTheDocument();
+    expect(await screen.findByText('生成失败')).toBeInTheDocument();
     expect(screen.getByText(/entityTypes\[0\]\.id must be a string/)).toBeInTheDocument();
     expect(screen.getByText(/isIdentifier must be a boolean/)).toBeInTheDocument();
     expect(useAppStore.getState().currentOntology.name).toBe('Fourth Coffee');
@@ -122,19 +122,19 @@ describe('NLBuilderModal validation', () => {
 
     render(<NLBuilderModal onClose={onClose} />);
     await user.type(
-      screen.getByPlaceholderText('Describe your business scenario...'),
+      screen.getByPlaceholderText('描述你的业务场景…'),
       'Track products in inventory',
     );
-    await user.click(screen.getByRole('button', { name: 'Generate Ontology' }));
+    await user.click(screen.getByRole('button', { name: '生成本体' }));
     expect(await screen.findByText('Generated Inventory')).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: 'Edit JSON' }));
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: JSON.stringify(createOntology(false)) },
     });
-    await user.click(screen.getByRole('button', { name: 'Apply Ontology' }));
+    await user.click(screen.getByRole('button', { name: '应用本体' }));
 
-    expect(screen.getByText(/has no identifier property/)).toBeInTheDocument();
+    expect(screen.getByText(/没有标识属性/)).toBeInTheDocument();
     expect(useAppStore.getState().currentOntology.name).toBe('Fourth Coffee');
     expect(onClose).not.toHaveBeenCalled();
   });
@@ -145,17 +145,17 @@ describe('NLBuilderModal validation', () => {
 
     render(<NLBuilderModal onClose={onClose} />);
     await user.type(
-      screen.getByPlaceholderText('Describe your business scenario...'),
+      screen.getByPlaceholderText('描述你的业务场景…'),
       'Track products in inventory',
     );
-    await user.click(screen.getByRole('button', { name: 'Generate Ontology' }));
+    await user.click(screen.getByRole('button', { name: '生成本体' }));
     expect(await screen.findByText('Generated Inventory')).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: 'Edit JSON' }));
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: JSON.stringify(createMalformedOntology()) },
     });
-    await user.click(screen.getByRole('button', { name: 'Apply Ontology' }));
+    await user.click(screen.getByRole('button', { name: '应用本体' }));
 
     expect(screen.getByText(/entityTypes\[0\]\.id must be a string/)).toBeInTheDocument();
     expect(screen.getByText(/isIdentifier must be a boolean/)).toBeInTheDocument();
@@ -169,13 +169,13 @@ describe('NLBuilderModal validation', () => {
 
     render(<NLBuilderModal onClose={onClose} />);
     await user.type(
-      screen.getByPlaceholderText('Describe your business scenario...'),
+      screen.getByPlaceholderText('描述你的业务场景…'),
       'Track products in inventory',
     );
-    await user.click(screen.getByRole('button', { name: 'Generate Ontology' }));
+    await user.click(screen.getByRole('button', { name: '生成本体' }));
     expect(await screen.findByText('Generated Inventory')).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Apply Ontology' }));
+    await user.click(screen.getByRole('button', { name: '应用本体' }));
 
     expect(useAppStore.getState().currentOntology.name).toBe('Generated Inventory');
     expect(useAppStore.getState().currentOntology.entityTypes[0].color).toBe('#0078D4');

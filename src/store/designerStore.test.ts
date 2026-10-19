@@ -18,7 +18,7 @@ beforeEach(() => {
 describe('validateOntology', () => {
   it('reports empty ontology', () => {
     const errors = validateOntology({ name: '', description: '', entityTypes: [], relationships: [] });
-    expect(errors).toEqual([{ message: 'Add at least one entity type to your ontology.' }]);
+    expect(errors).toEqual([{ message: '至少添加一个实体类型。' }]);
   });
 
   it('reports missing identifier property', () => {
@@ -32,7 +32,7 @@ describe('validateOntology', () => {
       relationships: [],
     };
     const errors = validateOntology(ontology);
-    expect(errors.some((e) => e.message.includes('identifier'))).toBe(true);
+    expect(errors.some((e) => e.message.includes('标识属性'))).toBe(true);
   });
 
   it('reports duplicate entity IDs', () => {
@@ -45,7 +45,7 @@ describe('validateOntology', () => {
       ],
       relationships: [],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes('share the same ID'))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('同一个 ID'))).toBe(true);
   });
 
   it('reports duplicate relationship IDs', () => {
@@ -61,7 +61,7 @@ describe('validateOntology', () => {
         { id: 'r1', name: 'y', from: 'e2', to: 'e1', cardinality: 'one-to-one' },
       ],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes('share the same ID'))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('同一个 ID'))).toBe(true);
   });
 
   it('reports an ID shared by an entity and relationship', () => {
@@ -76,7 +76,7 @@ describe('validateOntology', () => {
       ],
     };
 
-    expect(validateOntology(ontology).some((error) => error.message.includes('designer graph'))).toBe(true);
+    expect(validateOntology(ontology).some((error) => error.message.includes('设计器图谱'))).toBe(true);
   });
 
   it('reports relationships referencing unknown entities', () => {
@@ -90,7 +90,7 @@ describe('validateOntology', () => {
         { id: 'r1', name: 'x', from: 'e1', to: 'missing', cardinality: 'one-to-many' },
       ],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes("doesn't exist"))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('不存在'))).toBe(true);
   });
 
   it('passes for a valid ontology', () => {
@@ -118,7 +118,7 @@ describe('validateOntology', () => {
       ],
       relationships: [],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes('must start with'))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('必须以'))).toBe(true);
   });
 
   it('reports entity type names exceeding 26 characters', () => {
@@ -130,7 +130,7 @@ describe('validateOntology', () => {
       ],
       relationships: [],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes('exceeds 26'))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('超过 26'))).toBe(true);
   });
 
   // §7.2 — Property name validation
@@ -145,7 +145,7 @@ describe('validateOntology', () => {
       relationships: [],
     };
     const errors = validateOntology(ontology);
-    expect(errors.some((e) => e.message.includes('Property name'))).toBe(true);
+    expect(errors.some((e) => e.message.includes('属性名称'))).toBe(true);
   });
 
   it('reports cross-entity property type conflict', () => {
@@ -160,7 +160,7 @@ describe('validateOntology', () => {
       ],
       relationships: [],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes('same type when property names match'))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('要求类型一致'))).toBe(true);
   });
 
   // §1 partial — Identifier key type validation
@@ -174,7 +174,7 @@ describe('validateOntology', () => {
       ],
       relationships: [],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes('must be string or integer'))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('必须是字符串或整数'))).toBe(true);
   });
 
   // §7.3 — Self-referencing relationships are allowed (issue #64)
@@ -191,8 +191,8 @@ describe('validateOntology', () => {
       ],
     };
     const errors = validateOntology(ontology);
-    expect(errors.some((e) => e.message.includes('self-referencing'))).toBe(false);
-    expect(errors.some((e) => e.message.includes('source and target'))).toBe(false);
+    expect(errors.some((e) => e.message.includes('自引用'))).toBe(false);
+    expect(errors.some((e) => e.message.includes('起点和终点'))).toBe(false);
   });
 
   it('passes for a valid ontology containing a self-referencing relationship', () => {
@@ -222,7 +222,7 @@ describe('validateOntology', () => {
         { id: 'r1', name: 'reportsTo', from: 'ghost', to: 'ghost', cardinality: 'one-to-many' },
       ],
     };
-    expect(validateOntology(ontology).some((e) => e.message.includes("doesn't exist"))).toBe(true);
+    expect(validateOntology(ontology).some((e) => e.message.includes('不存在'))).toBe(true);
   });
 
   it('allows multiple self-referencing relationships on the same entity', () => {
@@ -272,10 +272,10 @@ describe('fabricIQNameError', () => {
   });
 
   it('returns specific error messages', () => {
-    expect(fabricIQNameError('Entity type', 'A'.repeat(27))).toContain('exceeds 26');
-    expect(fabricIQNameError('Property', '-start')).toContain('must start with');
-    expect(fabricIQNameError('Property', 'end-')).toContain('must end with');
-    expect(fabricIQNameError('Property', 'has space')).toContain('may only contain');
+    expect(fabricIQNameError('Entity type', 'A'.repeat(27))).toContain('超过 26');
+    expect(fabricIQNameError('Property', '-start')).toContain('必须以');
+    expect(fabricIQNameError('Property', 'end-')).toContain('结尾');
+    expect(fabricIQNameError('Property', 'has space')).toContain('只能包含');
   });
 });
 
@@ -284,7 +284,7 @@ describe('fabricIQNameError', () => {
 describe('useDesignerStore actions', () => {
   it('starts with an empty draft', () => {
     const { ontology } = useDesignerStore.getState();
-    expect(ontology.name).toBe('My Ontology');
+    expect(ontology.name).toBe('我的本体');
     expect(ontology.entityTypes).toEqual([]);
     expect(ontology.relationships).toEqual([]);
   });
@@ -520,7 +520,7 @@ describe('useDesignerStore actions', () => {
     const rel = useDesignerStore.getState().ontology.relationships[0];
     expect(rel.from).toBe(e1);
     expect(rel.to).toBe(e1);
-    expect(validateOntology(useDesignerStore.getState().ontology).some((e) => e.message.includes('self-referencing'))).toBe(false);
+    expect(validateOntology(useDesignerStore.getState().ontology).some((e) => e.message.includes('自引用'))).toBe(false);
   });
 
   it('updateRelationship updates fields', () => {
@@ -575,7 +575,7 @@ describe('useDesignerStore actions', () => {
     useDesignerStore.getState().addEntity();
     useDesignerStore.getState().resetDraft();
     expect(useDesignerStore.getState().ontology.entityTypes).toHaveLength(0);
-    expect(useDesignerStore.getState().ontology.name).toBe('My Ontology');
+    expect(useDesignerStore.getState().ontology.name).toBe('我的本体');
   });
 
   it('validate() populates validationErrors', () => {
@@ -618,13 +618,13 @@ describe('undo / redo', () => {
   it('undo is a no-op when history is empty', () => {
     expect(useDesignerStore.getState()._past).toHaveLength(0);
     useDesignerStore.getState().undo();
-    expect(useDesignerStore.getState().ontology.name).toBe('My Ontology');
+    expect(useDesignerStore.getState().ontology.name).toBe('我的本体');
   });
 
   it('redo is a no-op when future is empty', () => {
     expect(useDesignerStore.getState()._future).toHaveLength(0);
     useDesignerStore.getState().redo();
-    expect(useDesignerStore.getState().ontology.name).toBe('My Ontology');
+    expect(useDesignerStore.getState().ontology.name).toBe('我的本体');
   });
 
   it('new mutation after undo clears the redo stack', () => {
@@ -650,7 +650,7 @@ describe('undo / redo', () => {
     useDesignerStore.getState().undo();
     expect(useDesignerStore.getState().ontology.name).toBe('Step 1');
     useDesignerStore.getState().undo();
-    expect(useDesignerStore.getState().ontology.name).toBe('My Ontology');
+    expect(useDesignerStore.getState().ontology.name).toBe('我的本体');
   });
 
   it('history is capped at 50 entries', () => {

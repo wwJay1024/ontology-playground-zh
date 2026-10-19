@@ -230,7 +230,7 @@ describe('GalleryModal', () => {
     render(<GalleryModal onClose={onClose} />);
 
     // Loading state appears first
-    expect(screen.getByText('Loading catalogue…')).toBeTruthy();
+    expect(screen.getByText('正在载入目录…')).toBeTruthy();
 
     // Entries appear after fetch
     await waitFor(() => {
@@ -238,7 +238,7 @@ describe('GalleryModal', () => {
     });
     expect(screen.getByText('Hospital Network')).toBeTruthy();
     expect(screen.getByText('Finance Ledger')).toBeTruthy();
-    expect(screen.queryByText('Loading catalogue…')).toBeNull();
+    expect(screen.queryByText('正在载入目录…')).toBeNull();
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock.mock.calls[0][0].toString()).toMatch(/catalogue\.json$/);
   });
@@ -261,7 +261,7 @@ describe('GalleryModal', () => {
       expect(screen.getByText('Fourth Coffee')).toBeTruthy();
     });
 
-    const searchInput = screen.getByPlaceholderText(/Search by name/);
+    const searchInput = screen.getByPlaceholderText(/按名称、标签、作者或许可证搜索/);
     await user.type(searchInput, 'hospital');
 
     expect(screen.queryByText('Fourth Coffee')).toBeNull();
@@ -278,7 +278,7 @@ describe('GalleryModal', () => {
       expect(screen.getByText('Fourth Coffee')).toBeTruthy();
     });
 
-    const searchInput = screen.getByPlaceholderText(/Search by name/);
+    const searchInput = screen.getByPlaceholderText(/按名称、标签、作者或许可证搜索/);
     await user.type(searchInput, 'ledger');
 
     expect(screen.queryByText('Fourth Coffee')).toBeNull();
@@ -295,7 +295,7 @@ describe('GalleryModal', () => {
       expect(screen.getByText('Fourth Coffee')).toBeTruthy();
     });
 
-    const searchInput = screen.getByPlaceholderText(/Search by name/);
+    const searchInput = screen.getByPlaceholderText(/按名称、标签、作者或许可证搜索/);
     await user.type(searchInput, 'MIT');
 
     expect(screen.queryByText('Fourth Coffee')).toBeNull();
@@ -313,7 +313,7 @@ describe('GalleryModal', () => {
     });
 
     // Select healthcare category
-    const categorySelect = screen.getByDisplayValue('All categories');
+    const categorySelect = screen.getByDisplayValue('全部分类');
     await user.selectOptions(categorySelect, 'healthcare');
 
     expect(screen.queryByText('Fourth Coffee')).toBeNull();
@@ -330,7 +330,7 @@ describe('GalleryModal', () => {
       expect(screen.getByText('Fourth Coffee')).toBeTruthy();
     });
 
-    const sourceSelect = screen.getByDisplayValue('All sources');
+    const sourceSelect = screen.getByDisplayValue('全部来源');
     await user.selectOptions(sourceSelect, 'community');
 
     expect(screen.queryByText('Fourth Coffee')).toBeNull();
@@ -347,10 +347,10 @@ describe('GalleryModal', () => {
       expect(screen.getByText('Fourth Coffee')).toBeTruthy();
     });
 
-    const searchInput = screen.getByPlaceholderText(/Search by name/);
+    const searchInput = screen.getByPlaceholderText(/按名称、标签、作者或许可证搜索/);
     await user.type(searchInput, 'xyznonexistent');
 
-    expect(screen.getByText('No ontologies match your filters.')).toBeTruthy();
+    expect(screen.getByText('没有符合条件的本体。')).toBeTruthy();
   });
 
   it('preloads one payload and lets the deep-link effect load the ontology once', async () => {
@@ -363,7 +363,7 @@ describe('GalleryModal', () => {
     });
 
     const initialOntology = useAppStore.getState().currentOntology;
-    const loadButtons = screen.getAllByText('Load');
+    const loadButtons = screen.getAllByText('载入');
     await user.click(loadButtons[0]);
 
     await waitFor(() => {
@@ -397,8 +397,8 @@ describe('GalleryModal', () => {
     render(<GalleryModal onClose={onClose} />);
     await screen.findByText('Hospital Network');
 
-    await user.click(screen.getAllByText('Load')[0]);
-    await user.click(screen.getByText('Load'));
+    await user.click(screen.getAllByText('载入')[0]);
+    await user.click(screen.getByText('载入'));
     await waitFor(() => {
       expect(window.location.hash).toBe(
         '#/catalogue/official/finance-ledger',
@@ -434,8 +434,8 @@ describe('GalleryModal', () => {
     render(<GalleryModal onClose={onClose} />);
     await screen.findByText('Hospital Network');
 
-    await user.click(screen.getAllByText('Load')[0]);
-    await user.click(screen.getByText('Done'));
+    await user.click(screen.getAllByText('载入')[0]);
+    await user.click(screen.getByText('完成'));
     expect(onClose).toHaveBeenCalledTimes(1);
 
     await act(async () => {
@@ -466,7 +466,7 @@ describe('GalleryModal', () => {
     render(<GalleryModal onClose={onClose} />);
     await screen.findByText('Fourth Coffee');
 
-    await user.click(screen.getAllByTitle('Edit in Designer')[0]);
+    await user.click(screen.getAllByTitle('在设计器中编辑')[0]);
     act(() => {
       window.history.pushState(null, '', '#/');
       window.dispatchEvent(new HashChangeEvent('hashchange'));
@@ -499,7 +499,7 @@ describe('GalleryModal', () => {
     await waitFor(() => {
       expect(screen.getByText('Hospital Network')).toBeTruthy();
     });
-    await user.click(screen.getAllByText('Load')[0]);
+    await user.click(screen.getAllByText('载入')[0]);
 
     await waitFor(() => {
       expect(screen.getByRole('alert').textContent).toContain(
@@ -520,7 +520,7 @@ describe('GalleryModal', () => {
     // "Community" appears in the source filter dropdown AND as a badge.
     // Only Hospital Network is community, so there should be exactly 1 badge
     // plus 1 option in the dropdown = 2 total.
-    const allCommunity = screen.getAllByText('Community');
+    const allCommunity = screen.getAllByText('社区');
     expect(allCommunity).toHaveLength(2); // 1 dropdown option + 1 badge
 
     // The badge is a <span> inside a card, the option is in a <select>
@@ -554,10 +554,10 @@ describe('GalleryModal', () => {
 
     await screen.findByText('Fourth Coffee');
     await user.click(screen.getByRole('button', {
-      name: 'View original RDF source for Fourth Coffee',
+      name: '查看 Fourth Coffee 的原始 RDF 源',
     }));
 
-    expect(await screen.findByText('Original reviewed RDF source')).toBeTruthy();
+    expect(await screen.findByText('经审阅的原始 RDF 源')).toBeTruthy();
     expect(Array.from(document.querySelectorAll('pre')).some(
       (element) =>
         element.textContent === fakeSources['official/cosmic-coffee'],
@@ -588,24 +588,24 @@ describe('GalleryModal', () => {
     expect(note.classList.contains('source-fidelity-note')).toBe(true);
     expect(note.querySelector('.lucide-info')).toBeTruthy();
     expect(note.textContent).toContain(
-      'The graph, Designer, and generated RDF use a visual subset',
+      '图谱、设计器和生成的 RDF 只覆盖可视子集',
     );
     expect(note.textContent).toContain(
-      'remain intact in the reviewed source',
+      '仍完整保留在审阅过的源文件里',
     );
 
     await user.click(screen.getByRole('button', {
-      name: 'View generated RDF for Finance Ledger',
+      name: '查看 Finance Ledger 生成的 RDF',
     }));
 
     expect(await screen.findByText(
-      'Playground-generated RDF subset',
+      '演练场生成的 RDF 子集',
     )).toBeTruthy();
     expect(screen.getByText(
-      /not the complete upstream ontology/,
+      /并非完整的上游本体/,
     )).toBeTruthy();
     expect(screen.getByText(
-      /Source-only RDF remains in the reviewed source/,
+      /仍保留在审阅过的源文件里/,
     )).toBeTruthy();
   });
 
@@ -618,11 +618,11 @@ describe('GalleryModal', () => {
     });
 
     // Fourth Coffee: 3 entities, 2 relationships
-    expect(screen.getByText('3 entities')).toBeTruthy();
-    expect(screen.getByText('2 relationships')).toBeTruthy();
+    expect(screen.getByText('3 个实体')).toBeTruthy();
+    expect(screen.getByText('2 条关系')).toBeTruthy();
     // Hospital Network: 4 entities, 3 relationships
-    expect(screen.getByText('4 entities')).toBeTruthy();
-    expect(screen.getByText('3 relationships')).toBeTruthy();
+    expect(screen.getByText('4 个实体')).toBeTruthy();
+    expect(screen.getByText('3 条关系')).toBeTruthy();
   });
 
   it('Edit in Designer loads ontology into designer store and navigates to designer', async () => {
@@ -635,7 +635,7 @@ describe('GalleryModal', () => {
     });
 
     // Click the "Edit in Designer" pencil button for the first entry
-    const editButtons = screen.getAllByTitle('Edit in Designer');
+    const editButtons = screen.getAllByTitle('在设计器中编辑');
     expect(editButtons.length).toBeGreaterThan(0);
     await user.click(editButtons[0]);
 

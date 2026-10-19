@@ -25,23 +25,23 @@ order: 1
 
 ## 为什么需要本体
 
-本体把**业务概念**——`Grower`、`Farm`、`HarvestLot`、`Shipment`、`ColdChainSensor`、`RetailDC`、`Order`、`SustainabilityProgram`——以及它们之间的**关系**定义一次。底层的数据表和事件流再**绑定**到这些概念上。
+本体把**业务概念**——`种植户`、`农场`、`采收批次`、`发运`、`冷链传感器`、`零售配送中心`、`订单`、`SustainabilityProgram`——以及它们之间的**关系**定义一次。底层的数据表和事件流再**绑定**到这些概念上。
 
 | 没有本体 | 有了本体 |
 |---|---|
 | 分析师必须知道 `dim_grow.gr_lt_id = fact_harv.gr_id` | 业务人员直接问「本周哪些种植商有批次出现风险？」 |
-| 冷链遥测在一个系统，订单在另一个系统 | 一次遍历 `Sensor → Shipment → HarvestLot → Order → Store` |
+| 冷链遥测在一个系统，订单在另一个系统 | 一次遍历 `Sensor → 发运 → 采收批次 → 订单 → 门店` |
 | 来了新零售商？改写五条查询 | 来了新零售商？加绑定即可，模型不变 |
-| 可持续追踪另存一张电子表格 | `Farm participatesIn SustainabilityProgram` 是一等概念 |
+| 可持续追踪另存一张电子表格 | `农场 participatesIn SustainabilityProgram` 是一等概念 |
 
 ## 我们要构建什么
 
 分五个递进的步骤，搭出完整的 Zava 从果园到货架本体——**12 个实体类型**、**13 条关系**，覆盖业务每一层：
 
-1. **果园基础**——`Grower`、`Farm`、`Plot`、`FruitVariety`
-2. **采收与质量**——`HarvestLot`、`QualityCheck`
-3. **冷链物流**——`Shipment`、`ColdChainSensor`
-4. **零售履约**——`RetailDC`、`Store`、`Order`
+1. **果园基础**——`种植户`、`农场`、`地块`、`水果品种`
+2. **采收与质量**——`采收批次`、`QualityCheck`
+3. **冷链物流**——`发运`、`冷链传感器`
+4. **零售履约**——`零售配送中心`、`门店`、`订单`
 5. **完整模型**——`SustainabilityProgram`
 
 每一步你都会看到图谱扩展，我们也会预告新实体能回答哪些业务问题。

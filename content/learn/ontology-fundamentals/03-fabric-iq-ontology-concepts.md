@@ -16,10 +16,10 @@ embed: official/ecommerce
 
 用户问*「上个月各区域的总销售额是多少？」*时，IQ 需要知道：
 
-1. **实体类型**——`Order`、`Store`、`Region`
-2. **属性**——`Order.totalAmount`、`Order.date`、`Store.region`
-3. **关系**——`Order` → `placedAt` → `Store`，`Store` → `locatedIn` → `Region`
-4. **标识属性**——哪些字段能唯一标识每个实体（例如 `Order.orderId`）
+1. **实体类型**——`订单`、`门店`、`区域`
+2. **属性**——`订单.totalAmount`、`订单.date`、`门店.region`
+3. **关系**——`订单` → `placedAt` → `门店`，`门店` → `locatedIn` → `区域`
+4. **标识属性**——哪些字段能唯一标识每个实体（例如 `订单.orderId`）
 
 这四样东西都由本体提供。没有本体，IQ 分不清「门店」和「商品」，也不知道该怎样把两者连起来。
 
@@ -31,7 +31,7 @@ embed: official/ecommerce
 - 包含一个或多个**属性**（带类型的列）
 - 必须至少有一个**标识属性**，用来唯一标识实例
 
-可以把它想成一张表的定义：`Customer(customerId, name, email, tier)`。
+可以把它想成一张表的定义：`客户(customerId, name, email, tier)`。
 
 ## 属性与类型
 
@@ -59,11 +59,11 @@ embed: official/ecommerce
 | 基数 | 含义 | 示例 |
 |------------|---------|---------|
 | 一对一 | 每个 A 恰好对应一个 B | `Employee` → `Badge` |
-| 一对多 | 每个 A 对应多个 B | `Customer` → `Order` |
-| 多对一 | 多个 A 对应一个 B | `Order` → `Store` |
-| 多对多 | 多个 A 对应多个 B | `Student` → `Course` |
+| 一对多 | 每个 A 对应多个 B | `客户` → `订单` |
+| 多对一 | 多个 A 对应一个 B | `订单` → `门店` |
+| 多对多 | 多个 A 对应多个 B | `学生` → `课程` |
 
-IQ 靠基数生成正确的聚合。`Customer` 与 `Order` 之间是一对多关系，所以「每个客户有多少订单」这种问法成立，而「每个订单有多少客户」通常只会得到 1。
+IQ 靠基数生成正确的聚合。`客户` 与 `订单` 之间是一对多关系，所以「每个客户有多少订单」这种问法成立，而「每个订单有多少客户」通常只会得到 1。
 
 <ontology-embed id="official/ecommerce" height="400px"></ontology-embed>
 
@@ -73,7 +73,7 @@ IQ 靠基数生成正确的聚合。`Customer` 与 `Order` 之间是一对多关
 
 为 Fabric IQ 构建本体时，可以照着下面几条来：
 
-1. **给实体起清楚的名字**——用用户嘴里的业务词（「Customer」，而不是「tbl_cust」）
+1. **给实体起清楚的名字**——用用户嘴里的业务词（「客户」，而不是「tbl_cust」）
 2. **写描述**——IQ 会借助描述区分相似概念
 3. **标出标识属性**——每个实体都必须至少有一个标识属性
 4. **设置基数**——帮 IQ 生成正确的 GROUP BY 和 JOIN 逻辑

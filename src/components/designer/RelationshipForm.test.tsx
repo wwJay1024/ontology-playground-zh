@@ -12,9 +12,9 @@ describe('RelationshipForm — self-referencing relationships (issue #64)', () =
   it('prompts to create an entity and disables Add when there are no entities', () => {
     render(<RelationshipForm />);
 
-    expect(screen.getByText('Create at least one entity first.')).toBeInTheDocument();
+    expect(screen.getByText('请先创建一个实体。')).toBeInTheDocument();
     expect(
-      screen.getByTitle('Create at least one entity to add a relationship'),
+      screen.getByTitle('先创建一个实体才能添加关系'),
     ).toBeDisabled();
   });
 
@@ -24,7 +24,7 @@ describe('RelationshipForm — self-referencing relationships (issue #64)', () =
 
     render(<RelationshipForm />);
 
-    const addBtn = screen.getByTitle('Add relationship');
+    const addBtn = screen.getByTitle('添加关系');
     expect(addBtn).toBeEnabled();
 
     fireEvent.click(addBtn);
@@ -42,7 +42,7 @@ describe('RelationshipForm — self-referencing relationships (issue #64)', () =
 
     render(<RelationshipForm />);
 
-    fireEvent.click(screen.getByTitle('Add relationship'));
+    fireEvent.click(screen.getByTitle('添加关系'));
 
     const rel = useDesignerStore.getState().ontology.relationships[0];
     expect(rel.from).toBe(first.id);

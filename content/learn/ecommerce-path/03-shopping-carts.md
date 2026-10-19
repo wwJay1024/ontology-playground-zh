@@ -8,7 +8,7 @@ embed: official/ecommerce-step-2
 
 ## 购买之前
 
-并不是每次浏览都会变成购买。**Shopping Cart** 记录的是买家结账前正在考虑的东西。它是一个会话实体，临时且可变。
+并不是每次浏览都会变成购买。**购物车** 记录的是买家结账前正在考虑的东西。它是一个会话实体，临时且可变。
 
 加入购物车之后，就能回答：
 - 「本周有多少购物车被放弃？」
@@ -28,10 +28,10 @@ embed: official/ecommerce-step-2
 
 ## 新关系
 
-- **has_cart**——`Buyer` → `Shopping-Cart`（一对一）
+- **has_cart**——`买家` → `Shopping-Cart`（一对一）
   每个买家恰好有一个活跃购物车，每个购物车也恰好属于一个买家。
 
-- **contains**——`Shopping-Cart` → `Product`（多对多）
+- **contains**——`Shopping-Cart` → `商品`（多对多）
   一个购物车可以放多个商品，一个商品也可以出现在很多购物车里。
 
 > **一对一模式：**`has_cart` 之所以是一对一，是因为每个买家只有一个活跃的购物会话。这与订单（一对多）不同：订单会随时间累积，而购物车在任何时刻只有一个。
@@ -40,7 +40,7 @@ embed: official/ecommerce-step-2
 
 <ontology-embed id="official/ecommerce-step-2" diff="official/ecommerce-step-1" height="400px"></ontology-embed>
 
-*Shopping-Cart 通过两条新关系把 Buyer 与 Product 连起来。diff 视图标出了第 1 步之后的变化。*
+*Shopping-Cart 通过两条新关系把 买家 与 商品 连起来。diff 视图标出了第 1 步之后的变化。*
 
 ## 小结
 
@@ -50,7 +50,7 @@ embed: official/ecommerce-step-2
 - 购物车分析能带来**转化漏斗**方面的洞察（购物车到订单的比率）
 
 ```quiz
-Q: 为什么 Buyer 与 Shopping-Cart 之间的 has_cart 关系设为一对一，而不是一对多？
+Q: 为什么 买家 与 Shopping-Cart 之间的 has_cart 关系设为一对一，而不是一对多？
 - 因为购物车不需要唯一标识
 - 因为每个买家在任一时刻都只有一个活跃购物车 [correct]
 - 因为一对一实现起来更简单

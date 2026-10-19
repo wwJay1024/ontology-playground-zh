@@ -21,7 +21,7 @@ order: 1
 台湾一家半导体供应商遭遇持续 48 小时的停电：
 
 ```
-Disruption: Taiwan Supplier Outage
+Disruption: Taiwan 供应商 Outage
   ↓
 Affects: ChipX component supply
   ↓
@@ -48,7 +48,7 @@ Mitigation: Activate pre-qualified alternative supplier + safety stock
 
 | 步骤 | 重点 | 产出 |
 |---|---|---|
-| 1 | 核心实体（Supplier、Component、ProductLine、Disruption） | 你的供应链词汇表 |
+| 1 | 核心实体（供应商、零部件、产品线、Disruption） | 你的供应链词汇表 |
 | 2 | 实体属性与标识属性 | 支撑风险计算的丰富属性 |
 | 3 | 关系与级联建模 | 影响传导图谱 |
 | 4 | 风险评估与缓解动作 | 决策自动化 |

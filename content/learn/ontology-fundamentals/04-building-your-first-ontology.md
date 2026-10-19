@@ -8,7 +8,7 @@ embed: official/cosmic-coffee
 
 ## 我们要做什么
 
-这篇教程带你创建一个简单的**图书馆**本体，包含三个实体类型：`Book`、`Author`、`Member`，再用关系把它们连起来。做完之后，你会得到一个符合规范的 RDF 文件，可以直接用于 Microsoft Fabric IQ 或任何语义工具。
+这篇教程带你创建一个简单的**图书馆**本体，包含三个实体类型：`图书`、`作者`、`成员`，再用关系把它们连起来。做完之后，你会得到一个符合规范的 RDF 文件，可以直接用于 Microsoft Fabric IQ 或任何语义工具。
 
 ## 第 1 步：打开设计器
 
@@ -18,8 +18,8 @@ embed: official/cosmic-coffee
 
 用 **+ Add Entity** 按钮添加三个实体：
 
-**Book**
-- 名称：`Book`
+**图书**
+- 名称：`图书`
 - 图标：`📚`
 - 颜色：挑一个蓝色
 - 属性：
@@ -27,8 +27,8 @@ embed: official/cosmic-coffee
   - `title`——字符串
   - `publishedYear`——整数
 
-**Author**
-- 名称：`Author`
+**作者**
+- 名称：`作者`
 - 图标：`✍️`
 - 颜色：挑一个绿色
 - 属性：
@@ -36,8 +36,8 @@ embed: official/cosmic-coffee
   - `name`——字符串
   - `nationality`——字符串
 
-**Member**
-- 名称：`Member`
+**成员**
+- 名称：`成员`
 - 图标：`👤`
 - 颜色：挑一个紫色
 - 属性：
@@ -49,12 +49,12 @@ embed: official/cosmic-coffee
 
 ## 第 3 步：添加关系
 
-切到 **Relationships** 标签页，添加：
+切到 **关系** 标签页，添加：
 
 | 关系 | 起点 | 终点 | 基数 |
 |-------------|------|-----|-------------|
-| `writtenBy` | Book | Author | 多对一 |
-| `borrowedBy` | Book | Member | 多对多 |
+| `writtenBy` | 图书 | 作者 | 多对一 |
+| `borrowedBy` | 图书 | 成员 | 多对多 |
 
 `writtenBy` 是多对一：多本书可以出自同一位作者，而每本书只有一位主要作者。`borrowedBy` 是多对多：一本书可以被多位会员借走，一位会员也能借多本书。
 
@@ -78,9 +78,9 @@ embed: official/cosmic-coffee
 
 你有三个选择：
 
-1. **Download RDF**——把 `.rdf` 文件保存到「下载」文件夹
+1. **下载 RDF**——把 `.rdf` 文件保存到「下载」文件夹
 2. **提交到目录**——打开一键 PR 流程，把你的本体贡献到社区目录（需要登录 GitHub）
-3. **Copy JSON**——复制 JSON 表示，方便在应用里使用
+3. **复制 JSON**——复制 JSON 表示，方便在应用里使用
 
 ## 接下来做什么？
 
@@ -97,7 +97,7 @@ embed: official/cosmic-coffee
 - 可以导出 RDF 交给 Fabric IQ，也可以直接提交到社区目录
 
 ```quiz
-Q: Book 与 Member 之间的 borrowedBy 关系为什么设为多对多？
+Q: 图书 与 成员 之间的 borrowedBy 关系为什么设为多对多？
 - 一本书只能被借一次
 - 每位会员一次只借一本书
 - 一本书在不同时间可以被多位会员借走，一位会员也能借多本书 [correct]

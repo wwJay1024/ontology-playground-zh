@@ -56,7 +56,7 @@ describe('generateQuestsForOntology', () => {
     const queryQuest = quests.find((quest) => quest.id === 'quest-5');
     const traversalStep = queryQuest?.steps.find((step) => step.id === 'step-5-3');
 
-    expect(traversalStep?.instruction).toBe('Try a traversal query: "How does Service connect to ConfigurationItem?"');
+    expect(traversalStep?.instruction).toBe('试试跳转查询：「Service怎么连到ConfigurationItem？」');
     expect(traversalStep?.instruction).not.toContain('Show me all is supported by connections');
   });
 });

@@ -67,10 +67,10 @@ export function LearnPage({ route }: LearnPageProps) {
     backLabel = course.title;
     backAction = () => navigate({ page: 'learn', courseSlug: course.slug });
   } else if (course) {
-    backLabel = 'All courses';
+    backLabel = t('All courses');
     backAction = () => navigate({ page: 'learn' });
   } else {
-    backLabel = 'Playground';
+    backLabel = t('Playground');
     backAction = () => navigate({ page: 'home' });
   }
 
@@ -138,16 +138,16 @@ function CourseCatalogue({ courses }: { courses: LearnCourse[] }) {
               <span className="learn-card-icon">{c.icon}</span>
               <span className={`learn-card-badge learn-card-badge--${c.type}`}>
                 {c.type === 'lab' ? <FlaskConical size={12} /> : <GraduationCap size={12} />}
-                {c.type === 'lab' ? 'Lab' : 'Path'}
+                {c.type === 'lab' ? t('Lab') : t('Path')}
               </span>
             </div>
             <h2>{c.title}</h2>
             <p>{c.description}</p>
             <span className="learn-card-meta">
-              {c.articles.length} {c.type === 'lab' ? 'steps' : 'articles'}
+              {c.type === 'lab' ? t('{count} steps', { count: c.articles.length }) : t('{count} articles', { count: c.articles.length })}
             </span>
             <span className="learn-card-cta">
-              {c.type === 'lab' ? 'Start lab' : 'Start learning'} <ChevronRight size={16} />
+              {c.type === 'lab' ? t('Start lab') : t('Start learning')} <ChevronRight size={16} />
             </span>
           </button>
         ))}

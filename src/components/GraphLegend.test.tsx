@@ -16,7 +16,7 @@ function makeEntityTypes(count: number): EntityType[] {
   }));
 }
 
-const toggleButton = () => screen.getByRole('button', { name: /Entity Types legend/i });
+const toggleButton = () => screen.getByRole('button', { name: /实体类型图例/ });
 
 describe('GraphLegend', () => {
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe('GraphLegend', () => {
     expect(toggleButton()).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByText('📦 Entity 0')).not.toBeInTheDocument();
     // The title stays visible so the collapsed legend is still findable.
-    expect(screen.getByText('Entity Types')).toBeInTheDocument();
+    expect(screen.getByText('实体类型')).toBeInTheDocument();
     expect(localStorage.getItem(STORAGE_KEY)).toBe('true');
   });
 
@@ -71,7 +71,7 @@ describe('GraphLegend', () => {
     );
 
     expect(screen.getByText('100')).toBeInTheDocument();
-    expect(screen.getByText('+ 97 more visible in the graph'))
+    expect(screen.getByText('另有 97 个已显示在图谱中'))
       .toBeInTheDocument();
   });
 

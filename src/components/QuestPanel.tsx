@@ -100,7 +100,7 @@ export function QuestPanel() {
                   {quest.title}
                 </span>
                 <span className={`quest-badge ${quest.difficulty}`}>
-                  {quest.difficulty}
+                  {t(quest.difficulty)}
                 </span>
               </div>
               <p className="quest-description">{quest.description}</p>

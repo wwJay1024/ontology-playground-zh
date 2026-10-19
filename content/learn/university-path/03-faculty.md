@@ -1,22 +1,22 @@
 ---
 title: "教职员工"
 slug: faculty
-description: "加入 Professor，记录谁教什么——通过任课安排把教职员工与课程、学生连起来。"
+description: "加入 教授，记录谁教什么——通过任课安排把教职员工与课程、学生连起来。"
 order: 3
 embed: official/university-step-2
 ---
 
 ## 加入教职员工
 
-谁在教这些课？**Professor** 实体补上了"教"这个维度——把教职员工连到课程，进而连到学生。
+谁在教这些课？**教授** 实体补上了"教"这个维度——把教职员工连到课程，进而连到学生。
 
-有了 Professor，就可以问：
+有了 教授，就可以问：
 
 - "哪位教授教的 400 级课程最多？"
 - "Smith 教授所授课程的平均 GPA 是多少？"
 - "哪些终身教授在教入门课？"
 
-## Professor 实体
+## 教授 实体
 
 | 属性 | 类型 | 是否标识属性 |
 |---|---|---|
@@ -30,19 +30,19 @@ embed: official/university-step-2
 
 ## 新增关系
 
-- **teaches** — `Professor` → `Course`（一对多）
+- **teaches** — `教授` → `课程`（一对多）
   一位教授每学期教一门或多门课。
 
-- **advises** — `Professor` → `Student`（一对多）
+- **advises** — `教授` → `学生`（一对多）
   教授指导自己学位项目里的学生。
 
-> **传递查询：** 有了 Professor → Course ← Enrollment ← Student 这条链路，就可以提出跨越授课关系的问题："哪些学生在上终身教授的课？"这需要依次走过 Professor → Course → Enrollment → Student。
+> **传递查询：** 有了 教授 → 课程 ← 选课 ← 学生 这条链路，就可以提出跨越授课关系的问题："哪些学生在上终身教授的课？"这需要依次走过 教授 → 课程 → 选课 → 学生。
 
 ## 不断生长的图谱
 
 <ontology-embed id="official/university-step-2" diff="official/university-step-1" height="400px"></ontology-embed>
 
-*Professor 带着授课与指导关系进场，差异对比高亮出新增部分。*
+*教授 带着授课与指导关系进场，差异对比高亮出新增部分。*
 
 ## 我们学到了什么
 
@@ -54,10 +54,10 @@ embed: official/university-step-2
 ```quiz
 Q: 在高校本体里，传递查询是什么样子？
 - 查询单个实体的属性
-- 沿 Professor → Course → Enrollment → Student 这样的多条关系，把远端实体连起来 [correct]
+- 沿 教授 → 课程 → 选课 → 学生 这样的多条关系，把远端实体连起来 [correct]
 - 按 ID 查一位教授
 - 统计系统里的课程数量
-> 传递查询是基于图的本体最有力的地方之一。沿着 Professor → Course → Enrollment → Student 走一遍，就能回答"哪些学生在终身教授的班上？"——把没有直接关系、但通过中间节点相连的实体连起来。
+> 传递查询是基于图的本体最有力的地方之一。沿着 教授 → 课程 → 选课 → 学生 走一遍，就能回答"哪些学生在终身教授的班上？"——把没有直接关系、但通过中间节点相连的实体连起来。
 ```
 
 接下来，我们加入 Department，把教务结构组织起来。

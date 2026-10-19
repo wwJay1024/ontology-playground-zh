@@ -1,7 +1,7 @@
 ---
 title: "加入门店"
 slug: adding-stores
-description: "把 Store 门店引入本体，并把订单与处理它的门店连起来。"
+description: "把 门店 门店引入本体，并把订单与处理它的门店连起来。"
 order: 3
 embed: official/cosmic-coffee-step-2
 ---
@@ -10,12 +10,12 @@ embed: official/cosmic-coffee-step-2
 
 到目前为止，我们知道*谁*买了*什么*，但不知道*在哪里*。Fourth Coffee 在多座城市都有门店，每张订单都在某家具体门店处理。
 
-加入 **Store** 实体后，就能回答与位置有关的问题：
+加入 **门店** 实体后，就能回答与位置有关的问题：
 - 「哪家门店的订单最多？」
 - 「各城市的平均客单价是多少？」
 - 「按订单量看，哪些门店需要增加人手？」
 
-## Store 实体
+## 门店 实体
 
 | 属性 | 类型 | 是否标识属性？ |
 |---|---|---|
@@ -30,7 +30,7 @@ embed: official/cosmic-coffee-step-2
 
 ## 新关系
 
-- **processedAt**——`Order` → `Store`（多对一）
+- **processedAt**——`订单` → `门店`（多对一）
   每张订单只在一家门店处理，而一家门店会处理很多订单。
 
 > **设计说明：**这是一条多对一关系。多张订单对应一家门店。「属于」「发生于」这类关系的基数大多如此。
@@ -39,7 +39,7 @@ embed: official/cosmic-coffee-step-2
 
 <ontology-embed id="official/cosmic-coffee-step-2" diff="official/cosmic-coffee-step-1" height="400px"></ontology-embed>
 
-*Store 通过 processedAt 关系进入图谱。diff 视图会标出第 1 步之后新增的内容。*
+*门店 通过 processedAt 关系进入图谱。diff 视图会标出第 1 步之后新增的内容。*
 
 ## 小结
 
@@ -49,12 +49,12 @@ embed: official/cosmic-coffee-step-2
 - `diff` 视图准确显示改了什么，本体演进因此容易追溯
 
 ```quiz
-Q: Order 与 Store 之间的 "processedAt" 关系应该是什么基数？
+Q: 订单 与 门店 之间的 "processedAt" 关系应该是什么基数？
 - 一对一——每家门店恰好有一张订单
 - 一对多——每张订单在多座门店处理
 - 多对一——多张订单在同一家门店处理 [correct]
 - 多对多——订单可以同时在多座门店处理
-> 每张订单只在某一个门店处理，而一家门店一天里会处理很多订单。站在 Order 一侧看，就是多对一。
+> 每张订单只在某一个门店处理，而一家门店一天里会处理很多订单。站在 订单 一侧看，就是多对一。
 ```
 
-接下来，我们用 Supplier 和 Shipment 补全供应链。
+接下来，我们用 供应商 和 发运 补全供应链。

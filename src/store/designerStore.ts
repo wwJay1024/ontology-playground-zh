@@ -247,7 +247,7 @@ interface DesignerState {
 
 function emptyOntology(): Ontology {
   return {
-    name: 'My Ontology',
+    name: '我的本体',
     description: '',
     entityTypes: [],
     relationships: [],

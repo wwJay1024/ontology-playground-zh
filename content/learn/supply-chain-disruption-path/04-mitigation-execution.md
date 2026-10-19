@@ -18,8 +18,8 @@ order: 4
 Data Agent Query:
   "Which suppliers are affected by the Taiwan earthquake?"
   ↓
-  Matches: Supplier.country="Taiwan" + DisruptionEvent.region="Taiwan" 
-           + DisruptionEvent.type="Natural Disaster"
+  Matches: 供应商.country="Taiwan" + 中断事件.region="Taiwan" 
+           + 中断事件.type="Natural Disaster"
   ↓
   Result: 3 critical suppliers identified
 ```
@@ -33,13 +33,13 @@ Data Agent Query:
 Data Agent Query:
   "For these 3 suppliers, show me all components they supply"
   ↓
-  Follows: Supplier → supplies → Component
+  Follows: 供应商 → supplies → 零部件
   ↓
   Result: 47 components identified
   
 Then: "For these 47 components, which product lines use them?"
   ↓
-  Follows: Component → usedIn → ProductLine
+  Follows: 零部件 → usedIn → 产品线
   ↓
   Result: 12 product lines exposed
 ```
@@ -51,7 +51,7 @@ Then: "For these 47 components, which product lines use them?"
 **本体提供的能力**：
 ```
 Calculation Engine:
-  For each exposed ProductLine:
+  For each exposed 产品线:
     revenue_at_risk = annualRevenue / 365 * daysOfSupplyOnHand
     urgency = 100 - (daysOfSupplyOnHand * 10)
   
@@ -73,7 +73,7 @@ Calculation Engine:
 ```
 Recommendation Engine:
   For each component in each affected product line:
-    1. Find AlternativeSupplier records where:
+    1. Find 备选供应商 records where:
        - qualificationStatus="Approved"
        - capacityAvailable >= demand
        - country NOT IN earthquake_region
@@ -94,11 +94,11 @@ Recommendation Engine:
 **本体触发自动化流程**：
 
 ```
-IF RiskAssessment.revenueAtRisk > $50M AND 
-   RiskAssessment.timeToImpactDays < 5:
+IF 风险评估.revenueAtRisk > $50M AND 
+   风险评估.timeToImpactDays < 5:
    
    THEN:
-     1. Create PurchaseOrder for recommended AlternativeSupplier
+     1. Create PurchaseOrder for recommended 备选供应商
      2. Update ProductionSchedule with new timeline
      3. Send email to:
         - Procurement team (execute purchase)
@@ -106,7 +106,7 @@ IF RiskAssessment.revenueAtRisk > $50M AND
         - Finance (forecast $2M additional cost)
         - CEO/Board (update on exposure)
      4. Create Activator alerts with escalation policy
-     5. Start monitoring MitigationAction.status
+     5. Start monitoring 缓解措施.status
 ```
 
 ## 真实工作流：端到端
@@ -116,7 +116,7 @@ IF RiskAssessment.revenueAtRisk > $50M AND
 ```
 10:30 AM: Taiwan earthquake magnitude 6.8
           ↓
-10:45 AM: Your system detects: DisruptionEvent created
+10:45 AM: Your system detects: 中断事件 created
           ├─ type = "Natural Disaster"
           ├─ severity = "Critical"
           ├─ region = "Taiwan"
@@ -129,7 +129,7 @@ IF RiskAssessment.revenueAtRisk > $50M AND
           ├─ $127M revenue at risk
           ├─ 3 days to production stoppage
           
-10:47 AM: RiskAssessment created
+10:47 AM: 风险评估 created
           ├─ assesses impact for each product line
           ├─ recommends actions ranked by ROI
           
@@ -143,7 +143,7 @@ IF RiskAssessment.revenueAtRisk > $50M AND
           ├─ Escalation policy notifies leadership
           ├─ Procurement team acknowledges + confirms receipt
           
-11:30 AM: MitigationAction.status = "In Progress"
+11:30 AM: 缓解措施.status = "In Progress"
           ├─ Purchase order in progress
           ├─ ChipX Europe confirms 48-hour shipment
           ├─ Production impact reduced from 7 days → 3 days
@@ -153,15 +153,15 @@ IF RiskAssessment.revenueAtRisk > $50M AND
 
 ```
 Every 4 hours:
-  - Check DisruptionEvent.estimatedDurationDays (update if recovery changes)
-  - Monitor MitigationAction progress
-  - Recalculate RiskAssessment with latest inventory data
+  - Check 中断事件.estimatedDurationDays (update if recovery changes)
+  - Monitor 缓解措施 progress
+  - Recalculate 风险评估 with latest inventory data
   - Alert if leadTimeSavedDays slips (alternative supplier delays)
   - Recommend contingency actions if needed
   
 Day 3: ChipX Europe shipment received
-  ├─ MitigationAction.status = "Completed"
-  ├─ Inventory restored for 47 components
+  ├─ 缓解措施.status = "Completed"
+  ├─ 库存 restored for 47 components
   ├─ Production resumes (3-day delay, not 7-day)
   ├─ Actual cost: $2.1M (estimated $2M)
   ├─ Revenue protected: ~$100M of $127M exposure
@@ -175,11 +175,11 @@ Day 3: ChipX Europe shipment received
 User: "What's our supply chain risk exposure right now?"
   ↓
 Data Agent grounds query against your ontology:
-  1. Find all Supplier records with singleSourced=true
+  1. Find all 供应商 records with singleSourced=true
   2. For each, find Components they supply
   3. Trace to ProductLines using those components
-  4. Calculate revenueAtRisk for each ProductLine
-  5. Return ranked list by revenueAtRisk
+  4. Calculate revenueAtRisk for each 产品线
+  5. 退货 ranked list by revenueAtRisk
   
 Agent Response:
   "You have 3 critical single-source suppliers. 
@@ -190,8 +190,8 @@ Agent Response:
 User: "Which alternatives are approved for ChipX?"
   ↓
 Agent Query:
-  AlternativeSupplier WHERE:
-    canReplace.Supplier.name = "ChipX Corp"
+  备选供应商 WHERE:
+    canReplace.供应商.name = "ChipX Corp"
     AND qualificationStatus = "Approved"
   ↓
 Result:
@@ -206,10 +206,10 @@ Result:
 
 | 指标 | 计算方式 | 目标 |
 |--------|-------------|------|
-| 发现速度 | 从中断发生到生成 RiskAssessment 的小时数 | < 1 小时 |
+| 发现速度 | 从中断发生到生成 风险评估 的小时数 | < 1 小时 |
 | 追溯准确率 | 识别出的实际受影响零部件占比 | > 95% |
 | 影响估算准确度 | 风险营收的估算值与实际值偏差 | ±10% |
-| 缓解耗时 | 从评估到执行 MitigationAction 的小时数 | < 2 小时 |
+| 缓解耗时 | 从评估到执行 缓解措施 的小时数 | < 2 小时 |
 | 成本效率 | 动作实际成本与估算成本的偏差 | ±5% |
 | 营收保护率 | 受影响营收中被动作保护下来的比例 | > 80% |
 

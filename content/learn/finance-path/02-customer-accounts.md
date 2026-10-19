@@ -45,7 +45,7 @@ embed: official/finance-step-1
 
 ## 所有权关系
 
-- **owns**：`Customer` → `Account`（一对多）
+- **owns**：`客户` → `Account`（一对多）
   一个客户可以拥有多个账户（活期、储蓄、经纪），但每个账户只属于一个客户。
 
 ## 目前的图谱

@@ -255,13 +255,13 @@ function EmbedHeader({
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontWeight: 600, fontSize: 14 }}>{ontology.name}</span>
         <span style={{ fontSize: 11, color: theme.textTertiary }}>
-          {ontology.entityTypes.length} entities · {ontology.relationships.length} relationships
+          {t('{entities} entities · {relationships} relationships', { entities: ontology.entityTypes.length, relationships: ontology.relationships.length })}
         </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
         <button style={tabStyle(tab === 'graph')} onClick={() => setTab('graph')}>{t('Graph')}</button>
         <button style={tabStyle(tab === 'rdf')} onClick={() => setTab('rdf')}>
-          {isSubset ? 'Generated RDF subset' : 'Generated RDF'}
+          {isSubset ? t('Generated RDF subset') : t('Generated RDF')}
         </button>
         {tab === 'rdf' && (
           <button

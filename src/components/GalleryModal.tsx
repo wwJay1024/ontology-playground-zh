@@ -435,7 +435,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
         {/* Result count */}
         {!loading && !error && filtered.length > 0 && (
           <div style={{ fontSize: 12, color: 'var(--text-tertiary)', marginBottom: 8 }}>
-            Showing {Math.min(visibleCount, filtered.length)} of {filtered.length} ontolog{filtered.length === 1 ? 'y' : 'ies'}
+            {t('Showing {shown} of {total} ontologies', { shown: Math.min(visibleCount, filtered.length), total: filtered.length })}
           </div>
         )}
 
@@ -647,16 +647,16 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                     }}
                   >
                     <div style={{ display: 'flex', gap: 16 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
                         <Layers size={14} color="var(--text-tertiary)" />
                         <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                          {entry.entityCount} entities
+                          {t('{count} entities', { count: entry.entityCount })}
                         </span>
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
                         <ArrowRight size={14} color="var(--text-tertiary)" />
                         <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                          {entry.relationshipCount} relationships
+                          {t('{count} relationships', { count: entry.relationshipCount })}
                         </span>
                       </div>
                     </div>
@@ -667,7 +667,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                           className="btn btn-secondary"
                           style={{ padding: '5px 8px', fontSize: 11 }}
                           title={t('View the hash-verified original RDF source')}
-                          aria-label={`View original RDF source for ${entry.name}`}
+                          aria-label={t('View original RDF source for {name}', { name: entry.name })}
                           disabled={isLoadingSource}
                           onClick={(e) => {
                             e.stopPropagation();
@@ -675,7 +675,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                           }}
                         >
                           <FileCheck2 size={13} />
-                          {isLoadingSource ? 'Loading…' : 'Original'}
+                          {isLoadingSource ? t('Loading…') : t('Original')}
                         </button>
                       )}
                       <button
@@ -699,7 +699,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                       <button
                         className="btn btn-secondary"
                         style={{ padding: '5px 8px', fontSize: 11 }}
-                        title={copiedEmbedId === entry.id ? 'Copied!' : 'Copy embed code'}
+                        title={copiedEmbedId === entry.id ? t('Copied!') : t('Copy embed code')}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleCopyEmbed(entry);
@@ -729,7 +729,7 @@ export function GalleryModal({ onClose }: GalleryModalProps) {
                           }}
                           disabled={isLoadingEntry}
                         >
-                          {isLoadingEntry ? 'Loading…' : 'Load'}
+                          {isLoadingEntry ? t('Loading…') : t('Load')}
                         </button>
                       )}
                     </div>

@@ -42,16 +42,16 @@ embed: official/manufacturing-step-2
 
 ## 新增关系
 
-- **assigned_to**——`Work-Order` → `Machine`（多对一）
+- **assigned_to**——`Work-订单` → `Machine`（多对一）
   工单被分配到特定设备上生产。
 
-- **produces**——`Work-Order` → `Part`（一对多）
+- **produces**——`Work-订单` → `Part`（一对多）
   一张工单产出一个或多个零件。
 
 - **has_part**——`Machine` → `Part`（一对多）
   设备产出零件（从产出视角看）。
 
-> **生产链路：** `Machine ← Work-Order → Part` 这条链借一个排产实体把设备与产出连起来。这与医疗场景中用预约连接患者和服务提供方是同一思路——中间那个实体代表事件本身。
+> **生产链路：** `Machine ← Work-订单 → Part` 这条链借一个排产实体把设备与产出连起来。这与医疗场景中用预约连接患者和服务提供方是同一思路——中间那个实体代表事件本身。
 
 ## 图谱在生长
 

@@ -272,8 +272,8 @@ describe('EmbedWidget', () => {
     await waitFor(() => {
       expect(screen.getByText('Test Ontology')).toBeTruthy();
     });
-    expect(screen.getByText(/2 entities/)).toBeTruthy();
-    expect(screen.getByText(/1 relationship/)).toBeTruthy();
+    expect(screen.getByText(/2 个实体/)).toBeTruthy();
+    expect(screen.getByText(/1 条关系/)).toBeTruthy();
   });
 
   it('shows error when no source specified', async () => {
@@ -318,11 +318,11 @@ describe('EmbedWidget', () => {
     });
 
     // Initially on Graph tab — no RDF source visible
-    expect(screen.getByText('Graph')).toBeTruthy();
-    expect(screen.getByText('Generated RDF')).toBeTruthy();
+    expect(screen.getByText('图谱')).toBeTruthy();
+    expect(screen.getByText('生成的 RDF')).toBeTruthy();
 
     // Switch to RDF tab
-    await user.click(screen.getByText('Generated RDF'));
+    await user.click(screen.getByText('生成的 RDF'));
 
     // Should show RDF serialization (text is split across syntax-highlighted spans)
     await waitFor(() => {
@@ -351,16 +351,16 @@ describe('EmbedWidget', () => {
     }} />);
 
     await screen.findByText('Test Ontology');
-    await user.click(screen.getByText('Generated RDF subset'));
+    await user.click(screen.getByText('生成的 RDF 子集'));
 
     expect(screen.getByRole('note').textContent).toContain(
-      'not the complete upstream ontology',
+      '并非完整的上游本体',
     );
     expect(screen.getByRole('note').textContent).toContain(
-      'Source-only RDF remains in the reviewed source',
+      '保留在审阅过的源文件里',
     );
     expect(screen.getByRole('note').textContent).toContain(
-      'is not executed here',
+      '不在此处执行',
     );
     expect(screen.getByText('Copy generated RDF')).toBeTruthy();
   });
@@ -382,7 +382,7 @@ describe('EmbedWidget', () => {
     render(<EmbedWidget config={config} />);
 
     await waitFor(() => {
-      expect(screen.getByText(/2 entities · 1 relationship/)).toBeTruthy();
+      expect(screen.getByText(/2 个实体 · 1 条关系/)).toBeTruthy();
     });
   });
 
@@ -397,21 +397,21 @@ describe('EmbedWidget', () => {
     render(<EmbedWidget config={config} />);
 
     const controls = await screen.findByRole('region', {
-      name: 'Large ontology controls',
+      name: '大本体控制面板',
     });
-    expect(controls).toHaveTextContent('Semantic overview');
+    expect(controls).toHaveTextContent('语义总览');
     expect(controls).toHaveTextContent(/of 350 entities/);
     expect(controls).toHaveTextContent(/of 349 relationships/);
     const detailSlider = screen.getByRole('slider', { name: 'Detail: 1 hop' });
-    const search = screen.getByRole('searchbox', { name: 'Jump to an entity' });
+    const search = screen.getByRole('searchbox', { name: '跳转到实体' });
     expect(detailSlider).toHaveValue('1');
     expect(detailSlider).toHaveStyle({ width: '100%', minHeight: '44px' });
     expect(search).toHaveStyle({ minHeight: '44px', fontSize: '16px' });
-    expect(screen.getByRole('button', { name: 'Find' })).toHaveStyle({
+    expect(screen.getByRole('button', { name: '查找' })).toHaveStyle({
       minHeight: '44px',
     });
     expect(Number(detailSlider.getAttribute('max'))).toBeGreaterThan(1);
-    expect(screen.getByRole('button', { name: 'Reset view' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: '重置视图' })).toBeDisabled();
     expect(
       screen.getByRole('button', {
         name: 'Select a +N entity to show neighbors',
@@ -495,7 +495,7 @@ describe('EmbedWidget', () => {
 
     render(<EmbedWidget config={config} />);
 
-    await screen.findByRole('region', { name: 'Large ontology controls' });
+    await screen.findByRole('region', { name: '大本体控制面板' });
     const initialConfig = embedGraphMocks.cytoscape.mock.calls[0][0] as {
       elements: unknown[];
     };
@@ -605,7 +605,7 @@ describe('EmbedWidget', () => {
 
     render(<EmbedWidget config={config} />);
 
-    await screen.findByRole('region', { name: 'Large ontology controls' });
+    await screen.findByRole('region', { name: '大本体控制面板' });
     const nodeTapHandlers = embedGraphMocks.handlers['tap:node'];
     act(() => {
       nodeTapHandlers.at(-1)?.({
@@ -648,7 +648,7 @@ describe('EmbedWidget', () => {
 
     render(<EmbedWidget config={config} />);
 
-    await screen.findByRole('region', { name: 'Large ontology controls' });
+    await screen.findByRole('region', { name: '大本体控制面板' });
     const initialConfig = embedGraphMocks.cytoscape.mock.calls[0][0] as {
       elements: unknown[];
     };
@@ -693,10 +693,10 @@ describe('EmbedWidget', () => {
     render(<EmbedWidget config={config} />);
 
     const search = await screen.findByRole('searchbox', {
-      name: 'Jump to an entity',
+      name: '跳转到实体',
     });
     await user.type(search, 'Node 349');
-    await user.click(screen.getByRole('button', { name: 'Find' }));
+    await user.click(screen.getByRole('button', { name: '查找' }));
 
     expect(await screen.findByText('1 matching entity.')).toBeInTheDocument();
   });

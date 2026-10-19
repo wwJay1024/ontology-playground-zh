@@ -94,8 +94,10 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
   // ── 概念问题 ──
   const asksWhat = normalizedQuery.includes('what is') || normalizedQuery.includes('什么是') || normalizedQuery.includes('是什么');
   const asksHow = normalizedQuery.includes('how') || normalizedQuery.includes('怎么') || normalizedQuery.includes('如何');
+  // 提问里点到具体实体时，交给后面的实体/关系分支处理，避免用通用解释敷衍
+  const mentionsEntity = entities.some(entity => normalizedQuery.includes(entity.name.toLowerCase()));
 
-  if (asksWhat && (normalizedQuery.includes('entity') || normalizedQuery.includes('ontology') || normalizedQuery.includes('实体') || normalizedQuery.includes('本体'))) {
+  if (!mentionsEntity && asksWhat && (normalizedQuery.includes('entity') || normalizedQuery.includes('ontology') || normalizedQuery.includes('实体') || normalizedQuery.includes('本体'))) {
     return {
       query,
       result: `**实体类型**是对现实世界概念的复用式逻辑建模，例如客户、商品、订单。在 Fabric IQ 本体中，实体类型统一了三件事：\n\n• **名称与描述** —— 团队共用的术语\n• **属性** —— 带类型和单位的特征\n• **标识属性** —— 唯一区分每个实例的键\n\n这样一来，组织里每个人说到同一个词，指的都是同一个东西。`,
@@ -105,7 +107,7 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
     };
   }
 
-  if (asksWhat && (normalizedQuery.includes('relationship') || normalizedQuery.includes('关系'))) {
+  if (!mentionsEntity && asksWhat && (normalizedQuery.includes('relationship') || normalizedQuery.includes('关系'))) {
     return {
       query,
       result: `**关系**是两个实体类型之间带类型、有方向的连接。一条关系定义四件事：\n\n• **名称** —— 动词短语，如「下单」「包含」\n• **方向** —— 从哪个实体指向哪个实体\n• **基数** —— 一对一、一对多等\n• **属性** —— 连接上可选的附加信息\n\n沿关系走一遍，就能回答跨越多个实体的问题。`,
@@ -115,7 +117,7 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
     };
   }
 
-  if (asksHow && (normalizedQuery.includes('ontology') || normalizedQuery.includes('work') || normalizedQuery.includes('本体') || normalizedQuery.includes('运作'))) {
+  if (!mentionsEntity && asksHow && (normalizedQuery.includes('ontology') || normalizedQuery.includes('work') || normalizedQuery.includes('本体') || normalizedQuery.includes('运作'))) {
     return {
       query,
       result: `**${ontology.name}** 本体包含：\n\n• **${entities.length} 个实体类型** —— ${entities.map(e => e.name).join('、')}\n• **${relationships.length} 条关系** —— 把实体串起来\n\n本体是一层语义中间层，绑定到数据平台的数据源之后，系统就能听懂业务语言，把提问翻译成对真实数据的查询。`,
@@ -128,8 +130,15 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
   // ── 实体定义：「客户是什么」 ──
   const definitionPrefixes = ['what is', '什么是', '介绍一下'];
   const matchedPrefix = definitionPrefixes.find(prefix => normalizedNoPunctuation.startsWith(prefix));
-  if (matchedPrefix) {
-    const subjectRaw = normalizedNoPunctuation.slice(matchedPrefix.length).trim();
+  const suffixSubject = normalizedNoPunctuation.endsWith('是什么')
+    ? normalizedNoPunctuation.slice(0, -'是什么'.length).trim()
+    : null;
+  const subjectRaw = suffixSubject !== null
+    ? suffixSubject
+    : matchedPrefix
+      ? normalizedNoPunctuation.slice(matchedPrefix.length).trim()
+      : null;
+  if (subjectRaw !== null) {
     const subject = stripLeadingArticle(subjectRaw);
 
     for (const entity of entities) {
@@ -158,9 +167,9 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
     const nameLower = name.toLowerCase();
 
     if (
-      normalizedQuery.includes(`所有${name}`)
-      || normalizedQuery.includes(`列出${name}`)
-      || normalizedQuery.includes(`看看${name}`)
+      normalizedQuery.includes(`所有${nameLower}`)
+      || normalizedQuery.includes(`列出${nameLower}`)
+      || normalizedQuery.includes(`看看${nameLower}`)
       || normalizedQuery.includes(`show me all ${nameLower}`)
       || normalizedQuery.includes(`list all ${nameLower}`)
       || normalizedQuery.includes(`show ${nameLower}`)
@@ -196,16 +205,54 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
     }
   }
 
+  // ── 两个实体之间是什么关系 ──
+  if (normalizedQuery.includes('关系') || normalizedQuery.includes('连接') || normalizedQuery.includes('relat')) {
+    const mentioned = entities.filter(entity => normalizedQuery.includes(entity.name.toLowerCase()));
+
+    if (mentioned.length >= 2) {
+      const [left, right] = mentioned;
+      const between = relationships.filter(rel =>
+        (rel.from === left.id && rel.to === right.id) || (rel.from === right.id && rel.to === left.id)
+      );
+
+      if (between.length > 0) {
+        const lines = between.map(rel => {
+          const forward = rel.from === left.id;
+          const fromName = forward ? left.name : right.name;
+          const toName = forward ? right.name : left.name;
+          return `• **${rel.name}** ${fromName} → ${toName}（${rel.cardinality}）`;
+        }).join('\n');
+
+        return {
+          query,
+          result: `**${left.name}** 与 **${right.name}** 之间有 ${between.length} 条关系：\n\n${lines}`,
+          highlightEntities: [left.id, right.id],
+          highlightRelationships: between.map(rel => rel.id),
+          interpretation: `识别为：${left.name} 与 ${right.name} 的关系查询`
+        };
+      }
+
+      return {
+        query,
+        result: `**${left.name}** 与 **${right.name}** 之间没有直接关系。\n\n可以沿中间的实体找一条路径，或打开右侧的「路径查找」看两者的最短连接。`,
+        highlightEntities: [left.id, right.id],
+        highlightRelationships: [],
+        interpretation: `识别为：${left.name} 与 ${right.name} 的关系查询`
+      };
+    }
+  }
+
   // ── 某个实体连到哪里 ──
   for (const entity of entities) {
     const name = entity.name;
+    const nameLower = name.toLowerCase();
 
     if (
-      normalizedQuery.includes(`${name}怎么连`)
-      || normalizedQuery.includes(`${name}连接`)
-      || normalizedQuery.includes(`${name}关系`)
-      || normalizedQuery.includes(`how does ${name.toLowerCase()}`)
-      || normalizedQuery.includes(`${name.toLowerCase()} connect`)
+      normalizedQuery.includes(`${nameLower}怎么连`)
+      || normalizedQuery.includes(`${nameLower}连接`)
+      || normalizedQuery.includes(`${nameLower}关系`)
+      || normalizedQuery.includes(`how does ${nameLower}`)
+      || normalizedQuery.includes(`${nameLower} connect`)
     ) {
       const relatedRels = relationships.filter(r => r.from === entity.id || r.to === entity.id);
 

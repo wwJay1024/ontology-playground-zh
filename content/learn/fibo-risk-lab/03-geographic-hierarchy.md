@@ -57,7 +57,7 @@ reviewStatus: under-human-review
 ## 新增关系
 
 - **inCountry**：`Jurisdiction` → `Country`（多对一）—— 每个辖区属于一个国家
-- **inRegion**：`Jurisdiction` → `Region`（多对一）—— 每个辖区对应一个地理区域
+- **inRegion**：`Jurisdiction` → `区域`（多对一）—— 每个辖区对应一个地理区域
 
 ## 设计模式：布尔风险标记
 

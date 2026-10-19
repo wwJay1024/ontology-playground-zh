@@ -24,13 +24,13 @@ embed: official/ecommerce-step-3
 
 ## 新关系
 
-- **writes**——`Buyer` → `Review`（一对多）
+- **writes**——`买家` → `Review`（一对多）
   一个买家会陆续写很多评价。
 
-- **reviews**——`Review` → `Product`（多对一）
+- **reviews**——`Review` → `商品`（多对一）
   每条评价只针对一个商品，一个商品可以有很多评价。
 
-> **反馈回路：**路径 `Buyer → writes → Review → reviews → Product` 绕回 Product，形成一个回路：买家消费商品，再评价商品，进而影响其他买家。
+> **反馈回路：**路径 `买家 → writes → Review → reviews → 商品` 绕回 商品，形成一个回路：买家消费商品，再评价商品，进而影响其他买家。
 
 ## 完整的图谱
 
@@ -42,17 +42,17 @@ embed: official/ecommerce-step-3
 
 | 问题 | 图谱路径 |
 |---|---|
-| 哪些商品拥有评分最高的已验证评价？ | Review (verified=true) → Product |
-| 哪些买家购物车里有东西却没有下过单？ | 有 Buyer → Cart (itemCount > 0) 但没有 Buyer → Order |
-| 某个品类商品的平均评分是多少？ | Review → Product（按 category 分组） |
-| 哪些忠诚买家写的评价最多？ | Buyer (loyaltyTier=Gold) → Review（计数） |
+| 哪些商品拥有评分最高的已验证评价？ | Review (verified=true) → 商品 |
+| 哪些买家购物车里有东西却没有下过单？ | 有 买家 → Cart (itemCount > 0) 但没有 买家 → 订单 |
+| 某个品类商品的平均评分是多少？ | Review → 商品（按 category 分组） |
+| 哪些忠诚买家写的评价最多？ | 买家 (loyaltyTier=Gold) → Review（计数） |
 
 ## GQL 查询示例
 
 查找那些「商品当前正放在某个购物车里」的已验证评价：
 
 ```gql
-MATCH (b:Buyer)-[:has_cart]->(c:Cart)-[:contains]->(p:Product)<-[:reviews]-(r:Review)
+MATCH (b:买家)-[:has_cart]->(c:Cart)-[:contains]->(p:商品)<-[:reviews]-(r:Review)
 WHERE r.verified = true
 RETURN p.name, r.rating, r.title
 ```
@@ -61,7 +61,7 @@ RETURN p.name, r.rating, r.title
 
 | 步骤 | 新增实体 | 累计 | 核心概念 |
 |---|---|---|---|
-| 1 | Buyer、Product、Order | 3 | 购买流程、SKU 标识 |
+| 1 | 买家、商品、订单 | 3 | 购买流程、SKU 标识 |
 | 2 | Shopping-Cart | 4 | 会话实体、一对一 |
 | 3 | Review | 5 | 反馈回路、已验证信任 |
 
@@ -76,10 +76,10 @@ RETURN p.name, r.rating, r.title
 ```quiz
 Q: 在这个本体里，Review 实体为什么构成一条「反馈回路」？
 - 它连到了图谱里的其他所有实体
-- 它让 Buyer 通过一条不同于购买路径的路线重新抵达 Product [correct]
+- 它让 买家 通过一条不同于购买路径的路线重新抵达 商品 [correct]
 - 它的属性数量最多
 - 它用了 verified 布尔属性
-> 没有 Review 时，Buyer 到 Product 只有经过 Order 这一条路。Review 造出了第二条：Buyer → Review → Product，于是形成回路。这种双路径结构支持对比查询，例如「买了但没评」与「评了但没买」。
+> 没有 Review 时，买家 到 商品 只有经过 订单 这一条路。Review 造出了第二条：买家 → Review → 商品，于是形成回路。这种双路径结构支持对比查询，例如「买了但没评」与「评了但没买」。
 ```
 
 你已经完成电商平台学习路径！在[目录](#/catalogue)中加载任意一步，即可交互式地查看。

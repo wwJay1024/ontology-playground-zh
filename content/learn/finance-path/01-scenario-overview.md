@@ -21,7 +21,7 @@ order: 1
 
 像**“列出高风险客户名下账户的所有交易，且该客户有超过 10 万美元的在贷贷款”**这样的合规问题，需要从交易走到账户，再到客户，最后到贷款，跨越多个系统。
 
-用本体来表达，这就是一次图遍历：`Transaction → Account → Customer (riskProfile='high') → Loan (principal > 100000)`。
+用本体来表达，这就是一次图遍历：`Transaction → Account → 客户 (riskProfile='high') → Loan (principal > 100000)`。
 
 ## 我们要构建的模型
 

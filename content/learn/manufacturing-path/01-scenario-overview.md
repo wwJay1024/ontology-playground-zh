@@ -21,7 +21,7 @@ order: 1
 
 考虑这样一个生产问题：**“上周哪些传感器读数异常的设备，产出了质检不合格的零件？”** 它横跨 IoT 遥测、生产排程、零件跟踪与检验记录。
 
-有了本体，这个问题就映射为：`Machine → Sensor (reading > threshold)` 和 `Machine → Work-Order → Part → Quality-Check (passed=false)`。
+有了本体，这个问题就映射为：`Machine → Sensor (reading > threshold)` 和 `Machine → Work-订单 → Part → Quality-Check (passed=false)`。
 
 ## 我们将构建什么
 

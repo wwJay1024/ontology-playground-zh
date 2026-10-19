@@ -58,7 +58,7 @@ describe('DesignerToolbar', () => {
   it('lets authors select either RDF export profile', async () => {
     render(<DesignerToolbar />);
 
-    const profile = screen.getByLabelText('RDF export profile');
+    const profile = screen.getByLabelText('RDF 导出配置');
     expect(profile).toHaveValue('playground');
 
     await userEvent.selectOptions(profile, 'standards');
@@ -69,7 +69,7 @@ describe('DesignerToolbar', () => {
   it('retains external lineage when loading a draft in Playground', async () => {
     render(<DesignerToolbar catalogueEntry={externalEntry} />);
 
-    await userEvent.click(screen.getByTitle('Load in Playground'));
+    await userEvent.click(screen.getByTitle('载入演练场'));
 
     expect(useAppStore.getState().currentOntology).toBe(ontology);
     expect(useAppStore.getState().currentCatalogueEntry).toBe(

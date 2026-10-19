@@ -54,9 +54,9 @@ describe('tier-aware ontology validation', () => {
     for (const tier of ['official', 'community'] as const) {
       const report = validateOntologyForTier(ontologyFixture(), tier);
       expect(report.errors.some((candidate) =>
-        candidate.message.includes('has no identifier property'))).toBe(true);
+        candidate.message.includes('没有标识属性'))).toBe(true);
       expect(report.errors.some((candidate) =>
-        candidate.message.includes('exceeds 26 characters'))).toBe(true);
+        candidate.message.includes('超过 26 个字符'))).toBe(true);
     }
   });
 

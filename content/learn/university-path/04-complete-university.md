@@ -24,13 +24,13 @@ embed: official/university-step-3
 
 ## 新增关系
 
-- **belongs_to** — `Professor` → `Department`（多对一）
+- **belongs_to** — `教授` → `Department`（多对一）
   教授隶属于某个院系。
 
-- **offers** — `Department` → `Course`（一对多）
+- **offers** — `Department` → `课程`（一对多）
   院系作为学位项目的一部分开设课程。
 
-> **组织层级：** Department 位于高校本体的顶层，向下同时连接 Professor（师资）和 Course（课程体系）。这个枢纽位置让 Department 特别适合做聚合查询："院系层面的统计。"
+> **组织层级：** Department 位于高校本体的顶层，向下同时连接 教授（师资）和 课程（课程体系）。这个枢纽位置让 Department 特别适合做聚合查询："院系层面的统计。"
 
 ## 完整图谱
 
@@ -42,17 +42,17 @@ embed: official/university-step-3
 
 | 问题 | 图谱路径 |
 |---|---|
-| 哪些院系的学生平均 GPA 最高？ | Department → Course ← Enrollment ← Student（平均 GPA） |
-| 哪些教授在讲授本院系之外的课程？ | Professor → Department 对比 Professor → Course → Department |
-| 每个院系的选课率是多少？ | Department → Course ← Enrollment（计数）/ Course.maxEnrollment |
-| 哪些院系的终身教授最多？ | Department ← Professor（tenured=true，计数） |
+| 哪些院系的学生平均 GPA 最高？ | Department → 课程 ← 选课 ← 学生（平均 GPA） |
+| 哪些教授在讲授本院系之外的课程？ | 教授 → Department 对比 教授 → 课程 → Department |
+| 每个院系的选课率是多少？ | Department → 课程 ← 选课（计数）/ 课程.maxEnrollment |
+| 哪些院系的终身教授最多？ | Department ← 教授（tenured=true，计数） |
 
 ## GQL 查询示例
 
 找出学生成绩吃紧（平均成绩低于 B）的院系：
 
 ```gql
-MATCH (d:Department)-[:offers]->(c:Course)<-[:for_course]-(e:Enrollment)<-[:enrolls_in]-(s:Student)
+MATCH (d:Department)-[:offers]->(c:课程)<-[:for_course]-(e:选课)<-[:enrolls_in]-(s:学生)
 WHERE e.grade IN ['C', 'D', 'F']
 RETURN d.name, c.title, COUNT(e) AS struggling_count
 ORDER BY struggling_count DESC
@@ -62,13 +62,13 @@ ORDER BY struggling_count DESC
 
 | 步骤 | 新增实体 | 累计 | 关键概念 |
 |---|---|---|---|
-| 1 | Student、Course、Enrollment | 3 | 中间实体、多对多 |
-| 2 | Professor | 4 | 传递查询、布尔属性 |
+| 1 | 学生、课程、选课 | 3 | 中间实体、多对多 |
+| 2 | 教授 | 4 | 传递查询、布尔属性 |
 | 3 | Department | 5 | 组织层级、枢纽实体 |
 
 ## 要点
 
-1. **中间实体**（Enrollment）化解带属性的多对多关系
+1. **中间实体**（选课）化解带属性的多对多关系
 2. **传递查询**沿着多跳路径挖出洞察
 3. **布尔属性**（tenured）支持分类筛选
 4. **组织层级**（Department）提供聚合分组
@@ -77,10 +77,10 @@ ORDER BY struggling_count DESC
 ```quiz
 Q: 为什么说 Department 在高校本体里是一个"枢纽实体"？
 - 因为它的属性最多
-- 因为它同时连接 Professor 和 Course，处在组织层级的顶端 [correct]
+- 因为它同时连接 教授 和 课程，处在组织层级的顶端 [correct]
 - 因为它是最后加入的
 - 因为枢纽实体必须有一个预算属性
-> Department 向下同时连接 Professor（通过 belongs_to）和 Course（通过 offers）。这双重连接使它成为组织枢纽——特别适合在院系层面做结合师资与课程数据的聚合查询。
+> Department 向下同时连接 教授（通过 belongs_to）和 课程（通过 offers）。这双重连接使它成为组织枢纽——特别适合在院系层面做结合师资与课程数据的聚合查询。
 ```
 
 你已经走完高校系统学习路径！从[本体目录](#/catalogue)载入任意一步，就能交互式地查看。

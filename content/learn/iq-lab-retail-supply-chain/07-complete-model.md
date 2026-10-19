@@ -1,7 +1,7 @@
 ---
 title: 完整模型
 slug: complete-model
-description: 加入 Promotion 和 Return，完成 15 个实体的零售供应链本体——然后浏览完整图谱。
+description: 加入 促销 和 退货，完成 15 个实体的零售供应链本体——然后浏览完整图谱。
 order: 7
 embed: official/iq-lab-retail-step-6
 ---
@@ -10,10 +10,10 @@ embed: official/iq-lab-retail-step-6
 
 最后两个实体类型把零售生命周期接成一个完整的回路：
 
-- **Promotion** — 拉动销售的营销活动
-- **Return** — 退回的商品，同时关联订单与商品
+- **促销** — 拉动销售的营销活动
+- **退货** — 退回的商品，同时关联订单与商品
 
-## Promotion
+## 促销
 
 针对特定商品的营销活动：
 
@@ -23,9 +23,9 @@ embed: official/iq-lab-retail-step-6
 | `promotionName` | string | |
 | `isActivePromotion` | boolean | |
 
-`isActivePromotion` 标记可以筛出当前活动——"哪些在售促销关联的商品退货率高？"这样的问题，走的是 Promotion → Product ← Return。
+`isActivePromotion` 标记可以筛出当前活动——"哪些在售促销关联的商品退货率高？"这样的问题，走的是 促销 → 商品 ← 退货。
 
-## Return
+## 退货
 
 退回的商品，关联回订单与商品：
 
@@ -39,13 +39,13 @@ embed: official/iq-lab-retail-step-6
 
 最后三条关系：
 
-- **PromotionForProduct** — `Promotion` → `Product`（多对一）
+- **PromotionForProduct** — `促销` → `商品`（多对一）
   促销针对哪个商品。
 
-- **ReturnForOrder** — `Return` → `Order`（多对一）
+- **ReturnForOrder** — `退货` → `订单`（多对一）
   退货关联哪笔订单。
 
-- **ReturnOfProduct** — `Return` → `Product`（多对一）
+- **ReturnOfProduct** — `退货` → `商品`（多对一）
   退回的是哪个商品。
 
 ## 完整图谱
@@ -60,11 +60,11 @@ embed: official/iq-lab-retail-step-6
 
 | 问题 | 图谱路径 |
 |---|---|
-| 哪些促销带来了退货？ | Promotion → Product ← Return |
-| 被退回的商品库存有多少？ | Return → Product ← Inventory → Warehouse |
-| 哪些承运商服务于高需求区域？ | DemandSignal → Region ← Store; Shipment → Carrier |
-| 哪些客户订购了促销商品？ | Customer ← Order → OrderLine → Product ← Promotion |
-| 库存告急的商品预测如何？ | Inventory → Product ← Forecast |
+| 哪些促销带来了退货？ | 促销 → 商品 ← 退货 |
+| 被退回的商品库存有多少？ | 退货 → 商品 ← 库存 → 仓库 |
+| 哪些承运商服务于高需求区域？ | 需求信号 → 区域 ← 门店; 发运 → 承运商 |
+| 哪些客户订购了促销商品？ | 客户 ← 订单 → 订单明细 → 商品 ← 促销 |
+| 库存告急的商品预测如何？ | 库存 → 商品 ← Forecast |
 
 这些问题原本都需要写复杂的多表 SQL 关联。有了本体，它们就是图谱遍历；在 Fabric IQ 里，自然语言数据代理可以直接依据本体结构作答。
 
@@ -73,7 +73,7 @@ embed: official/iq-lab-retail-step-6
 第一个问题——"哪些促销带来了退货？"——用 GQL 写出来是这样：
 
 ```gql
-MATCH (r:Return)-[:ReturnOfProduct]->(p:Product)<-[:PromotionForProduct]-(promo:Promotion)
+MATCH (r:退货)-[:ReturnOfProduct]->(p:商品)<-[:PromotionForProduct]-(promo:促销)
 WHERE promo.isActivePromotion = true
 RETURN promo.promotionName, p.name, r.reason
 ```
@@ -86,29 +86,29 @@ RETURN promo.promotionName, p.name, r.reason
 
 | 步骤 | 新增实体 | 累计 | 关键概念 |
 |---|---|---|---|
-| 1 | Customer、Order、Product | 3 | 实体类型、标识属性、基数 |
-| 2 | OrderLine、ProductCategory | 5 | 连接实体、层级结构 |
-| 3 | Region、Store | 7 | 地理结构、布尔属性 |
-| 4 | Shipment、Carrier、Warehouse | 10 | 枢纽实体、跨域连接 |
-| 5 | Inventory、Forecast、DemandSignal | 13 | 跨源统一、规划数据 |
-| 6 | Promotion、Return | 15 | 闭合环路、GQL 查询 |
+| 1 | 客户、订单、商品 | 3 | 实体类型、标识属性、基数 |
+| 2 | 订单明细、商品分类 | 5 | 连接实体、层级结构 |
+| 3 | 区域、门店 | 7 | 地理结构、布尔属性 |
+| 4 | 发运、承运商、仓库 | 10 | 枢纽实体、跨域连接 |
+| 5 | 库存、Forecast、需求信号 | 13 | 跨源统一、规划数据 |
+| 6 | 促销、退货 | 15 | 闭合环路、GQL 查询 |
 
 ## 要点
 
 1. **从小处起步，逐步生长** — 三个实体就足以产生价值
 2. **连接实体**解决多对多的属性问题
-3. **枢纽实体**（如 Shipment）桥接不同领域
+3. **枢纽实体**（如 发运）桥接不同领域
 4. **跨源统一**是核心价值 — 一个本体，对接多个数据引擎
 5. **图谱遍历**用直观的路径模式取代复杂的 SQL 关联
 6. **本体就是 API** — GQL 查询与数据代理提问遵循同一套结构
 
 ```quiz
 Q: 在完整的零售本体里，"哪些促销带来了退货？"这个问题怎样表达成图谱遍历？
-- Customer → Order → Product → Promotion
-- Promotion → Product ← Return [correct]
-- Return → Order → Customer → Promotion
-- Promotion → Return → Product
-> Promotion → Product ← Return 这条路径沿 PromotionForProduct 和 ReturnOfProduct 两条关系走，通过共同的 Product 实体把促销和退货商品连了起来。
+- 客户 → 订单 → 商品 → 促销
+- 促销 → 商品 ← 退货 [correct]
+- 退货 → 订单 → 客户 → 促销
+- 促销 → 退货 → 商品
+> 促销 → 商品 ← 退货 这条路径沿 PromotionForProduct 和 ReturnOfProduct 两条关系走，通过共同的 商品 实体把促销和退货商品连了起来。
 ```
 
 你已经完成 IQ Lab：零售供应链。从[本体目录](#/catalogue)载入任意一步的本体，就能在演练场里交互式查看。
