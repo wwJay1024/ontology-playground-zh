@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "id": "official/zava-grove-to-shelf-step-3",
+  "ontology": {
+    "name": "Zava Grove-to-Shelf — 第 3 步：冷链物流",
+    "description": "加入发运与冷链传感器，支撑易腐货物运输与实时温度监测。",
+    "entityTypes": [
+      {
+        "id": "grower",
+        "name": "种植户",
+        "description": "生产新鲜果蔬的合作种植方",
+        "icon": "👨‍🌾",
+        "color": "#498205",
+        "properties": [
+          {
+            "name": "growerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "farm",
+        "name": "农场",
+        "description": "种植户自有或签约的一处产地",
+        "icon": "🌾",
+        "color": "#6EAA1F",
+        "properties": [
+          {
+            "name": "farmId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "plot",
+        "name": "地块",
+        "description": "农场内种植单一品种的一块管理地块",
+        "icon": "🌱",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "plotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          }
+        ]
+      },
+      {
+        "id": "fruitvariety",
+        "name": "水果品种",
+        "description": "商业化种植的水果或蔬菜品种",
+        "icon": "🍊",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "varietyId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "commercialName",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "minStorageTempC",
+            "type": "decimal",
+            "unit": "°C"
+          },
+          {
+            "name": "maxStorageTempC",
+            "type": "decimal",
+            "unit": "°C"
+          }
+        ]
+      },
+      {
+        "id": "harvestlot",
+        "name": "采收批次",
+        "description": "某一日期从单一地块采收、可追溯的一次采收记录",
+        "icon": "📦",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "lotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "harvestDate",
+            "type": "date"
+          },
+          {
+            "name": "kilograms",
+            "type": "decimal",
+            "unit": "kg"
+          },
+          {
+            "name": "qcGrade",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "qualitycheck",
+        "name": "质检",
+        "description": "四道质检环节中的一次检查",
+        "icon": "🔍",
+        "color": "#C239B3",
+        "properties": [
+          {
+            "name": "checkId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "stage",
+            "type": "integer"
+          },
+          {
+            "name": "passed",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "shipment",
+        "name": "发运",
+        "description": "将采收批次运往零售配送中心的冷藏集装箱或冷藏车",
+        "icon": "🚛",
+        "color": "#0099BC",
+        "properties": [
+          {
+            "name": "shipmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "departureDate",
+            "type": "datetime"
+          },
+          {
+            "name": "etaDate",
+            "type": "datetime"
+          },
+          {
+            "name": "modality",
+            "type": "string"
+          },
+          {
+            "name": "containerId",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "coldchainsensor",
+        "name": "冷链传感器",
+        "description": "安装在发运货物上、持续回传温湿度数据的传感器",
+        "icon": "🌡️",
+        "color": "#005A9E",
+        "properties": [
+          {
+            "name": "sensorId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "sensorModel",
+            "type": "string"
+          },
+          {
+            "name": "temperatureC",
+            "type": "decimal",
+            "unit": "°C"
+          },
+          {
+            "name": "humidityPct",
+            "type": "decimal",
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "grower-owns-farm",
+        "name": "拥有农场",
+        "from": "grower",
+        "to": "farm",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "farm-contains-plot",
+        "name": "包含地块",
+        "from": "farm",
+        "to": "plot",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "plot-grows-fruitvariety",
+        "name": "种植品种",
+        "from": "plot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "harvestlot-fromplot-plot",
+        "name": "来自地块",
+        "from": "harvestlot",
+        "to": "plot",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "harvestlot-ofvariety-fruitvariety",
+        "name": "属于品种",
+        "from": "harvestlot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "qualitycheck-checks-harvestlot",
+        "name": "检查批次",
+        "from": "qualitycheck",
+        "to": "harvestlot",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "shipment-carries-harvestlot",
+        "name": "运载批次",
+        "from": "shipment",
+        "to": "harvestlot",
+        "cardinality": "one-to-many",
+        "description": "一次发运运载一个或多个采收批次"
+      },
+      {
+        "id": "shipment-monitoredby-coldchainsensor",
+        "name": "被传感器监测",
+        "from": "shipment",
+        "to": "coldchainsensor",
+        "cardinality": "one-to-many",
+        "description": "一次发运由一个或多个冷链传感器监测"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/zava-grove-to-shelf-step-3/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

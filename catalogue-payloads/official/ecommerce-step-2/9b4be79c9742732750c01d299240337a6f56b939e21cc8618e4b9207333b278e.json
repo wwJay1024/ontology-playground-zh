@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "id": "official/ecommerce-step-2",
+  "ontology": {
+    "name": "电商平台 – 第 2 步",
+    "description": "在基础模型中加入购物车，支持下单前先加购的流程。",
+    "entityTypes": [
+      {
+        "id": "buyer",
+        "name": "买家",
+        "description": "在平台上购买商品的客户。",
+        "icon": "🛒",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "buyerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "memberSince",
+            "type": "date"
+          },
+          {
+            "name": "loyaltyTier",
+            "type": "string"
+          },
+          {
+            "name": "totalSpent",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "product",
+        "name": "商品",
+        "description": "平台上可供购买的商品。",
+        "icon": "📦",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "sku",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "stockQty",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "order",
+        "name": "订单",
+        "description": "买家提交的一笔订单。",
+        "icon": "📋",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "orderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "orderDate",
+            "type": "datetime"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "total",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "shippingMethod",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "shoppingCart",
+        "name": "购物车",
+        "description": "买家打算购买、暂存待结算的商品集合。",
+        "icon": "🛍️",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "cartId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "createdAt",
+            "type": "datetime"
+          },
+          {
+            "name": "itemCount",
+            "type": "integer"
+          },
+          {
+            "name": "subtotal",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "places",
+        "name": "下单",
+        "from": "buyer",
+        "to": "order",
+        "cardinality": "one-to-many",
+        "description": "买家下单。"
+      },
+      {
+        "id": "includes",
+        "name": "包含",
+        "from": "order",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "一笔订单包含一件或多件商品。"
+      },
+      {
+        "id": "has_cart",
+        "name": "拥有购物车",
+        "from": "buyer",
+        "to": "shoppingCart",
+        "cardinality": "one-to-one",
+        "description": "买家拥有一个购物车。"
+      },
+      {
+        "id": "contains",
+        "name": "包含",
+        "from": "shoppingCart",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "购物车中放有商品。"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

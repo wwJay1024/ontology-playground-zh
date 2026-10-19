@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "id": "official/finance-step-3",
+  "ontology": {
+    "name": "银行与金融 – 第 3 步",
+    "description": "含贷款与投资实体的完整模型",
+    "entityTypes": [
+      {
+        "id": "customer",
+        "name": "客户",
+        "description": "银行客户",
+        "icon": "👤",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "customerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "ssn",
+            "type": "string"
+          },
+          {
+            "name": "creditScore",
+            "type": "integer"
+          },
+          {
+            "name": "riskProfile",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "account",
+        "name": "账户",
+        "description": "客户名下的金融账户",
+        "icon": "🏦",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "accountNumber",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "balance",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "interestRate",
+            "type": "decimal",
+            "unit": "%"
+          },
+          {
+            "name": "openDate",
+            "type": "date"
+          }
+        ]
+      },
+      {
+        "id": "transaction",
+        "name": "交易",
+        "description": "账户上发生的一笔资金往来",
+        "icon": "💳",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "transactionId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "datetime"
+          },
+          {
+            "name": "merchant",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "loan",
+        "name": "贷款",
+        "description": "银行提供的贷款产品",
+        "icon": "📄",
+        "color": "#D13438",
+        "properties": [
+          {
+            "name": "loanId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "principal",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "apr",
+            "type": "decimal",
+            "unit": "%"
+          },
+          {
+            "name": "term",
+            "type": "integer",
+            "unit": "months"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "investment",
+        "name": "投资",
+        "description": "客户持有的一项投资",
+        "icon": "📈",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "holdingId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "shares",
+            "type": "decimal"
+          },
+          {
+            "name": "purchasePrice",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "currentValue",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "customer_owns_acct",
+        "name": "持有",
+        "from": "customer",
+        "to": "account",
+        "cardinality": "one-to-many",
+        "description": "客户名下账户"
+      },
+      {
+        "id": "account_has_txn",
+        "name": "发生交易",
+        "from": "account",
+        "to": "transaction",
+        "cardinality": "one-to-many",
+        "description": "账户交易"
+      },
+      {
+        "id": "customer_has_loan",
+        "name": "持有贷款",
+        "from": "customer",
+        "to": "loan",
+        "cardinality": "one-to-many",
+        "description": "客户贷款"
+      },
+      {
+        "id": "account_funds_loan",
+        "name": "提供资金",
+        "from": "account",
+        "to": "loan",
+        "cardinality": "one-to-many",
+        "description": "还款资金来源"
+      },
+      {
+        "id": "customer_holds",
+        "name": "持有投资",
+        "from": "customer",
+        "to": "investment",
+        "cardinality": "one-to-many",
+        "description": "投资组合"
+      },
+      {
+        "id": "account_linked",
+        "name": "关联账户",
+        "from": "account",
+        "to": "investment",
+        "cardinality": "one-to-many",
+        "description": "券商账户关联"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

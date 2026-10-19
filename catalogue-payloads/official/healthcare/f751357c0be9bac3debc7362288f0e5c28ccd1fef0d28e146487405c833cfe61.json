@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "id": "official/healthcare",
+  "ontology": {
+    "name": "医疗系统",
+    "description": "患者诊疗管理，涵盖诊疗提供方、预约与治疗",
+    "entityTypes": [
+      {
+        "id": "patient",
+        "name": "患者",
+        "description": "接受医疗服务的个人",
+        "icon": "🏥",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "patientId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "mrn",
+            "type": "string"
+          },
+          {
+            "name": "dateOfBirth",
+            "type": "date"
+          },
+          {
+            "name": "bloodType",
+            "type": "string"
+          },
+          {
+            "name": "allergies",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "provider",
+        "name": "诊疗提供方",
+        "description": "医疗专业人员",
+        "icon": "👨‍⚕️",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "providerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "specialty",
+            "type": "string"
+          },
+          {
+            "name": "licenseNumber",
+            "type": "string"
+          },
+          {
+            "name": "department",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "appointment",
+        "name": "预约就诊",
+        "description": "已安排的到院就诊",
+        "icon": "📅",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "appointmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "scheduledTime",
+            "type": "datetime"
+          },
+          {
+            "name": "duration",
+            "type": "integer",
+            "unit": "minutes"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "diagnosis",
+        "name": "诊断",
+        "description": "已确认的病情",
+        "icon": "🩺",
+        "color": "#D13438",
+        "properties": [
+          {
+            "name": "diagnosisId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "icdCode",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "severity",
+            "type": "string"
+          },
+          {
+            "name": "diagnosedDate",
+            "type": "date"
+          }
+        ]
+      },
+      {
+        "id": "prescription",
+        "name": "处方",
+        "description": "用药医嘱",
+        "icon": "💊",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "rxNumber",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "medication",
+            "type": "string"
+          },
+          {
+            "name": "dosage",
+            "type": "string"
+          },
+          {
+            "name": "frequency",
+            "type": "string"
+          },
+          {
+            "name": "refillsRemaining",
+            "type": "integer"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "patient_has_appt",
+        "name": "有预约",
+        "from": "patient",
+        "to": "appointment",
+        "cardinality": "one-to-many",
+        "description": "患者的预约就诊"
+      },
+      {
+        "id": "provider_sees",
+        "name": "接诊",
+        "from": "provider",
+        "to": "appointment",
+        "cardinality": "one-to-many",
+        "description": "诊疗提供方的接诊安排"
+      },
+      {
+        "id": "patient_diagnosed",
+        "name": "诊断为",
+        "from": "patient",
+        "to": "diagnosis",
+        "cardinality": "one-to-many",
+        "description": "患者的诊断记录"
+      },
+      {
+        "id": "provider_diagnoses",
+        "name": "作出诊断",
+        "from": "provider",
+        "to": "diagnosis",
+        "cardinality": "one-to-many",
+        "description": "诊疗提供方作出的诊断"
+      },
+      {
+        "id": "diagnosis_treated",
+        "name": "由…治疗",
+        "from": "diagnosis",
+        "to": "prescription",
+        "cardinality": "one-to-many",
+        "description": "该诊断对应的处方"
+      },
+      {
+        "id": "provider_prescribes",
+        "name": "开具处方",
+        "from": "provider",
+        "to": "prescription",
+        "cardinality": "one-to-many",
+        "description": "诊疗提供方开具的处方"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/healthcare-system/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

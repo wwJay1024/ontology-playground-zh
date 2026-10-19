@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "id": "official/manufacturing",
+  "ontology": {
+    "name": "智能制造",
+    "description": "含设备资产、传感器与质量控制的产线",
+    "entityTypes": [
+      {
+        "id": "machine",
+        "name": "设备",
+        "description": "生产设备",
+        "icon": "🏭",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "machineId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "model",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "lastMaintenance",
+            "type": "date"
+          }
+        ]
+      },
+      {
+        "id": "sensor",
+        "name": "传感器",
+        "description": "物联网监测装置",
+        "icon": "📡",
+        "color": "#00B7C3",
+        "properties": [
+          {
+            "name": "sensorId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "unit",
+            "type": "string"
+          },
+          {
+            "name": "minThreshold",
+            "type": "decimal"
+          },
+          {
+            "name": "maxThreshold",
+            "type": "decimal"
+          }
+        ]
+      },
+      {
+        "id": "workorder",
+        "name": "工单",
+        "description": "生产任务",
+        "icon": "📋",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "workOrderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "product",
+            "type": "string"
+          },
+          {
+            "name": "quantity",
+            "type": "integer"
+          },
+          {
+            "name": "priority",
+            "type": "string"
+          },
+          {
+            "name": "dueDate",
+            "type": "date"
+          }
+        ]
+      },
+      {
+        "id": "part",
+        "name": "零件",
+        "description": "零部件或物料",
+        "icon": "🔩",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "partNumber",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "stockLevel",
+            "type": "integer"
+          },
+          {
+            "name": "reorderPoint",
+            "type": "integer"
+          },
+          {
+            "name": "unitCost",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "qualitycheck",
+        "name": "质检",
+        "description": "检验结果",
+        "icon": "✅",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "checkId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "timestamp",
+            "type": "datetime"
+          },
+          {
+            "name": "passed",
+            "type": "boolean"
+          },
+          {
+            "name": "defectType",
+            "type": "string"
+          },
+          {
+            "name": "inspector",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "machine_has_sensor",
+        "name": "由…监测",
+        "from": "machine",
+        "to": "sensor",
+        "cardinality": "one-to-many",
+        "description": "设备上安装的传感器"
+      },
+      {
+        "id": "machine_runs",
+        "name": "执行",
+        "from": "machine",
+        "to": "workorder",
+        "cardinality": "one-to-many",
+        "description": "设备执行的工单"
+      },
+      {
+        "id": "workorder_uses",
+        "name": "耗用",
+        "from": "workorder",
+        "to": "part",
+        "cardinality": "many-to-many",
+        "description": "耗用的零件"
+      },
+      {
+        "id": "workorder_checked",
+        "name": "由…质检",
+        "from": "workorder",
+        "to": "qualitycheck",
+        "cardinality": "one-to-many",
+        "description": "质检记录"
+      },
+      {
+        "id": "machine_maintains",
+        "name": "需要备件",
+        "from": "machine",
+        "to": "part",
+        "cardinality": "many-to-many",
+        "description": "所需备件"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/smart-manufacturing/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

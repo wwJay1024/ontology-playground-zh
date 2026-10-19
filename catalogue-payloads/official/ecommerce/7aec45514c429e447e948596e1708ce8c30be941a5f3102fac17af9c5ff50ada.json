@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "id": "official/ecommerce",
+  "ontology": {
+    "name": "电商平台",
+    "description": "包含客户、商品与订单的在线零售业务模式",
+    "entityTypes": [
+      {
+        "id": "buyer",
+        "name": "买家",
+        "description": "已注册并在平台下单的客户",
+        "icon": "🛒",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "buyerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "memberSince",
+            "type": "date"
+          },
+          {
+            "name": "loyaltyTier",
+            "type": "string"
+          },
+          {
+            "name": "totalSpent",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "product",
+        "name": "商品",
+        "description": "可供购买的商品",
+        "icon": "📦",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "sku",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "stockQty",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "cart",
+        "name": "购物车",
+        "description": "正在进行的一次购物",
+        "icon": "🛍️",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "cartId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "createdAt",
+            "type": "datetime"
+          },
+          {
+            "name": "itemCount",
+            "type": "integer"
+          },
+          {
+            "name": "subtotal",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "order",
+        "name": "订单",
+        "description": "已完成的购买交易",
+        "icon": "📋",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "orderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "orderDate",
+            "type": "datetime"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "total",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "shippingMethod",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "review",
+        "name": "评价",
+        "description": "客户对商品的评价与评分",
+        "icon": "⭐",
+        "color": "#00B7C3",
+        "properties": [
+          {
+            "name": "reviewId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "rating",
+            "type": "integer"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "type": "string"
+          },
+          {
+            "name": "verified",
+            "type": "boolean"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "buyer_has_cart",
+        "name": "拥有购物车",
+        "from": "buyer",
+        "to": "cart",
+        "cardinality": "one-to-one",
+        "description": "买家当前的购物车"
+      },
+      {
+        "id": "cart_contains",
+        "name": "包含",
+        "from": "cart",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "购物车中的商品"
+      },
+      {
+        "id": "buyer_places",
+        "name": "下单",
+        "from": "buyer",
+        "to": "order",
+        "cardinality": "one-to-many",
+        "description": "买家提交的订单"
+      },
+      {
+        "id": "order_includes",
+        "name": "包含",
+        "from": "order",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "订单中的商品"
+      },
+      {
+        "id": "buyer_writes",
+        "name": "撰写",
+        "from": "buyer",
+        "to": "review",
+        "cardinality": "one-to-many",
+        "description": "买家撰写的评价"
+      },
+      {
+        "id": "review_for",
+        "name": "评价",
+        "from": "review",
+        "to": "product",
+        "cardinality": "many-to-one",
+        "description": "被评价的商品"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/e-commerce-platform/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

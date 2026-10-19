@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 1,
+  "id": "official/zava-grove-to-shelf",
+  "ontology": {
+    "name": "Zava Grove-to-Shelf",
+    "description": "Zava 完整的从果园到货架本体，覆盖多产地采购、四道质检、冷链物流、零售订单与可持续发展，共 12 个实体、13 条关系。",
+    "entityTypes": [
+      {
+        "id": "grower",
+        "name": "种植户",
+        "description": "生产新鲜果蔬的合作种植方",
+        "icon": "👨‍🌾",
+        "color": "#498205",
+        "properties": [
+          {
+            "name": "growerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "partnerSince",
+            "type": "date"
+          },
+          {
+            "name": "isMasterGrower",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "farm",
+        "name": "农场",
+        "description": "种植户自有或签约的一处产地",
+        "icon": "🌾",
+        "color": "#6EAA1F",
+        "properties": [
+          {
+            "name": "farmId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          }
+        ]
+      },
+      {
+        "id": "plot",
+        "name": "地块",
+        "description": "农场内种植单一品种的一块管理地块",
+        "icon": "🌱",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "plotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          },
+          {
+            "name": "plantingYear",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "fruitvariety",
+        "name": "水果品种",
+        "description": "商业化种植的水果或蔬菜品种",
+        "icon": "🍊",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "varietyId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "commercialName",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "minStorageTempC",
+            "type": "decimal",
+            "unit": "°C"
+          },
+          {
+            "name": "maxStorageTempC",
+            "type": "decimal",
+            "unit": "°C"
+          },
+          {
+            "name": "shelfLifeDays",
+            "type": "integer",
+            "unit": "days"
+          }
+        ]
+      },
+      {
+        "id": "harvestlot",
+        "name": "采收批次",
+        "description": "来自单一地块、可追溯的一次采收",
+        "icon": "📦",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "lotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "harvestDate",
+            "type": "date"
+          },
+          {
+            "name": "kilograms",
+            "type": "decimal",
+            "unit": "kg"
+          },
+          {
+            "name": "qcGrade",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "qualitycheck",
+        "name": "质检",
+        "description": "四道质检环节中的一次检查",
+        "icon": "🔍",
+        "color": "#C239B3",
+        "properties": [
+          {
+            "name": "checkId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "stage",
+            "type": "integer"
+          },
+          {
+            "name": "passed",
+            "type": "boolean"
+          },
+          {
+            "name": "defectRate",
+            "type": "decimal",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "id": "shipment",
+        "name": "发运",
+        "description": "将批次运往零售配送中心的冷藏集装箱或冷藏车",
+        "icon": "🚛",
+        "color": "#0099BC",
+        "properties": [
+          {
+            "name": "shipmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "modality",
+            "type": "string"
+          },
+          {
+            "name": "departureDate",
+            "type": "datetime"
+          },
+          {
+            "name": "etaDate",
+            "type": "datetime"
+          }
+        ]
+      },
+      {
+        "id": "coldchainsensor",
+        "name": "冷链传感器",
+        "description": "安装在发运货物上、实时采集温湿度的传感器",
+        "icon": "🌡️",
+        "color": "#005A9E",
+        "properties": [
+          {
+            "name": "sensorId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "temperatureC",
+            "type": "decimal",
+            "unit": "°C"
+          },
+          {
+            "name": "humidityPct",
+            "type": "decimal",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "id": "retaildc",
+        "name": "零售配送中心",
+        "description": "接收发运货物的零售商配送中心",
+        "icon": "🏬",
+        "color": "#2D7D9A",
+        "properties": [
+          {
+            "name": "dcId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "retailerCode",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "store",
+        "name": "门店",
+        "description": "由配送中心供货的零售门店",
+        "icon": "🏪",
+        "color": "#5C2D91",
+        "properties": [
+          {
+            "name": "storeId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "retailerName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "order",
+        "name": "订单",
+        "description": "门店针对某个水果品种下的采购订单",
+        "icon": "📋",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "orderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "kilograms",
+            "type": "decimal",
+            "unit": "kg"
+          },
+          {
+            "name": "unitPriceEur",
+            "type": "decimal",
+            "unit": "EUR"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "sustainabilityprogram",
+        "name": "可持续发展项目",
+        "description": "农场可加入的种植户扶持或企业社会责任项目（如 Zava Dreams）",
+        "icon": "🌍",
+        "color": "#486860",
+        "properties": [
+          {
+            "name": "programId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "focusArea",
+            "type": "string"
+          },
+          {
+            "name": "startYear",
+            "type": "integer"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "grower-owns-farm",
+        "name": "拥有农场",
+        "from": "grower",
+        "to": "farm",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "farm-contains-plot",
+        "name": "包含地块",
+        "from": "farm",
+        "to": "plot",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "plot-grows-fruitvariety",
+        "name": "种植品种",
+        "from": "plot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "harvestlot-fromplot-plot",
+        "name": "来自地块",
+        "from": "harvestlot",
+        "to": "plot",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "harvestlot-ofvariety-fruitvariety",
+        "name": "属于品种",
+        "from": "harvestlot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "qualitycheck-checks-harvestlot",
+        "name": "检查批次",
+        "from": "qualitycheck",
+        "to": "harvestlot",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "shipment-carries-harvestlot",
+        "name": "运载批次",
+        "from": "shipment",
+        "to": "harvestlot",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "shipment-monitoredby-coldchainsensor",
+        "name": "被传感器监测",
+        "from": "shipment",
+        "to": "coldchainsensor",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "shipment-deliveredto-retaildc",
+        "name": "送达配送中心",
+        "from": "shipment",
+        "to": "retaildc",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "retaildc-supplies-store",
+        "name": "供应门店",
+        "from": "retaildc",
+        "to": "store",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "store-places-order",
+        "name": "下单",
+        "from": "store",
+        "to": "order",
+        "cardinality": "one-to-many"
+      },
+      {
+        "id": "order-forvariety-fruitvariety",
+        "name": "订购品种",
+        "from": "order",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one"
+      },
+      {
+        "id": "farm-participatesin-sustainabilityprogram",
+        "name": "参与项目",
+        "from": "farm",
+        "to": "sustainabilityprogram",
+        "cardinality": "many-to-many",
+        "description": "农场可以加入零个或多个可持续发展项目（如 Zava Dreams）"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/zava-grove-to-shelf-step-5/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

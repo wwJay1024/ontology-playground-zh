@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "official/manufacturing-step-1",
+  "ontology": {
+    "name": "Imported Ontology",
+    "description": "",
+    "entityTypes": [
+      {
+        "id": "machine",
+        "name": "设备",
+        "description": "车间里的一台生产设备",
+        "icon": "🏭",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "machineId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "model",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "lastMaintenance",
+            "type": "date"
+          }
+        ]
+      },
+      {
+        "id": "sensor",
+        "name": "传感器",
+        "description": "监测设备运行参数的传感器",
+        "icon": "📡",
+        "color": "#00B7C3",
+        "properties": [
+          {
+            "name": "sensorId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "unit",
+            "type": "string"
+          },
+          {
+            "name": "minThreshold",
+            "type": "decimal"
+          },
+          {
+            "name": "maxThreshold",
+            "type": "decimal"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "machine_has_sensor",
+        "name": "由…监测",
+        "from": "machine",
+        "to": "sensor",
+        "cardinality": "one-to-many",
+        "description": "设备上安装的传感器"
+      }
+    ]
+  },
+  "bindings": []
+}

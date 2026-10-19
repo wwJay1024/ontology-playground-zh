@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "id": "official/cosmic-coffee-step-3",
+  "ontology": {
+    "name": "Fourth Coffee – 第 3 步",
+    "description": "完整的供应链模型，加入供应商与发运，串起从咖啡豆到一杯咖啡的全过程。",
+    "entityTypes": [
+      {
+        "id": "customer",
+        "name": "客户",
+        "description": "加入会员计划并下单的客户",
+        "icon": "👤",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "customerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "loyaltyTier",
+            "type": "enum",
+            "values": [
+              "Bronze",
+              "Silver",
+              "Gold",
+              "Platinum"
+            ]
+          },
+          {
+            "name": "joinDate",
+            "type": "date"
+          },
+          {
+            "name": "totalSpend",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "order",
+        "name": "订单",
+        "description": "包含一件或多件商品的一次购买交易",
+        "icon": "🧾",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "orderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "timestamp",
+            "type": "datetime"
+          },
+          {
+            "name": "total",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "values": [
+              "Pending",
+              "Preparing",
+              "Ready",
+              "Completed",
+              "Cancelled"
+            ]
+          },
+          {
+            "name": "paymentMethod",
+            "type": "enum",
+            "values": [
+              "Card",
+              "Cash",
+              "Mobile",
+              "Gift Card"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "product",
+        "name": "商品",
+        "description": "可供销售的菜单饮品或周边商品",
+        "icon": "☕",
+        "color": "#5C2D91",
+        "properties": [
+          {
+            "name": "productId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "enum",
+            "values": [
+              "Espresso",
+              "Brewed",
+              "Cold Brew",
+              "Tea",
+              "Food",
+              "Merchandise"
+            ]
+          },
+          {
+            "name": "price",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "origin",
+            "type": "string"
+          },
+          {
+            "name": "isOrganic",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "store",
+        "name": "门店",
+        "description": "备制并交付订单的线下零售门店",
+        "icon": "🏪",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "storeId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "name": "openDate",
+            "type": "date"
+          },
+          {
+            "name": "capacity",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "supplier",
+        "name": "供应商",
+        "description": "提供咖啡豆、原料或周边商品的供应商",
+        "icon": "🚚",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "supplierId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "certification",
+            "type": "enum",
+            "values": [
+              "Fair Trade",
+              "Rainforest Alliance",
+              "Organic",
+              "Direct Trade",
+              "None"
+            ]
+          },
+          {
+            "name": "rating",
+            "type": "decimal"
+          }
+        ]
+      },
+      {
+        "id": "shipment",
+        "name": "发运",
+        "description": "由供应商发往门店的一批商品",
+        "icon": "📦",
+        "color": "#00A9E0",
+        "properties": [
+          {
+            "name": "shipmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "dispatchDate",
+            "type": "date"
+          },
+          {
+            "name": "arrivalDate",
+            "type": "date"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "values": [
+              "In Transit",
+              "Delivered",
+              "Delayed"
+            ]
+          },
+          {
+            "name": "weight",
+            "type": "decimal",
+            "unit": "kg"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "customer_places_order",
+        "name": "下单",
+        "from": "customer",
+        "to": "order",
+        "cardinality": "one-to-many",
+        "description": "客户可以下一笔或多笔订单"
+      },
+      {
+        "id": "order_contains_product",
+        "name": "包含",
+        "from": "order",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "一笔订单包含一件或多件商品"
+      },
+      {
+        "id": "order_processed_at_store",
+        "name": "在门店处理",
+        "from": "order",
+        "to": "store",
+        "cardinality": "many-to-one",
+        "description": "订单在指定的门店完成处理"
+      },
+      {
+        "id": "product_sourced_from_supplier",
+        "name": "货源来自",
+        "from": "product",
+        "to": "supplier",
+        "cardinality": "many-to-one",
+        "description": "商品由某家供应商供货"
+      },
+      {
+        "id": "shipment_from_supplier",
+        "name": "由供应商发出",
+        "from": "shipment",
+        "to": "supplier",
+        "cardinality": "many-to-one",
+        "description": "一次发运由供应商发出"
+      },
+      {
+        "id": "shipment_to_store",
+        "name": "送达门店",
+        "from": "shipment",
+        "to": "store",
+        "cardinality": "many-to-one",
+        "description": "发运的货物送达门店"
+      },
+      {
+        "id": "shipment_contains_product",
+        "name": "运载",
+        "from": "shipment",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "一次发运运载一件或多件商品"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/cosmic-coffee-step-3/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

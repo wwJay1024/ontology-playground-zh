@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "id": "official/iq-lab-retail-step-4",
+  "ontology": {
+    "name": "零售供应链 — 第 4 步：履约与物流",
+    "description": "用发运、承运商与仓库描述配送链路",
+    "entityTypes": [
+      {
+        "id": "customer",
+        "name": "客户",
+        "description": "与订单关联的买家",
+        "icon": "👤",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "customerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "loyaltyTier",
+            "type": "string"
+          },
+          {
+            "name": "lifetimeValue",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "order",
+        "name": "订单",
+        "description": "客户的一次购买交易",
+        "icon": "📋",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "orderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "orderDate",
+            "type": "datetime"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "totalAmount",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "product",
+        "name": "商品",
+        "description": "可供销售的商品",
+        "icon": "📦",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "productId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "unitCost",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "discountPercent",
+            "type": "decimal",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "id": "orderline",
+        "name": "订单明细",
+        "description": "订单中的各条明细",
+        "icon": "📝",
+        "color": "#00B7C3",
+        "properties": [
+          {
+            "name": "orderLineId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "quantity",
+            "type": "integer"
+          },
+          {
+            "name": "lineTotal",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "productcategory",
+        "name": "商品分类",
+        "description": "相关商品的归类",
+        "icon": "🏷️",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "categoryId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "categoryName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "name": "地区",
+        "description": "包含门店与仓库的地理区域",
+        "icon": "🌐",
+        "color": "#E74C3C",
+        "properties": [
+          {
+            "name": "regionId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "regionName",
+            "type": "string"
+          },
+          {
+            "name": "timezone",
+            "type": "string"
+          },
+          {
+            "name": "coldChainRequired",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "store",
+        "name": "门店",
+        "description": "订单产生的零售场所",
+        "icon": "🏪",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "storeId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "storeName",
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "shipment",
+        "name": "发运",
+        "description": "把订单与承运商关联起来的配送记录",
+        "icon": "🚚",
+        "color": "#0099BC",
+        "properties": [
+          {
+            "name": "shipmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "shipDate",
+            "type": "date"
+          },
+          {
+            "name": "deliveryDate",
+            "type": "date"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "carrier",
+        "name": "承运商",
+        "description": "负责运输的物流服务商",
+        "icon": "✈️",
+        "color": "#7A7574",
+        "properties": [
+          {
+            "name": "carrierId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "carrierName",
+            "type": "string"
+          },
+          {
+            "name": "serviceType",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "warehouse",
+        "name": "仓库",
+        "description": "发出订单货物的履约中心",
+        "icon": "🏭",
+        "color": "#2D7D9A",
+        "properties": [
+          {
+            "name": "warehouseId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "warehouseName",
+            "type": "string"
+          },
+          {
+            "name": "capacity",
+            "type": "integer"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "order-placedby-customer",
+        "name": "由客户下单",
+        "from": "order",
+        "to": "customer",
+        "cardinality": "many-to-one",
+        "description": "下单的客户"
+      },
+      {
+        "id": "order-contains-product",
+        "name": "包含商品",
+        "from": "order",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "订单中包含的商品"
+      },
+      {
+        "id": "order-has-lineitem",
+        "name": "包含明细",
+        "from": "order",
+        "to": "orderline",
+        "cardinality": "one-to-many",
+        "description": "订单中的明细行"
+      },
+      {
+        "id": "orderline-refs-product",
+        "name": "指向商品",
+        "from": "orderline",
+        "to": "product",
+        "cardinality": "many-to-one",
+        "description": "该明细行对应的商品"
+      },
+      {
+        "id": "product-in-category",
+        "name": "属于分类",
+        "from": "product",
+        "to": "productcategory",
+        "cardinality": "many-to-one",
+        "description": "商品所属的分类"
+      },
+      {
+        "id": "order-to-region",
+        "name": "在区域履约",
+        "from": "order",
+        "to": "region",
+        "cardinality": "many-to-one",
+        "description": "订单履约所在的区域"
+      },
+      {
+        "id": "store-in-region",
+        "name": "位于区域",
+        "from": "store",
+        "to": "region",
+        "cardinality": "many-to-one",
+        "description": "门店所在的区域"
+      },
+      {
+        "id": "shipment-fulfills-order",
+        "name": "履约订单",
+        "from": "shipment",
+        "to": "order",
+        "cardinality": "many-to-one",
+        "description": "发运对应的订单"
+      },
+      {
+        "id": "shipment-by-carrier",
+        "name": "由承运商运输",
+        "from": "shipment",
+        "to": "carrier",
+        "cardinality": "many-to-one",
+        "description": "承运该批发运的承运商"
+      },
+      {
+        "id": "shipment-from-warehouse",
+        "name": "从仓库发出",
+        "from": "shipment",
+        "to": "warehouse",
+        "cardinality": "many-to-one",
+        "description": "发运出发的仓库"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/retail-supply-chain-step-4-fulfillment-logistics/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

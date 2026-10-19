@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "id": "official/university-step-1",
+  "ontology": {
+    "name": "高校系统 – 第 1 步",
+    "description": "核心选课模型：学生、课程与选课实体。",
+    "entityTypes": [
+      {
+        "id": "student",
+        "name": "学生",
+        "description": "在本校注册就读的学生",
+        "icon": "🎓",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "studentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "major",
+            "type": "string"
+          },
+          {
+            "name": "gpa",
+            "type": "decimal"
+          },
+          {
+            "name": "enrollmentYear",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "course",
+        "name": "课程",
+        "description": "学校开设的一门课程",
+        "icon": "📚",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "courseCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "credits",
+            "type": "integer"
+          },
+          {
+            "name": "level",
+            "type": "string"
+          },
+          {
+            "name": "maxEnrollment",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "enrollment",
+        "name": "选课",
+        "description": "学生在某门课程上的选课记录",
+        "icon": "📝",
+        "color": "#00B7C3",
+        "properties": [
+          {
+            "name": "enrollmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "semester",
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "student_enrolls",
+        "name": "选修",
+        "from": "student",
+        "to": "enrollment",
+        "cardinality": "one-to-many",
+        "description": "学生的选课记录"
+      },
+      {
+        "id": "enrollment_for",
+        "name": "对应课程",
+        "from": "enrollment",
+        "to": "course",
+        "cardinality": "many-to-one",
+        "description": "课程的选课记录"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

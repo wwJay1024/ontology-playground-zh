@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "id": "official/zava-grove-to-shelf-step-1",
+  "ontology": {
+    "name": "Zava Grove-to-Shelf — 第 1 步：果园基础",
+    "description": "种植户、农场、地块、水果品种：多产地采购的基础实体。",
+    "entityTypes": [
+      {
+        "id": "grower",
+        "name": "种植户",
+        "description": "生产新鲜果蔬的合作种植方",
+        "icon": "👨‍🌾",
+        "color": "#498205",
+        "properties": [
+          {
+            "name": "growerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "partnerSince",
+            "type": "date"
+          },
+          {
+            "name": "isMasterGrower",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "farm",
+        "name": "农场",
+        "description": "种植户自有或签约的一处产地",
+        "icon": "🌾",
+        "color": "#6EAA1F",
+        "properties": [
+          {
+            "name": "farmId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          }
+        ]
+      },
+      {
+        "id": "plot",
+        "name": "地块",
+        "description": "农场内种植单一品种的一块管理地块",
+        "icon": "🌱",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "plotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          },
+          {
+            "name": "plantingYear",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "fruitvariety",
+        "name": "水果品种",
+        "description": "商业化种植的水果或蔬菜品种",
+        "icon": "🍊",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "varietyId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "commercialName",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "shelfLifeDays",
+            "type": "integer",
+            "unit": "days"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "grower-owns-farm",
+        "name": "拥有农场",
+        "from": "grower",
+        "to": "farm",
+        "cardinality": "one-to-many",
+        "description": "种植户拥有或经营一个或多个农场"
+      },
+      {
+        "id": "farm-contains-plot",
+        "name": "包含地块",
+        "from": "farm",
+        "to": "plot",
+        "cardinality": "one-to-many",
+        "description": "一个农场包含多块地块"
+      },
+      {
+        "id": "plot-grows-fruitvariety",
+        "name": "种植品种",
+        "from": "plot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one",
+        "description": "每块地块在每个种植季只种一个水果品种"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/zava-grove-to-shelf-step-1/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

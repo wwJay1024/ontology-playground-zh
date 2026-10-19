@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "id": "official/fibo-risk-step-3",
+  "ontology": {
+    "name": "FIBO 风险实验 — 第 3 步",
+    "description": "行业分类、地理层级与带巴塞尔风险权重的贷款分类。改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo — MIT 许可。",
+    "entityTypes": [
+      {
+        "id": "sector",
+        "name": "门类",
+        "description": "按大类职能划分行业的最高层经济门类。",
+        "icon": "🏢",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "sectorCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "sectorName",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "subsector",
+        "name": "子门类",
+        "description": "经济门类下的细分层次，用于更精细的分类。",
+        "icon": "🏗️",
+        "color": "#00A9E0",
+        "properties": [
+          {
+            "name": "subsectorCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "subsectorName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "industryGroup",
+        "name": "行业组",
+        "description": "带 NAICS 编码的行业组，含气候敏感性与周期性属性，供风险分析使用。",
+        "icon": "🏭",
+        "color": "#486991",
+        "properties": [
+          {
+            "name": "naicsCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "cyclicality",
+            "type": "string"
+          },
+          {
+            "name": "climateSensitivity",
+            "type": "string"
+          },
+          {
+            "name": "essentialServices",
+            "type": "boolean"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "name": "地区",
+        "description": "用于宏观经济分析的大洲或地理区域。",
+        "icon": "🌍",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "regionCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "regionName",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "disasterProfile",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "country",
+        "name": "国家",
+        "description": "具有经济区、货币与监管框架属性的主权国家。",
+        "icon": "🏳️",
+        "color": "#008272",
+        "properties": [
+          {
+            "name": "countryCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "countryName",
+            "type": "string"
+          },
+          {
+            "name": "economicZone",
+            "type": "string"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "name": "regulatoryFramework",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "jurisdiction",
+        "name": "辖区",
+        "description": "国家以下的行政辖区，带飓风、洪水、地震与山火风险标记。",
+        "icon": "📍",
+        "color": "#00B294",
+        "properties": [
+          {
+            "name": "code",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "hurricaneZone",
+            "type": "boolean"
+          },
+          {
+            "name": "floodZone",
+            "type": "boolean"
+          },
+          {
+            "name": "earthquakeZone",
+            "type": "boolean"
+          },
+          {
+            "name": "wildfireZone",
+            "type": "boolean"
+          },
+          {
+            "name": "coastal",
+            "type": "boolean"
+          },
+          {
+            "name": "latitude",
+            "type": "decimal"
+          },
+          {
+            "name": "longitude",
+            "type": "decimal"
+          }
+        ]
+      },
+      {
+        "id": "concentrationCategory",
+        "name": "集中度类别",
+        "description": "按 OCC/FDIC 指引划分的监管集中度分组，用于投资组合风险管理。",
+        "icon": "📊",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "categoryId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "occGuidance",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "loanType",
+        "name": "贷款类型",
+        "description": "贷款产品分类，含巴塞尔 III 风险权重、监管处理方式与资本层级。",
+        "icon": "💰",
+        "color": "#E81123",
+        "properties": [
+          {
+            "name": "loanTypeCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "baselRiskWeight",
+            "type": "decimal",
+            "unit": "%"
+          },
+          {
+            "name": "regulatoryTreatment",
+            "type": "string"
+          },
+          {
+            "name": "capitalTier",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "collateralType",
+        "name": "抵押物类型",
+        "description": "抵押资产类别，含回收预期与集中度归属。",
+        "icon": "🏠",
+        "color": "#FF8C00",
+        "properties": [
+          {
+            "name": "collateralTypeCode",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "recoveryExpectation",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "partOfSector",
+        "name": "属于门类",
+        "from": "subsector",
+        "to": "sector",
+        "cardinality": "many-to-one",
+        "description": "关联子门类与其所属门类。"
+      },
+      {
+        "id": "belongsToSubsector",
+        "name": "属于子门类",
+        "from": "industryGroup",
+        "to": "subsector",
+        "cardinality": "many-to-one",
+        "description": "关联行业组与其所属子门类。"
+      },
+      {
+        "id": "inCountry",
+        "name": "位于国家",
+        "from": "jurisdiction",
+        "to": "country",
+        "cardinality": "many-to-one",
+        "description": "关联辖区与其所属国家。"
+      },
+      {
+        "id": "inRegion",
+        "name": "位于地区",
+        "from": "jurisdiction",
+        "to": "region",
+        "cardinality": "many-to-one",
+        "description": "关联辖区与其所在地理区域。"
+      },
+      {
+        "id": "loanClassifiedAs",
+        "name": "归入集中度类别",
+        "from": "loanType",
+        "to": "concentrationCategory",
+        "cardinality": "many-to-one",
+        "description": "把贷款类型归入 OCC/FDIC 集中度类别。"
+      },
+      {
+        "id": "collateralClassifiedAs",
+        "name": "归入集中度类别",
+        "from": "collateralType",
+        "to": "concentrationCategory",
+        "cardinality": "many-to-one",
+        "description": "把抵押物类型归入 OCC/FDIC 集中度类别。"
+      },
+      {
+        "id": "typicallySecuredBy",
+        "name": "通常由…担保",
+        "from": "collateralType",
+        "to": "loanType",
+        "cardinality": "many-to-many",
+        "description": "关联抵押物类型与其通常担保的贷款类型。"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

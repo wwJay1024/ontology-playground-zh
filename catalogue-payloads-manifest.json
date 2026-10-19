@@ -1,0 +1,959 @@
+{
+  "schemaVersion": 1,
+  "payloads": [
+    {
+      "payloadUrl": "catalogue-payloads/community/1010yab/university-class-search/6009cec2616450d092cf4bd990cf578619454799e7dbc773ca76dfda80ce69f2.json",
+      "payloadHash": "sha256:6009cec2616450d092cf4bd990cf578619454799e7dbc773ca76dfda80ce69f2"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/4iurchenko/preventive-healthcare/28619268a463d58177155b337f533b34fb57cd6de0fc10b4ed7d81ad85447fe7.json",
+      "payloadHash": "sha256:28619268a463d58177155b337f533b34fb57cd6de0fc10b4ed7d81ad85447fe7"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/a-villarruel/cruise-company-ontology/255f97c41bb33dda4f4a8605a26ef91abefcacd1823ebe392fddf0fc206d6968.json",
+      "payloadHash": "sha256:255f97c41bb33dda4f4a8605a26ef91abefcacd1823ebe392fddf0fc206d6968"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/a-villarruel/incident-management-ontology/a6c55739659d1f7f23e74535d34b0ec59064aefffba5faa9cfc2004adaa48b63.json",
+      "payloadHash": "sha256:a6c55739659d1f7f23e74535d34b0ec59064aefffba5faa9cfc2004adaa48b63"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/aala-ali/telecom-customer-insights/0df237042f27a0b6d36d62eb87fdc3034a7f24f558a80a7e0094b4a96fba13a1.json",
+      "payloadHash": "sha256:0df237042f27a0b6d36d62eb87fdc3034a7f24f558a80a7e0094b4a96fba13a1"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/antikas/openim/32554c02ae128c8ccecc1cb1ff445d70ae5ea48ce1dcc2b6c9c1d9941554edd8.json",
+      "payloadHash": "sha256:32554c02ae128c8ccecc1cb1ff445d70ae5ea48ce1dcc2b6c9c1d9941554edd8"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/bbreugel/emergency-management-agency/95ef7237305d1981e453fe2d55265bb6ebc2e0128bf5192cb8583569ccfe720d.json",
+      "payloadHash": "sha256:95ef7237305d1981e453fe2d55265bb6ebc2e0128bf5192cb8583569ccfe720d"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/daocoding/elements-of-software/8854e06791bc97e401a4e197e902028c73450c73a6d79255e9eb5c2c47792b83.json",
+      "payloadHash": "sha256:8854e06791bc97e401a4e197e902028c73450c73a6d79255e9eb5c2c47792b83"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/demonjd2026-afk/devops-value-stream-release-intelligence/85acd76e3104ae358421c095bb52fd21f3cdf0721924c517dd58cb9f75685221.json",
+      "payloadHash": "sha256:85acd76e3104ae358421c095bb52fd21f3cdf0721924c517dd58cb9f75685221"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/demonjd2026-afk/incident-management/218b59ea2283d4be3090d839e0133327929f7b5f8f3a91f47a7ca3dc26251b58.json",
+      "payloadHash": "sha256:218b59ea2283d4be3090d839e0133327929f7b5f8f3a91f47a7ca3dc26251b58"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/intech01/sales-analytics-that-speaks-business/5ca8e910fafaac882cc0b0bedec90130ce06299141e487d0ada6b065c504edf2.json",
+      "payloadHash": "sha256:5ca8e910fafaac882cc0b0bedec90130ce06299141e487d0ada6b065c504edf2"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/marshall3366/service-order-management/9f198ecc77335c19498e33b90dfc08a1f2452a92c82d68bc6be305da84ac2645.json",
+      "payloadHash": "sha256:9f198ecc77335c19498e33b90dfc08a1f2452a92c82d68bc6be305da84ac2645"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/mudassar-data-ai/learning-ontology/f832e161e5990c3c0113af13c4c971113533a12d20e13c714bee17910e8674ef.json",
+      "payloadHash": "sha256:f832e161e5990c3c0113af13c4c971113533a12d20e13c714bee17910e8674ef"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/ravi-chandu/hr-system/8f48ea5e96945cd466ee2765cb9b5ded1c935263654cf575242237aeb9a86508.json",
+      "payloadHash": "sha256:8f48ea5e96945cd466ee2765cb9b5ded1c935263654cf575242237aeb9a86508"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/ravi-chandu/supply-chain-disruption-risk-propagation/2527edd03a175626aab0200d765d35739dd30165d6fa9101331d35cb0b3a39d9.json",
+      "payloadHash": "sha256:2527edd03a175626aab0200d765d35739dd30165d6fa9101331d35cb0b3a39d9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/sandervandevelde/productionline-ontology-sample/cc67922fd472015da6801e1f9f60a8301c5ce10dfcae2184ad715817f537a10c.json",
+      "payloadHash": "sha256:cc67922fd472015da6801e1f9f60a8301c5ce10dfcae2184ad715817f537a10c"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/taylorsamy/discord-server-ontology/8eaac2e8941a77f2d6039fcb515180d38d33295639ba580fedda8cafea7f16a7.json",
+      "payloadHash": "sha256:8eaac2e8941a77f2d6039fcb515180d38d33295639ba580fedda8cafea7f16a7"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/vaibhavius/baby-routine-tracking/1f25885f8703c0721ab3951fb24b700a276cc68db7357f190d420519a00b0c8f.json",
+      "payloadHash": "sha256:1f25885f8703c0721ab3951fb24b700a276cc68db7357f190d420519a00b0c8f"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/vaibhavius/fabric-data-quality/d6f0fd4602493fc86512438f5f7eb00639e2ecb697fb7dc2cfa7469818714c54.json",
+      "payloadHash": "sha256:d6f0fd4602493fc86512438f5f7eb00639e2ecb697fb7dc2cfa7469818714c54"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/community/zamsam6931/clinical-supply-chain-management/e1a127d9923ecb4bf5f15bdae92fc027d190e595ea586c01d12b54be76c2f095.json",
+      "payloadHash": "sha256:e1a127d9923ecb4bf5f15bdae92fc027d190e595ea586c01d12b54be76c2f095"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/brick-schema/brick/4b5f9c1bd58abcd323fb6f8b2a58e3652883c1c8504bc80fe4708853431210e9.json",
+      "payloadHash": "sha256:4b5f9c1bd58abcd323fb6f8b2a58e3652883c1c8504bc80fe4708853431210e9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/fibo/geographic-hierarchy/292bf6b8f59d72dded77abcdb67e0823279bb7fc037a3bda4e6ccea4a3b9785a.json",
+      "payloadHash": "sha256:292bf6b8f59d72dded77abcdb67e0823279bb7fc037a3bda4e6ccea4a3b9785a"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/fibo/industry-classification/efcbab981f2a950c8013374028880ab3f60c2b2c8bd381e9dc9905a3edc7c799.json",
+      "payloadHash": "sha256:efcbab981f2a950c8013374028880ab3f60c2b2c8bd381e9dc9905a3edc7c799"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/fibo/loan-classification/ccfc5af8ad09be16adeb78e26cd6c35de3fc4c54ff83696663c6e47b36e519cd.json",
+      "payloadHash": "sha256:ccfc5af8ad09be16adeb78e26cd6c35de3fc4c54ff83696663c6e47b36e519cd"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/fibo/loans-general/9b8b54b03b8b754508531342f51d30b859fb4aaac839bdf8f72ca9fcd0df4333.json",
+      "payloadHash": "sha256:9b8b54b03b8b754508531342f51d30b859fb4aaac839bdf8f72ca9fcd0df4333"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/fibo/regulatory-context/99ee84c578cede948f31da629071086fcf7eec0ed4eb1ce621f61e7ece4f4af6.json",
+      "payloadHash": "sha256:99ee84c578cede948f31da629071086fcf7eec0ed4eb1ce621f61e7ece4f4af6"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/pizza-ontology/pizza/2b7812c6424839cbef2e968152591c06c116328c616abc5292ab2597773b7680.json",
+      "payloadHash": "sha256:2b7812c6424839cbef2e968152591c06c116328c616abc5292ab2597773b7680"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/schema-org/creative-work/9bf23b35df6ca0af4bbe16dafda9049cc5d50b845436181bac9329524fe0a6d1.json",
+      "payloadHash": "sha256:9bf23b35df6ca0af4bbe16dafda9049cc5d50b845436181bac9329524fe0a6d1"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/schema-org/event/789c2a7b427a9d42ca398145af75b96b95ef0ad03140f512ceb2ade6d73776a3.json",
+      "payloadHash": "sha256:789c2a7b427a9d42ca398145af75b96b95ef0ad03140f512ceb2ade6d73776a3"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/schema-org/local-business/08885d58f2c29fa3a9816e7db43af061c28d62545cdb818e49f2c0442358ca11.json",
+      "payloadHash": "sha256:08885d58f2c29fa3a9816e7db43af061c28d62545cdb818e49f2c0442358ca11"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/external/schema-org/medical-entity/e98dfd6c324fb05234d07de501c6faea00e93ad010d1e06013c488b87e6dd24f.json",
+      "payloadHash": "sha256:e98dfd6c324fb05234d07de501c6faea00e93ad010d1e06013c488b87e6dd24f"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee/35780874e8d3be5949e1a9913ed9ebb0d64e966c86aa5b83231295d928ca45c6.json",
+      "payloadHash": "sha256:35780874e8d3be5949e1a9913ed9ebb0d64e966c86aa5b83231295d928ca45c6"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee/6283e69f9e1333d2ce6e6d2d71c5506458c4740b310be45b62912e1be3178a5e.json",
+      "payloadHash": "sha256:6283e69f9e1333d2ce6e6d2d71c5506458c4740b310be45b62912e1be3178a5e"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee-step-1/25e43e2c74eff5414cbd7e5dc5d0de4ae56e43ad8f65a80a85066a5301d0c399.json",
+      "payloadHash": "sha256:25e43e2c74eff5414cbd7e5dc5d0de4ae56e43ad8f65a80a85066a5301d0c399"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee-step-1/97c97745e89eaf2402b041209f7cb460be5824e4d52e8a4efb3581ebe2c2c2f7.json",
+      "payloadHash": "sha256:97c97745e89eaf2402b041209f7cb460be5824e4d52e8a4efb3581ebe2c2c2f7"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee-step-2/4043a92871add30d41074de006147a2a3876a3880f7be45b2e9f650d42417ec2.json",
+      "payloadHash": "sha256:4043a92871add30d41074de006147a2a3876a3880f7be45b2e9f650d42417ec2"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee-step-2/7c82e4e34238415f1d6f6a8d12d6278228c584b428aa5abc96cb2d0f50a54bf3.json",
+      "payloadHash": "sha256:7c82e4e34238415f1d6f6a8d12d6278228c584b428aa5abc96cb2d0f50a54bf3"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee-step-3/23d74aa0a4f433a90906154a6fbfd542f658fe1bc5d8bcf1e1091a83e8713ade.json",
+      "payloadHash": "sha256:23d74aa0a4f433a90906154a6fbfd542f658fe1bc5d8bcf1e1091a83e8713ade"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/cosmic-coffee-step-3/978bcfa3450f83a84f7d6802ec167e3eb884ef23411abae19d0c2e5b233c48e6.json",
+      "payloadHash": "sha256:978bcfa3450f83a84f7d6802ec167e3eb884ef23411abae19d0c2e5b233c48e6"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce/0b6e60e8bb32eb0a64b87114e579fb66b5766b0a817e3e3d65c0c70279303592.json",
+      "payloadHash": "sha256:0b6e60e8bb32eb0a64b87114e579fb66b5766b0a817e3e3d65c0c70279303592"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce/7aec45514c429e447e948596e1708ce8c30be941a5f3102fac17af9c5ff50ada.json",
+      "payloadHash": "sha256:7aec45514c429e447e948596e1708ce8c30be941a5f3102fac17af9c5ff50ada"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce-step-1/3df77019808809f55790c88813ba399f5c6e5332b7f705bad8e1126be1bc77b2.json",
+      "payloadHash": "sha256:3df77019808809f55790c88813ba399f5c6e5332b7f705bad8e1126be1bc77b2"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce-step-1/808e26ba853a7cd62ebbaa938d49196d7f272ef54bf2fc110beff8ff4cb64b3f.json",
+      "payloadHash": "sha256:808e26ba853a7cd62ebbaa938d49196d7f272ef54bf2fc110beff8ff4cb64b3f"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce-step-2/9b4be79c9742732750c01d299240337a6f56b939e21cc8618e4b9207333b278e.json",
+      "payloadHash": "sha256:9b4be79c9742732750c01d299240337a6f56b939e21cc8618e4b9207333b278e"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce-step-2/fc9f65634e8894478bbe92e810b262d3438fd237493f6ef4663964d88e579b86.json",
+      "payloadHash": "sha256:fc9f65634e8894478bbe92e810b262d3438fd237493f6ef4663964d88e579b86"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce-step-3/a43b273ea34e6b47cad44ce6cf1571b1d100622c6c0fdbb3eb59475ac2005415.json",
+      "payloadHash": "sha256:a43b273ea34e6b47cad44ce6cf1571b1d100622c6c0fdbb3eb59475ac2005415"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/ecommerce-step-3/a55db019ec55dfa623e6b15110b4f1c4107a7e3419fe28ffef9e25163d8b2beb.json",
+      "payloadHash": "sha256:a55db019ec55dfa623e6b15110b4f1c4107a7e3419fe28ffef9e25163d8b2beb"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-1/04cc4371e4b9aa3f81ca64737b39d77cddfdf2a42de59f41c2b0753751f795c8.json",
+      "payloadHash": "sha256:04cc4371e4b9aa3f81ca64737b39d77cddfdf2a42de59f41c2b0753751f795c8"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-1/64da9110eca0649a5f2c86a526d5495114f86ebcb1451c8410a51c3318e9c674.json",
+      "payloadHash": "sha256:64da9110eca0649a5f2c86a526d5495114f86ebcb1451c8410a51c3318e9c674"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-2/c83a9ddd463feba8f2607ac88a6bdcdc89a34961196c6494e6994db5cf0bba74.json",
+      "payloadHash": "sha256:c83a9ddd463feba8f2607ac88a6bdcdc89a34961196c6494e6994db5cf0bba74"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-2/e623636842d0bc74a6ae1ec6b50bb9becfdf54afec796a6158ba2b7ef301a3ad.json",
+      "payloadHash": "sha256:e623636842d0bc74a6ae1ec6b50bb9becfdf54afec796a6158ba2b7ef301a3ad"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-3/0854e75e5e88115571070d462555d741bfc9329c01a6f36ba48e8c06d9f4d583.json",
+      "payloadHash": "sha256:0854e75e5e88115571070d462555d741bfc9329c01a6f36ba48e8c06d9f4d583"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-3/8806f1b787f35f5554869ad6e01327ada277f39c76660c12744065fc0485a54a.json",
+      "payloadHash": "sha256:8806f1b787f35f5554869ad6e01327ada277f39c76660c12744065fc0485a54a"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-4/40231d50c75e99e5cd90188e68e848410e6bfb78d7d9d3b566df10e9393b2e7e.json",
+      "payloadHash": "sha256:40231d50c75e99e5cd90188e68e848410e6bfb78d7d9d3b566df10e9393b2e7e"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-loans-step-4/baf53ba81a6d33ec62331e316321fdd883735c380036ea3c3499ccbccb41f99e.json",
+      "payloadHash": "sha256:baf53ba81a6d33ec62331e316321fdd883735c380036ea3c3499ccbccb41f99e"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-1/a29fc868e0744ce5d7e056331c280d15285e62c78b12c93f18d66548b123eccf.json",
+      "payloadHash": "sha256:a29fc868e0744ce5d7e056331c280d15285e62c78b12c93f18d66548b123eccf"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-1/cd77647e3dd2e0515af5c7ffc8ecfbdd751cfd589922e76e5a7044b9a4d69823.json",
+      "payloadHash": "sha256:cd77647e3dd2e0515af5c7ffc8ecfbdd751cfd589922e76e5a7044b9a4d69823"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-2/230a0282d479b3404cd0d896c6b5ad4b3d6b026f889580c755d21ad6b78e61fc.json",
+      "payloadHash": "sha256:230a0282d479b3404cd0d896c6b5ad4b3d6b026f889580c755d21ad6b78e61fc"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-2/ed371fcb540a7c987687fdd7cad2a3d25ae3694ccac6fb764472168824de5634.json",
+      "payloadHash": "sha256:ed371fcb540a7c987687fdd7cad2a3d25ae3694ccac6fb764472168824de5634"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-3/555784ff1a82668cae85065285301a9d279e6617759b148441923c91489ba78a.json",
+      "payloadHash": "sha256:555784ff1a82668cae85065285301a9d279e6617759b148441923c91489ba78a"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-3/b808da71845d9443d8dabb5e7bb3e86a52f086ee03d26831b32d98c07f2c2eff.json",
+      "payloadHash": "sha256:b808da71845d9443d8dabb5e7bb3e86a52f086ee03d26831b32d98c07f2c2eff"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-4/9897a788d67d4dfb6e67f2d6eafc71185c39801a356f083ff3c2d93822301bd9.json",
+      "payloadHash": "sha256:9897a788d67d4dfb6e67f2d6eafc71185c39801a356f083ff3c2d93822301bd9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/fibo-risk-step-4/ee379c4d06ad995dad96b2bccb93fbdd79762140a96f1758dd22f0c9c714e07e.json",
+      "payloadHash": "sha256:ee379c4d06ad995dad96b2bccb93fbdd79762140a96f1758dd22f0c9c714e07e"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance/2ed25623a764697ec0b2e0f5ea3a31d245c699226659317b1ec09c31317e49a8.json",
+      "payloadHash": "sha256:2ed25623a764697ec0b2e0f5ea3a31d245c699226659317b1ec09c31317e49a8"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance/91cb6a50307ec751897cdac355b1150fcd98cdeb978a2b50eddac26833c54451.json",
+      "payloadHash": "sha256:91cb6a50307ec751897cdac355b1150fcd98cdeb978a2b50eddac26833c54451"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance-step-1/2efd48545484b334b98f381fa2b9bac1fa3f72cf4dac578cea8d7359fcd1e4f5.json",
+      "payloadHash": "sha256:2efd48545484b334b98f381fa2b9bac1fa3f72cf4dac578cea8d7359fcd1e4f5"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance-step-1/3443d7191aafc510e237d114815e5b4e1f6540b6001b2a7bf0fc682817493bb9.json",
+      "payloadHash": "sha256:3443d7191aafc510e237d114815e5b4e1f6540b6001b2a7bf0fc682817493bb9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance-step-2/0f2d32c86e577573dbd4101d90d625878c10d942a672904c0b40e6f4bb345b72.json",
+      "payloadHash": "sha256:0f2d32c86e577573dbd4101d90d625878c10d942a672904c0b40e6f4bb345b72"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance-step-2/a11341c874043166022cd58b5590f2bc14912ab3b010c5aec19b65085e5e9794.json",
+      "payloadHash": "sha256:a11341c874043166022cd58b5590f2bc14912ab3b010c5aec19b65085e5e9794"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance-step-3/65f28557d278695c63c8bcaedd58e82c679a3245317e30d8326e22aaf007962a.json",
+      "payloadHash": "sha256:65f28557d278695c63c8bcaedd58e82c679a3245317e30d8326e22aaf007962a"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/finance-step-3/6a481309a0d9ac1c39d230683204ed3f0aacf0d55fcc6807003c75383ebca994.json",
+      "payloadHash": "sha256:6a481309a0d9ac1c39d230683204ed3f0aacf0d55fcc6807003c75383ebca994"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare/e85d446b20bfc7f86f9e3cc3b1f61b3b0086356c5352bf974c986b9e89646630.json",
+      "payloadHash": "sha256:e85d446b20bfc7f86f9e3cc3b1f61b3b0086356c5352bf974c986b9e89646630"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare/f751357c0be9bac3debc7362288f0e5c28ccd1fef0d28e146487405c833cfe61.json",
+      "payloadHash": "sha256:f751357c0be9bac3debc7362288f0e5c28ccd1fef0d28e146487405c833cfe61"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare-step-1/29b288d42f559ce082a42d9d91ee9a0edd37149c29b65800c0585c20809c005a.json",
+      "payloadHash": "sha256:29b288d42f559ce082a42d9d91ee9a0edd37149c29b65800c0585c20809c005a"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare-step-1/a36a3d22e634ceb628c870a9f10effd44fdf86eae56931992bccff22a104f731.json",
+      "payloadHash": "sha256:a36a3d22e634ceb628c870a9f10effd44fdf86eae56931992bccff22a104f731"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare-step-2/30bacf86ac63866c3056f9fd2853e401962192444816a037abff1d85b1e185b9.json",
+      "payloadHash": "sha256:30bacf86ac63866c3056f9fd2853e401962192444816a037abff1d85b1e185b9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare-step-2/aae8bfd58b63581c47719fb215f770abc8d9eccff820c86cd6487906defe1b04.json",
+      "payloadHash": "sha256:aae8bfd58b63581c47719fb215f770abc8d9eccff820c86cd6487906defe1b04"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare-step-3/45e6af608d7cca299fde35b81b3c937b4621b0f19103f84dbf58f2abf13fa3b3.json",
+      "payloadHash": "sha256:45e6af608d7cca299fde35b81b3c937b4621b0f19103f84dbf58f2abf13fa3b3"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/healthcare-step-3/674d856748538c1f263e8afd7813d88f667cceac0f070c00a49e68f3a3c26343.json",
+      "payloadHash": "sha256:674d856748538c1f263e8afd7813d88f667cceac0f070c00a49e68f3a3c26343"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-1/1fa3331415e85e375304d82d885fba3a6a292955a5fe529071964e51490d6fc5.json",
+      "payloadHash": "sha256:1fa3331415e85e375304d82d885fba3a6a292955a5fe529071964e51490d6fc5"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-1/6a608020cd73fac81b8727047468048ffb35e43b81add70c25c36eb598324144.json",
+      "payloadHash": "sha256:6a608020cd73fac81b8727047468048ffb35e43b81add70c25c36eb598324144"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-2/4df73b6d0959157697610286e49828dc26291ca513a076403745906b9ccd8146.json",
+      "payloadHash": "sha256:4df73b6d0959157697610286e49828dc26291ca513a076403745906b9ccd8146"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-2/8c3c515c7bd742fd5adb599f57142aa14063ee7d045daab0a45b2b8eae82be1d.json",
+      "payloadHash": "sha256:8c3c515c7bd742fd5adb599f57142aa14063ee7d045daab0a45b2b8eae82be1d"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-3/cf75c63afc74295ba27db8839b8121d043a0ddabc1ea35961abb09f72c29fef0.json",
+      "payloadHash": "sha256:cf75c63afc74295ba27db8839b8121d043a0ddabc1ea35961abb09f72c29fef0"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-3/ed5e12382fe99ed7a9ee6cf9aebb366c6a9fb09beedec77b5fc7352f0e60d218.json",
+      "payloadHash": "sha256:ed5e12382fe99ed7a9ee6cf9aebb366c6a9fb09beedec77b5fc7352f0e60d218"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-4/882db442c66ea0d6d9e13a27436ba25467ed72dd7a37b8c6f0e157157e3f75eb.json",
+      "payloadHash": "sha256:882db442c66ea0d6d9e13a27436ba25467ed72dd7a37b8c6f0e157157e3f75eb"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-4/b9a2fbea8ad95c66ff07c471f670a80c50c21c736a996629d11c9100ae335619.json",
+      "payloadHash": "sha256:b9a2fbea8ad95c66ff07c471f670a80c50c21c736a996629d11c9100ae335619"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-5/6a16fd71da85e5a514854cab23e9e5f0ea025a3fc852b81328f9232964b593c6.json",
+      "payloadHash": "sha256:6a16fd71da85e5a514854cab23e9e5f0ea025a3fc852b81328f9232964b593c6"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-5/cb7cea3930fd856b8be2681f35201e61ccc0bf68d4370e828f17bfe80666621f.json",
+      "payloadHash": "sha256:cb7cea3930fd856b8be2681f35201e61ccc0bf68d4370e828f17bfe80666621f"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-6/163dd0bf0b2f0d6c9594f6b6b2be5f0689cb1278e5f0100cc5a30f5ad9820fec.json",
+      "payloadHash": "sha256:163dd0bf0b2f0d6c9594f6b6b2be5f0689cb1278e5f0100cc5a30f5ad9820fec"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/iq-lab-retail-step-6/78c31c4b6a152b7f5e3fa18560b29a10a484203d91f0f7f5919875d3e7ac6cbf.json",
+      "payloadHash": "sha256:78c31c4b6a152b7f5e3fa18560b29a10a484203d91f0f7f5919875d3e7ac6cbf"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing/54c5065f2baa61b94323db23637aa40e5c5bbbffba4ff513805cf2dde8832393.json",
+      "payloadHash": "sha256:54c5065f2baa61b94323db23637aa40e5c5bbbffba4ff513805cf2dde8832393"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing/dcc5fc9576b23bd75a38506d60f054ebe45046c238986ea357b12848943030b9.json",
+      "payloadHash": "sha256:dcc5fc9576b23bd75a38506d60f054ebe45046c238986ea357b12848943030b9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing-step-1/3dad071fef9a0908ab810938a1bdf38a86247cb9acface03636d19f454db9948.json",
+      "payloadHash": "sha256:3dad071fef9a0908ab810938a1bdf38a86247cb9acface03636d19f454db9948"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing-step-1/93c2d234afd01d82dc1ef37665db8b876699a3a511102bc1bce86c5daf2c3e70.json",
+      "payloadHash": "sha256:93c2d234afd01d82dc1ef37665db8b876699a3a511102bc1bce86c5daf2c3e70"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing-step-2/3344995a587d9ee488dd28c820b6625b99bc83213366e77f3287179109a265cf.json",
+      "payloadHash": "sha256:3344995a587d9ee488dd28c820b6625b99bc83213366e77f3287179109a265cf"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing-step-2/3a743ffb6ec98f3426b4421c7ae9dc9dad290378ef56c1ac6e389287ea1cec02.json",
+      "payloadHash": "sha256:3a743ffb6ec98f3426b4421c7ae9dc9dad290378ef56c1ac6e389287ea1cec02"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing-step-3/a7e04fd91b77023bdc7be2018ad6f8e4007abaeb61d55ce311562c81b42b3358.json",
+      "payloadHash": "sha256:a7e04fd91b77023bdc7be2018ad6f8e4007abaeb61d55ce311562c81b42b3358"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/manufacturing-step-3/f9025b662a6ace3aa47809389db6a318b6e0f8d8ff49b9de632554f6fa61a7ad.json",
+      "payloadHash": "sha256:f9025b662a6ace3aa47809389db6a318b6e0f8d8ff49b9de632554f6fa61a7ad"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university/9015ad7cbb218db8d14716de186550d51e28e3551f2dc9ba63544203d520f398.json",
+      "payloadHash": "sha256:9015ad7cbb218db8d14716de186550d51e28e3551f2dc9ba63544203d520f398"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university/981fe1712603f9a7ca0e294e263453fd16e99a68cdb891e64b872fc020faff81.json",
+      "payloadHash": "sha256:981fe1712603f9a7ca0e294e263453fd16e99a68cdb891e64b872fc020faff81"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university-step-1/39d55feffe0df925acb5ff5f48a3a920bc723933db200b2b7f44bee69866afbd.json",
+      "payloadHash": "sha256:39d55feffe0df925acb5ff5f48a3a920bc723933db200b2b7f44bee69866afbd"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university-step-1/ff8c15575523162a4984ae782907fc9663ba233f9fe55fb7f582617b7aa2b7a5.json",
+      "payloadHash": "sha256:ff8c15575523162a4984ae782907fc9663ba233f9fe55fb7f582617b7aa2b7a5"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university-step-2/5840bd4e0efd65951e497b07e821ccada3fa7f15eea248630c85adc9f34b3fc9.json",
+      "payloadHash": "sha256:5840bd4e0efd65951e497b07e821ccada3fa7f15eea248630c85adc9f34b3fc9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university-step-2/7c2232b3c1ea09abffbd5f8e686b707598a2d84a764e5e42773e20ce000bcc2a.json",
+      "payloadHash": "sha256:7c2232b3c1ea09abffbd5f8e686b707598a2d84a764e5e42773e20ce000bcc2a"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university-step-3/363e76b09c1189bb5bdfb0e31b6dc2fa4de8ea6335454c9a8b45ef41083fd7c0.json",
+      "payloadHash": "sha256:363e76b09c1189bb5bdfb0e31b6dc2fa4de8ea6335454c9a8b45ef41083fd7c0"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/university-step-3/735f038c6402a8795047c70bf11e326a3a1fa0cfc757b91e3f411be85ffdc790.json",
+      "payloadHash": "sha256:735f038c6402a8795047c70bf11e326a3a1fa0cfc757b91e3f411be85ffdc790"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf/0a9e7bbef65c8f4955b1980ce426ba83c7463f08383ed52b125e3b6cd202204c.json",
+      "payloadHash": "sha256:0a9e7bbef65c8f4955b1980ce426ba83c7463f08383ed52b125e3b6cd202204c"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf/72e65675b552018ef807b243f1277d4ba8e6e05dffa662b63ca34ea1929d3429.json",
+      "payloadHash": "sha256:72e65675b552018ef807b243f1277d4ba8e6e05dffa662b63ca34ea1929d3429"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-1/8fb836c2613c5831543b618ed3589ca204cc0839dc6abaabec1be545957e158d.json",
+      "payloadHash": "sha256:8fb836c2613c5831543b618ed3589ca204cc0839dc6abaabec1be545957e158d"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-1/d296a4ce9efd150e4a31845bf028c39fd66f5c0cbdaba09772c209d5213e9644.json",
+      "payloadHash": "sha256:d296a4ce9efd150e4a31845bf028c39fd66f5c0cbdaba09772c209d5213e9644"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-2/0ea3804fe5865ad26f5bde5db7dc71c3826b4baeedd52a29f4c8f0c82406cbf4.json",
+      "payloadHash": "sha256:0ea3804fe5865ad26f5bde5db7dc71c3826b4baeedd52a29f4c8f0c82406cbf4"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-2/565f94107aacc42a2f354ad1030804e469e8f5b25047802c477943655e06b0e9.json",
+      "payloadHash": "sha256:565f94107aacc42a2f354ad1030804e469e8f5b25047802c477943655e06b0e9"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-3/01a0dec78c0ace5c2625b604fb93de875159a54376959f094d2261324feb5942.json",
+      "payloadHash": "sha256:01a0dec78c0ace5c2625b604fb93de875159a54376959f094d2261324feb5942"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-3/e3de696a8eb9afb04768b4a5a5328e242eab250a3d9f447a2e7093fc36422fa0.json",
+      "payloadHash": "sha256:e3de696a8eb9afb04768b4a5a5328e242eab250a3d9f447a2e7093fc36422fa0"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-4/484fe78b516469e147de99953a5086a8396f55c500add8c5694e6933a6755ecc.json",
+      "payloadHash": "sha256:484fe78b516469e147de99953a5086a8396f55c500add8c5694e6933a6755ecc"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-4/baaff405520a6da7c604fea1a8c33a1437ab128237e724e6aa211cff4c2b9961.json",
+      "payloadHash": "sha256:baaff405520a6da7c604fea1a8c33a1437ab128237e724e6aa211cff4c2b9961"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-5/584bc95c9616c3974ad790c6e4bdea059fe3eb6cc30771c914d98f0bcc16d011.json",
+      "payloadHash": "sha256:584bc95c9616c3974ad790c6e4bdea059fe3eb6cc30771c914d98f0bcc16d011"
+    },
+    {
+      "payloadUrl": "catalogue-payloads/official/zava-grove-to-shelf-step-5/a3b3e3f5abf46f5cdadc3fb6292f7aff7cc9cef6c5e597491005fa99accf8980.json",
+      "payloadHash": "sha256:a3b3e3f5abf46f5cdadc3fb6292f7aff7cc9cef6c5e597491005fa99accf8980"
+    }
+  ],
+  "sources": [
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/1010yab/university-class-search/01b41666cc5e2f70f0d27071093113df94432fd7c50d62e121f97c58ab8ddfdb.rdf",
+      "sourceArtifactHash": "sha256:01b41666cc5e2f70f0d27071093113df94432fd7c50d62e121f97c58ab8ddfdb"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/4iurchenko/preventive-healthcare/937db3a08ac2ab5426f383251dc9795b45e1e261c5ff122663332d89ff6b6fe2.rdf",
+      "sourceArtifactHash": "sha256:937db3a08ac2ab5426f383251dc9795b45e1e261c5ff122663332d89ff6b6fe2"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/a-villarruel/cruise-company-ontology/2e58614eed6c79fcf35e5cf79e3b7a0e5d719007a63421ebe940506ca5bb5851.rdf",
+      "sourceArtifactHash": "sha256:2e58614eed6c79fcf35e5cf79e3b7a0e5d719007a63421ebe940506ca5bb5851"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/a-villarruel/incident-management-ontology/218b0a1cf667c1c94130fe62f90a5003d434a5553e7ef0d0e42595fd58f25f7f.rdf",
+      "sourceArtifactHash": "sha256:218b0a1cf667c1c94130fe62f90a5003d434a5553e7ef0d0e42595fd58f25f7f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/aala-ali/telecom-customer-insights/8ee0b09b0e74905f0e58a35947b018738d960f46b7c1158a02d634e0078ab4e9.rdf",
+      "sourceArtifactHash": "sha256:8ee0b09b0e74905f0e58a35947b018738d960f46b7c1158a02d634e0078ab4e9"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/antikas/openim/aa856bb06348b1c48dd0fc5129046283c4d88db0f36516c544fc320ad7076ea7.rdf",
+      "sourceArtifactHash": "sha256:aa856bb06348b1c48dd0fc5129046283c4d88db0f36516c544fc320ad7076ea7"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/bbreugel/emergency-management-agency/a7b2f3ca6d9f953ce764a73696fac2d408edda8a9b161c2cb45fdd231843859f.rdf",
+      "sourceArtifactHash": "sha256:a7b2f3ca6d9f953ce764a73696fac2d408edda8a9b161c2cb45fdd231843859f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/daocoding/elements-of-software/13fa76e51fb7faeb6177d57f57b055289e86c6037fa99d68ceaf9d305b3e726e.rdf",
+      "sourceArtifactHash": "sha256:13fa76e51fb7faeb6177d57f57b055289e86c6037fa99d68ceaf9d305b3e726e"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/demonjd2026-afk/devops-value-stream-release-intelligence/3769d1c30e3a85d625a428314ffc6806e02059d23a7488e65615c4d4a6a2d70b.rdf",
+      "sourceArtifactHash": "sha256:3769d1c30e3a85d625a428314ffc6806e02059d23a7488e65615c4d4a6a2d70b"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/demonjd2026-afk/incident-management/d166a49204bd7800509542f548479ffbc8e82f402af90ae3a062ecc2d40b72d3.rdf",
+      "sourceArtifactHash": "sha256:d166a49204bd7800509542f548479ffbc8e82f402af90ae3a062ecc2d40b72d3"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/intech01/sales-analytics-that-speaks-business/7ade3e97f9893d7966c160fe3f4f26665e926a535aa1520319e7c49016a0a12d.rdf",
+      "sourceArtifactHash": "sha256:7ade3e97f9893d7966c160fe3f4f26665e926a535aa1520319e7c49016a0a12d"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/marshall3366/service-order-management/79e3344142bb5e50c48eaf51611958f6d4d006415d7a3653a5399f7ec42cfcdf.rdf",
+      "sourceArtifactHash": "sha256:79e3344142bb5e50c48eaf51611958f6d4d006415d7a3653a5399f7ec42cfcdf"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/mudassar-data-ai/learning-ontology/f8bfc46b23b96165d451db271c7243dcd4ef62834dc957f59c3e0928aa8fc1a0.rdf",
+      "sourceArtifactHash": "sha256:f8bfc46b23b96165d451db271c7243dcd4ef62834dc957f59c3e0928aa8fc1a0"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/ravi-chandu/hr-system/7f8876037f931d1b0a81875f9cd7f3cfee9104ccf970de8dc9e1618cf8e0df84.rdf",
+      "sourceArtifactHash": "sha256:7f8876037f931d1b0a81875f9cd7f3cfee9104ccf970de8dc9e1618cf8e0df84"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/ravi-chandu/supply-chain-disruption-risk-propagation/c1571a7c7e7bc2bc0c397dfeeea436fb91ddfd232078b49238716dc5ec346fb4.rdf",
+      "sourceArtifactHash": "sha256:c1571a7c7e7bc2bc0c397dfeeea436fb91ddfd232078b49238716dc5ec346fb4"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/sandervandevelde/productionline-ontology-sample/688e6b35300401417553a0f6476dcba5f5dd3a29a7b408ec1a3a6faaab7c64d0.rdf",
+      "sourceArtifactHash": "sha256:688e6b35300401417553a0f6476dcba5f5dd3a29a7b408ec1a3a6faaab7c64d0"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/taylorsamy/discord-server-ontology/d71bf9eef2f9da8e12d576884180e73daa9349eb4dfb1889a851b4ea57b80121.rdf",
+      "sourceArtifactHash": "sha256:d71bf9eef2f9da8e12d576884180e73daa9349eb4dfb1889a851b4ea57b80121"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/vaibhavius/baby-routine-tracking/ba2c3b0ad6eb1c3579881307d04a8bcf49a7732a5e0b1a185e5b50c247b1a956.rdf",
+      "sourceArtifactHash": "sha256:ba2c3b0ad6eb1c3579881307d04a8bcf49a7732a5e0b1a185e5b50c247b1a956"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/vaibhavius/fabric-data-quality/abf21c991cbd92a454c336691bc4f96e5849e1c529b0f3690fdfd51c25295f37.rdf",
+      "sourceArtifactHash": "sha256:abf21c991cbd92a454c336691bc4f96e5849e1c529b0f3690fdfd51c25295f37"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/community/zamsam6931/clinical-supply-chain-management/a494fc35ebce0ed858adddb45936b9806363dbab4a7aecf226f7fd3249e97d47.rdf",
+      "sourceArtifactHash": "sha256:a494fc35ebce0ed858adddb45936b9806363dbab4a7aecf226f7fd3249e97d47"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/brick-schema/brick/655939e9b655b7bb890e47c2015d046f41cb2dc6f314895490ebe6c14c5fc423.rdf",
+      "sourceArtifactHash": "sha256:655939e9b655b7bb890e47c2015d046f41cb2dc6f314895490ebe6c14c5fc423"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/fibo/geographic-hierarchy/4a51025d3127de3214fb33378a98ea21b39b412374954f6a414d332657a653ea.rdf",
+      "sourceArtifactHash": "sha256:4a51025d3127de3214fb33378a98ea21b39b412374954f6a414d332657a653ea"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/fibo/industry-classification/df49385be3d29b962f27fc5332b46fd9a19156d4f75889545b620c128fb6f2a7.rdf",
+      "sourceArtifactHash": "sha256:df49385be3d29b962f27fc5332b46fd9a19156d4f75889545b620c128fb6f2a7"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/fibo/loan-classification/e1f037a23b419c31b331b609f22989663799db9e35ce7938305dca9ded35248f.rdf",
+      "sourceArtifactHash": "sha256:e1f037a23b419c31b331b609f22989663799db9e35ce7938305dca9ded35248f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/fibo/loans-general/9feeb97d76db6855db0c46d56a582542fd7f54b162797cda99ef797817a9f96c.rdf",
+      "sourceArtifactHash": "sha256:9feeb97d76db6855db0c46d56a582542fd7f54b162797cda99ef797817a9f96c"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/fibo/regulatory-context/dcb6f66b3646f9068c9a71afc6dc527b66af36665b900a7457545c08dff9fa66.rdf",
+      "sourceArtifactHash": "sha256:dcb6f66b3646f9068c9a71afc6dc527b66af36665b900a7457545c08dff9fa66"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/pizza-ontology/pizza/0b0c5d3e90ec35b9a7d5d3ab81bbeba4ce8341fca3338449be9f8ca96d0a2355.rdf",
+      "sourceArtifactHash": "sha256:0b0c5d3e90ec35b9a7d5d3ab81bbeba4ce8341fca3338449be9f8ca96d0a2355"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/schema-org/creative-work/273f4e64ca279f6fa4b9929148074c4d4c3ea130f983a3b2e6c5fe17b5943a38.rdf",
+      "sourceArtifactHash": "sha256:273f4e64ca279f6fa4b9929148074c4d4c3ea130f983a3b2e6c5fe17b5943a38"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/schema-org/event/46954279f9efdb478447885062b41080bf9182285165f994e50f35b452b80e23.rdf",
+      "sourceArtifactHash": "sha256:46954279f9efdb478447885062b41080bf9182285165f994e50f35b452b80e23"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/schema-org/local-business/19c711a846414279e08964562dee804b72d17a4cf4dde1a31acaf2e1d2553af7.rdf",
+      "sourceArtifactHash": "sha256:19c711a846414279e08964562dee804b72d17a4cf4dde1a31acaf2e1d2553af7"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/external/schema-org/medical-entity/ece1d4db3578400d25df491869772b3a3d3e6ac417e8fa6163a4432ae2a96732.rdf",
+      "sourceArtifactHash": "sha256:ece1d4db3578400d25df491869772b3a3d3e6ac417e8fa6163a4432ae2a96732"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee/19d95caa7171970dae3d467648a3dd23ae1a6a20409dd0a8f39e2f95a518de60.rdf",
+      "sourceArtifactHash": "sha256:19d95caa7171970dae3d467648a3dd23ae1a6a20409dd0a8f39e2f95a518de60"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee/9fb9bc0afd80f23a02273a5962194ea82694065c7224c93670de034d216ed35f.rdf",
+      "sourceArtifactHash": "sha256:9fb9bc0afd80f23a02273a5962194ea82694065c7224c93670de034d216ed35f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee-step-1/92d580814f85c18f5ba35a02fdbc8f94a30edfb1ec0ca8d917c29fb71fe9c282.rdf",
+      "sourceArtifactHash": "sha256:92d580814f85c18f5ba35a02fdbc8f94a30edfb1ec0ca8d917c29fb71fe9c282"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee-step-1/978fa3092cf611bb23cd35a5e9673c2bd47d512cd7ee1b68585fbf3a723e17fb.rdf",
+      "sourceArtifactHash": "sha256:978fa3092cf611bb23cd35a5e9673c2bd47d512cd7ee1b68585fbf3a723e17fb"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee-step-2/882c0bc24f06b245cf0b9552dd6d6949bfbe1f243d375a0bf04a0deea0882365.rdf",
+      "sourceArtifactHash": "sha256:882c0bc24f06b245cf0b9552dd6d6949bfbe1f243d375a0bf04a0deea0882365"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee-step-2/e8e3325b2c3a45303979f59a0ec4b07d19926048a91a43fb2cc529fd852c8093.rdf",
+      "sourceArtifactHash": "sha256:e8e3325b2c3a45303979f59a0ec4b07d19926048a91a43fb2cc529fd852c8093"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee-step-3/1eef8e510514287eb4e5e14f4e947e5eac71489f47c5c7ac0073820e20a7cfdc.rdf",
+      "sourceArtifactHash": "sha256:1eef8e510514287eb4e5e14f4e947e5eac71489f47c5c7ac0073820e20a7cfdc"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/cosmic-coffee-step-3/3926e6899c63120d6391e8e2c030231cb5d134c7b539ebecd0318249aa9e9e34.rdf",
+      "sourceArtifactHash": "sha256:3926e6899c63120d6391e8e2c030231cb5d134c7b539ebecd0318249aa9e9e34"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce/8f7cf81d1796260ef774f77652b0054aac991386a91a674b7e649f5c7e64893b.rdf",
+      "sourceArtifactHash": "sha256:8f7cf81d1796260ef774f77652b0054aac991386a91a674b7e649f5c7e64893b"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce/e7e51af439897aa8716ec2a64ef51c11fd451f3bd966396973f1b57f849cab02.rdf",
+      "sourceArtifactHash": "sha256:e7e51af439897aa8716ec2a64ef51c11fd451f3bd966396973f1b57f849cab02"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce-step-1/3d03c0907864e990c40d75fcc595c2542880538ada20cb786ca4b5849caa2971.rdf",
+      "sourceArtifactHash": "sha256:3d03c0907864e990c40d75fcc595c2542880538ada20cb786ca4b5849caa2971"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce-step-1/e6dd74793db706d01e4f316f12a4e0247b11149fcf695f6d3c03648a7495f2e8.rdf",
+      "sourceArtifactHash": "sha256:e6dd74793db706d01e4f316f12a4e0247b11149fcf695f6d3c03648a7495f2e8"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce-step-2/3a6a0732baf8625ffe228c88bf991f6b1ead8eb3ee74e7b3bb209a0dc2691f8a.rdf",
+      "sourceArtifactHash": "sha256:3a6a0732baf8625ffe228c88bf991f6b1ead8eb3ee74e7b3bb209a0dc2691f8a"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce-step-2/3d15ffda7031789cafb00103b4591ec127a1ca455754363306b0b8e44efdb199.rdf",
+      "sourceArtifactHash": "sha256:3d15ffda7031789cafb00103b4591ec127a1ca455754363306b0b8e44efdb199"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce-step-3/3de31ec735728c605df1eb263a61047e81c1a214262e4017bf5e3ecb5f526025.rdf",
+      "sourceArtifactHash": "sha256:3de31ec735728c605df1eb263a61047e81c1a214262e4017bf5e3ecb5f526025"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/ecommerce-step-3/e26ba4a5c671348c2e01d11746625c1eefa1424def0d7293f366ceb4d2cee568.rdf",
+      "sourceArtifactHash": "sha256:e26ba4a5c671348c2e01d11746625c1eefa1424def0d7293f366ceb4d2cee568"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-1/95053e24201bed698c650c5697b3788e6984e22f92fe04c159c990c5100413b2.rdf",
+      "sourceArtifactHash": "sha256:95053e24201bed698c650c5697b3788e6984e22f92fe04c159c990c5100413b2"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-1/f492557a1c6148b3be1011886144957f7ddf15341d563beb488e12d5e40939a8.rdf",
+      "sourceArtifactHash": "sha256:f492557a1c6148b3be1011886144957f7ddf15341d563beb488e12d5e40939a8"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-2/6362e5ff1f4872392654afe4aa3e966902e1255e4aa66678e422bc941b597f04.rdf",
+      "sourceArtifactHash": "sha256:6362e5ff1f4872392654afe4aa3e966902e1255e4aa66678e422bc941b597f04"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-2/950c31081b3a9cfce0adbc0a8fe2aa9a7803095902311f3377906ac5f79260b5.rdf",
+      "sourceArtifactHash": "sha256:950c31081b3a9cfce0adbc0a8fe2aa9a7803095902311f3377906ac5f79260b5"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-3/2fee6770e4c86c22136dbc834d4736d4340ed9e39317ba0946679de294df989b.rdf",
+      "sourceArtifactHash": "sha256:2fee6770e4c86c22136dbc834d4736d4340ed9e39317ba0946679de294df989b"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-3/a4265b025f840000f6c42a843a03aac600d90b54d825e086c6fe850f9c79e3da.rdf",
+      "sourceArtifactHash": "sha256:a4265b025f840000f6c42a843a03aac600d90b54d825e086c6fe850f9c79e3da"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-4/37d08a78db4cec8d2fccf9adfa54318ee7e76110373e81d439f7c7328773e92f.rdf",
+      "sourceArtifactHash": "sha256:37d08a78db4cec8d2fccf9adfa54318ee7e76110373e81d439f7c7328773e92f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-loans-step-4/cc21bbf83d7df9f3b6fa9a5d35ccea8d72ecb2e1842e4202b344650f2e7d92dc.rdf",
+      "sourceArtifactHash": "sha256:cc21bbf83d7df9f3b6fa9a5d35ccea8d72ecb2e1842e4202b344650f2e7d92dc"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-1/73df4ddcfa96cd910516f7457bf48d8da7e5e4dfcf1d73b206b5d7143aacf307.rdf",
+      "sourceArtifactHash": "sha256:73df4ddcfa96cd910516f7457bf48d8da7e5e4dfcf1d73b206b5d7143aacf307"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-1/ecf54301b189ba7c937e804c9f83db339512be711fa409464ae5301c5b325f0e.rdf",
+      "sourceArtifactHash": "sha256:ecf54301b189ba7c937e804c9f83db339512be711fa409464ae5301c5b325f0e"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-2/29bb7f38da522abe9bdce906e5683fb2be50f303629f9490648a02bde88e1926.rdf",
+      "sourceArtifactHash": "sha256:29bb7f38da522abe9bdce906e5683fb2be50f303629f9490648a02bde88e1926"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-2/44054977c10afb129e8f5ca8d8abfb9d96af99f74feb7966d996f2e65d7b6141.rdf",
+      "sourceArtifactHash": "sha256:44054977c10afb129e8f5ca8d8abfb9d96af99f74feb7966d996f2e65d7b6141"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-3/38c1c2f684540a45f5e300dd0b5ae24b8274b6e87520928a41aec984db64bdfe.rdf",
+      "sourceArtifactHash": "sha256:38c1c2f684540a45f5e300dd0b5ae24b8274b6e87520928a41aec984db64bdfe"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-3/64cab6df1a72e00031c2a22ea2d58b6866e67df79796ff1dd862b82980f23623.rdf",
+      "sourceArtifactHash": "sha256:64cab6df1a72e00031c2a22ea2d58b6866e67df79796ff1dd862b82980f23623"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-4/822bbe9b0809f8dbfa3fb22b142de7e2661313b58606fb6dd83f9245318cbf58.rdf",
+      "sourceArtifactHash": "sha256:822bbe9b0809f8dbfa3fb22b142de7e2661313b58606fb6dd83f9245318cbf58"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/fibo-risk-step-4/c56e36aa4eac8812b5153fb33df8e5fbf37a32aab43aa98ec1434a978d265a2f.rdf",
+      "sourceArtifactHash": "sha256:c56e36aa4eac8812b5153fb33df8e5fbf37a32aab43aa98ec1434a978d265a2f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance/0afb2efa07168d456a69d8d98103357d2ec37b7a995492663298c260a45beb76.rdf",
+      "sourceArtifactHash": "sha256:0afb2efa07168d456a69d8d98103357d2ec37b7a995492663298c260a45beb76"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance/5c4899cfcde54277f8da4f47917abca01eb8be48852650ef8af001cc8074e787.rdf",
+      "sourceArtifactHash": "sha256:5c4899cfcde54277f8da4f47917abca01eb8be48852650ef8af001cc8074e787"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance-step-1/94ecfc416469f0f2d99b7f9e939091721da4487f4340f68c7a614ec6d57fc88a.rdf",
+      "sourceArtifactHash": "sha256:94ecfc416469f0f2d99b7f9e939091721da4487f4340f68c7a614ec6d57fc88a"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance-step-1/9897ea97cb037da75cc3fe6f06bfd25dd88fde99d1c968d57924195020c71334.rdf",
+      "sourceArtifactHash": "sha256:9897ea97cb037da75cc3fe6f06bfd25dd88fde99d1c968d57924195020c71334"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance-step-2/18b4ac61fe5a639c302ab8b9fe3a731df40f628b1dff7024b77a4c84db1c2955.rdf",
+      "sourceArtifactHash": "sha256:18b4ac61fe5a639c302ab8b9fe3a731df40f628b1dff7024b77a4c84db1c2955"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance-step-2/ad77cb61f592523ff723fbc68fa0bd75a4755011ba99fde20ac1a5a57bda2842.rdf",
+      "sourceArtifactHash": "sha256:ad77cb61f592523ff723fbc68fa0bd75a4755011ba99fde20ac1a5a57bda2842"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance-step-3/1f3552b9708435f8c1f0ac43cf9a10484cac897ad15b8c6fdb8b1fba409289df.rdf",
+      "sourceArtifactHash": "sha256:1f3552b9708435f8c1f0ac43cf9a10484cac897ad15b8c6fdb8b1fba409289df"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/finance-step-3/9e83b649e86882bcc268acd54f5a2f6f21ba0d87daf47dc1dfb180c74dc3d8fa.rdf",
+      "sourceArtifactHash": "sha256:9e83b649e86882bcc268acd54f5a2f6f21ba0d87daf47dc1dfb180c74dc3d8fa"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare/49eb424773f94a92d1e4406798cc58a4397d671b9bf8fe6d15f0aba4c0ba5b0d.rdf",
+      "sourceArtifactHash": "sha256:49eb424773f94a92d1e4406798cc58a4397d671b9bf8fe6d15f0aba4c0ba5b0d"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare/af8b7dfac1a8450104fb367ff9095f185f0a18b56842acc9c84181d98dd43b32.rdf",
+      "sourceArtifactHash": "sha256:af8b7dfac1a8450104fb367ff9095f185f0a18b56842acc9c84181d98dd43b32"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare-step-1/23f8629c4312d45e9031d2e4b42b1f22b232762a7801730461d74393a275776a.rdf",
+      "sourceArtifactHash": "sha256:23f8629c4312d45e9031d2e4b42b1f22b232762a7801730461d74393a275776a"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare-step-1/bb6e652818cdd1bf1acdb13ad15c654a6148280262b43477ecb8e49e8179851c.rdf",
+      "sourceArtifactHash": "sha256:bb6e652818cdd1bf1acdb13ad15c654a6148280262b43477ecb8e49e8179851c"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare-step-2/6056f60d0f872d869005576eea03ae2898c96939ce224081e97c0952304148ca.rdf",
+      "sourceArtifactHash": "sha256:6056f60d0f872d869005576eea03ae2898c96939ce224081e97c0952304148ca"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare-step-2/df4377cde8b8decb4225f5339234a38a462c0e5900cffe3d365d133f76dc2430.rdf",
+      "sourceArtifactHash": "sha256:df4377cde8b8decb4225f5339234a38a462c0e5900cffe3d365d133f76dc2430"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare-step-3/586f1df8cac7454a4de223e756ca80b76162da0d08923d89fb51846e9621c85e.rdf",
+      "sourceArtifactHash": "sha256:586f1df8cac7454a4de223e756ca80b76162da0d08923d89fb51846e9621c85e"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/healthcare-step-3/63a21c150243fdeba50200e11c04f317b744090cc1de0f46f7df693a9ab39827.rdf",
+      "sourceArtifactHash": "sha256:63a21c150243fdeba50200e11c04f317b744090cc1de0f46f7df693a9ab39827"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-1/94fa8ebf1e64b43889ac5309c5dedebbbd6e5de5770e40d7eff72cf363ec0b5f.rdf",
+      "sourceArtifactHash": "sha256:94fa8ebf1e64b43889ac5309c5dedebbbd6e5de5770e40d7eff72cf363ec0b5f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-1/f9b724b0dbb3ebc3e00343835807f63e0eb72e926e10a9bc37f78907dc6dcfe0.rdf",
+      "sourceArtifactHash": "sha256:f9b724b0dbb3ebc3e00343835807f63e0eb72e926e10a9bc37f78907dc6dcfe0"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-2/191d455e82b44bdb94402b755fa878aaa1a9e487e5abec5a0fe50167522de7dd.rdf",
+      "sourceArtifactHash": "sha256:191d455e82b44bdb94402b755fa878aaa1a9e487e5abec5a0fe50167522de7dd"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-2/824a9c2f1ad82e609c0e2c67386d6e879f488fa022fbd991e636cf1edd6efcf1.rdf",
+      "sourceArtifactHash": "sha256:824a9c2f1ad82e609c0e2c67386d6e879f488fa022fbd991e636cf1edd6efcf1"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-3/0188f68b327c0a70c4aeba816cedfef63b282cb6858efd011c35a5fa62dbabeb.rdf",
+      "sourceArtifactHash": "sha256:0188f68b327c0a70c4aeba816cedfef63b282cb6858efd011c35a5fa62dbabeb"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-3/619a5316a2cce227f71c405033254abfe15dd6f9b7edc6d1b8af2cdcc5ac08a9.rdf",
+      "sourceArtifactHash": "sha256:619a5316a2cce227f71c405033254abfe15dd6f9b7edc6d1b8af2cdcc5ac08a9"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-4/298d6b00c6f76615f33d7c3cdf04c3cae964276c37407a20b9c64cbe91270749.rdf",
+      "sourceArtifactHash": "sha256:298d6b00c6f76615f33d7c3cdf04c3cae964276c37407a20b9c64cbe91270749"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-4/7557bfa887a6b1758c1c68202e43d118f04030229b1dad811fab52cea14e781b.rdf",
+      "sourceArtifactHash": "sha256:7557bfa887a6b1758c1c68202e43d118f04030229b1dad811fab52cea14e781b"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-5/0a4700a9ad6a4625aa8cfda5960355814c6391d36479128f581eaf27e0e24aa1.rdf",
+      "sourceArtifactHash": "sha256:0a4700a9ad6a4625aa8cfda5960355814c6391d36479128f581eaf27e0e24aa1"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-5/f0b6b93d667e225a9d6d57537c69e8b25ed5292d92142a7e2bd897351fe002b5.rdf",
+      "sourceArtifactHash": "sha256:f0b6b93d667e225a9d6d57537c69e8b25ed5292d92142a7e2bd897351fe002b5"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-6/187367475aedcd6b5cef035227e7b80808d58ade70e92bcfeca6c84c75ace9d9.rdf",
+      "sourceArtifactHash": "sha256:187367475aedcd6b5cef035227e7b80808d58ade70e92bcfeca6c84c75ace9d9"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/iq-lab-retail-step-6/b99f2b6b7d746b579d3f1f0613abfb84c5391a362b3e989961b9a5457f132a19.rdf",
+      "sourceArtifactHash": "sha256:b99f2b6b7d746b579d3f1f0613abfb84c5391a362b3e989961b9a5457f132a19"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing/3f91eb2f7d57e36c7fcd004fcfdbf515a5102f10559c80734f17a26dd4cb8336.rdf",
+      "sourceArtifactHash": "sha256:3f91eb2f7d57e36c7fcd004fcfdbf515a5102f10559c80734f17a26dd4cb8336"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing/91c790c666152b5bc73a0acebcde7f5ce326b93be2ccfa122025c25abfc874ba.rdf",
+      "sourceArtifactHash": "sha256:91c790c666152b5bc73a0acebcde7f5ce326b93be2ccfa122025c25abfc874ba"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing-step-1/9cee3cfe45afdce04cdf5af4030fd5ac0f2155bfdb42a51e59a6ebb7bee53373.rdf",
+      "sourceArtifactHash": "sha256:9cee3cfe45afdce04cdf5af4030fd5ac0f2155bfdb42a51e59a6ebb7bee53373"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing-step-1/bdbac128d501cd2d183586d3ce729ff5693c0f28ee43c8663a88f2603f867a3c.rdf",
+      "sourceArtifactHash": "sha256:bdbac128d501cd2d183586d3ce729ff5693c0f28ee43c8663a88f2603f867a3c"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing-step-2/8f8431bcedf6de133937b2ca1ea175c54569114a248f21f18e1b2e75a35901cb.rdf",
+      "sourceArtifactHash": "sha256:8f8431bcedf6de133937b2ca1ea175c54569114a248f21f18e1b2e75a35901cb"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing-step-2/e328560879ac46d8f07d3a798056064667e67e98fada98d5fa6579c0d70641f8.rdf",
+      "sourceArtifactHash": "sha256:e328560879ac46d8f07d3a798056064667e67e98fada98d5fa6579c0d70641f8"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing-step-3/02b0609765763ef745b60e1f39a055671371ccc3df17b192253ff1303e41f14e.rdf",
+      "sourceArtifactHash": "sha256:02b0609765763ef745b60e1f39a055671371ccc3df17b192253ff1303e41f14e"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/manufacturing-step-3/8c207bfcc743f75c1cde08bccb7f06da095c0c4fe31a9f981bab1bfc071e4c77.rdf",
+      "sourceArtifactHash": "sha256:8c207bfcc743f75c1cde08bccb7f06da095c0c4fe31a9f981bab1bfc071e4c77"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university/14f456a28f1d3f9fcbd4e52140da432deb2f046eff8b659884ad4fdd6ecd8754.rdf",
+      "sourceArtifactHash": "sha256:14f456a28f1d3f9fcbd4e52140da432deb2f046eff8b659884ad4fdd6ecd8754"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university/2dbbda1dcbf081140c5a0db98e120028f06156dd254d306fb32c06b34f688243.rdf",
+      "sourceArtifactHash": "sha256:2dbbda1dcbf081140c5a0db98e120028f06156dd254d306fb32c06b34f688243"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university-step-1/185994783973991db0aa28041fc835a800085b309657382f6817494c22e4b1ee.rdf",
+      "sourceArtifactHash": "sha256:185994783973991db0aa28041fc835a800085b309657382f6817494c22e4b1ee"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university-step-1/fcbf25498995a5765f6c187bc181ad5b9272a5c2e4c5bf4099e9597dcf598fa1.rdf",
+      "sourceArtifactHash": "sha256:fcbf25498995a5765f6c187bc181ad5b9272a5c2e4c5bf4099e9597dcf598fa1"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university-step-2/3c334eb223439070a36cd3f3cf1acb1fa42fd6b299205bb5094b6b03873353d8.rdf",
+      "sourceArtifactHash": "sha256:3c334eb223439070a36cd3f3cf1acb1fa42fd6b299205bb5094b6b03873353d8"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university-step-2/fb3a12e63c3309ff64532cb78fd38f12de428c2b41d35513d6096321eb9cae3b.rdf",
+      "sourceArtifactHash": "sha256:fb3a12e63c3309ff64532cb78fd38f12de428c2b41d35513d6096321eb9cae3b"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university-step-3/8934277ba7df65608c7ef2d12883bf6f26a382b8992af494709ef6b67081858c.rdf",
+      "sourceArtifactHash": "sha256:8934277ba7df65608c7ef2d12883bf6f26a382b8992af494709ef6b67081858c"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/university-step-3/e5179a1a8142c484ebc89fa01d8bdd9c9f8af124a923ca44e44de9be065df302.rdf",
+      "sourceArtifactHash": "sha256:e5179a1a8142c484ebc89fa01d8bdd9c9f8af124a923ca44e44de9be065df302"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf/733464f73d5d0b5832cbeb1c52259f03172fedaef6c159ebbebc0f3076dbe405.rdf",
+      "sourceArtifactHash": "sha256:733464f73d5d0b5832cbeb1c52259f03172fedaef6c159ebbebc0f3076dbe405"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf/7f6cee15e9f4572d7d40829adfb7e7e9f737642f30da1d82ae77f716f55f19de.rdf",
+      "sourceArtifactHash": "sha256:7f6cee15e9f4572d7d40829adfb7e7e9f737642f30da1d82ae77f716f55f19de"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-1/1bdcd9d7fa6911dca55da3d003c9dc458947cff1ec9717fbbef4d626ff2adbf9.rdf",
+      "sourceArtifactHash": "sha256:1bdcd9d7fa6911dca55da3d003c9dc458947cff1ec9717fbbef4d626ff2adbf9"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-1/2d88018d623ec40607f8dc87abdfc3d2b751e98e1cd8c1053887e892e38c5ec9.rdf",
+      "sourceArtifactHash": "sha256:2d88018d623ec40607f8dc87abdfc3d2b751e98e1cd8c1053887e892e38c5ec9"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-2/02a727fca562b8ca0db485ffd8c069c9e9813e7ed70bcb3e4f921404c389be43.rdf",
+      "sourceArtifactHash": "sha256:02a727fca562b8ca0db485ffd8c069c9e9813e7ed70bcb3e4f921404c389be43"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-2/43f86b70696e68e859413c809e9e4061f3463d1294144807a606f137a31ffcb4.rdf",
+      "sourceArtifactHash": "sha256:43f86b70696e68e859413c809e9e4061f3463d1294144807a606f137a31ffcb4"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-3/646c584bff13e2a1fa9de440bfc391f6620a9e51337f7c7be1d49d68a0c19b72.rdf",
+      "sourceArtifactHash": "sha256:646c584bff13e2a1fa9de440bfc391f6620a9e51337f7c7be1d49d68a0c19b72"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-3/6ca0beb4d4070e6228a0975cef5c02bb878f9f020c6d37822c1990ba714ae279.rdf",
+      "sourceArtifactHash": "sha256:6ca0beb4d4070e6228a0975cef5c02bb878f9f020c6d37822c1990ba714ae279"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-4/5e8c3e0dfeaa56efc0f49e45907ab1e8c661595c40812c5953b1020d2324b75c.rdf",
+      "sourceArtifactHash": "sha256:5e8c3e0dfeaa56efc0f49e45907ab1e8c661595c40812c5953b1020d2324b75c"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-4/fa6b94015a6464fe2d42c05a6e5f37a741249e60309d8b56559d7b4360bc8e8a.rdf",
+      "sourceArtifactHash": "sha256:fa6b94015a6464fe2d42c05a6e5f37a741249e60309d8b56559d7b4360bc8e8a"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-5/ac2ab1948985e50b3f53b58d7a50baca0d48e38f47b70fd3b6e15306a37d176f.rdf",
+      "sourceArtifactHash": "sha256:ac2ab1948985e50b3f53b58d7a50baca0d48e38f47b70fd3b6e15306a37d176f"
+    },
+    {
+      "sourceArtifactUrl": "catalogue-sources/official/zava-grove-to-shelf-step-5/f5b68e55923dd707705594b27c2df619e53f1ce1ca181a98db836ebd9b623d37.rdf",
+      "sourceArtifactHash": "sha256:f5b68e55923dd707705594b27c2df619e53f1ce1ca181a98db836ebd9b623d37"
+    }
+  ]
+}

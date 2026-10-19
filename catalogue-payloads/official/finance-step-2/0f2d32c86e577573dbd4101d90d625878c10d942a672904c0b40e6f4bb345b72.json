@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "official/finance-step-2",
+  "ontology": {
+    "name": "银行与金融 – 第 2 步",
+    "description": "在客户与账户之上增加交易记录",
+    "entityTypes": [
+      {
+        "id": "customer",
+        "name": "客户",
+        "description": "银行客户",
+        "icon": "👤",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "customerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "ssn",
+            "type": "string"
+          },
+          {
+            "name": "creditScore",
+            "type": "integer"
+          },
+          {
+            "name": "riskProfile",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "account",
+        "name": "账户",
+        "description": "客户名下的金融账户",
+        "icon": "🏦",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "accountNumber",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "balance",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "interestRate",
+            "type": "decimal",
+            "unit": "%"
+          },
+          {
+            "name": "openDate",
+            "type": "date"
+          }
+        ]
+      },
+      {
+        "id": "transaction",
+        "name": "交易",
+        "description": "账户上发生的一笔资金往来",
+        "icon": "💳",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "transactionId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "datetime"
+          },
+          {
+            "name": "merchant",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "customer_owns_acct",
+        "name": "持有",
+        "from": "customer",
+        "to": "account",
+        "cardinality": "one-to-many",
+        "description": "客户名下账户"
+      },
+      {
+        "id": "account_has_txn",
+        "name": "发生交易",
+        "from": "account",
+        "to": "transaction",
+        "cardinality": "one-to-many",
+        "description": "账户交易"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

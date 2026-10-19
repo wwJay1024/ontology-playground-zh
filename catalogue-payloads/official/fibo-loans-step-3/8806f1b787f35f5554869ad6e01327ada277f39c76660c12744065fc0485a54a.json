@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "official/fibo-loans-step-3",
+  "ontology": {
+    "name": "FIBO 贷款实验 — 第 3 步",
+    "description": "用于日常运营跟踪的服务与还款记录概念。改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo — MIT 许可。",
+    "entityTypes": [
+      {
+        "id": "loan",
+        "name": "贷款",
+        "description": "向借款人发放、并按合同条款偿还的债务工具。",
+        "icon": "📄",
+        "color": "#00A9E0",
+        "properties": [
+          {
+            "name": "loanId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "principalAmount",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "borrower",
+        "name": "借款人",
+        "description": "收取资金并承担还款义务的一方。",
+        "icon": "👤",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "borrowerId",
+            "type": "string",
+            "isIdentifier": true
+          }
+        ]
+      },
+      {
+        "id": "lender",
+        "name": "出借人",
+        "description": "按贷款协议条款提供资金或授信的一方。",
+        "icon": "🏦",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "lenderId",
+            "type": "string",
+            "isIdentifier": true
+          }
+        ]
+      },
+      {
+        "id": "collateral",
+        "name": "抵押物",
+        "description": "为担保还款义务而质押的资产。",
+        "icon": "🏠",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "assetType",
+            "type": "string",
+            "isIdentifier": true
+          }
+        ]
+      },
+      {
+        "id": "loanPaymentSchedule",
+        "name": "贷款还款计划",
+        "description": "规定到期日与各期应还金额的定期还款安排。",
+        "icon": "🗓️",
+        "color": "#5C2D91",
+        "properties": [
+          {
+            "name": "scheduleId",
+            "type": "string",
+            "isIdentifier": true
+          }
+        ]
+      },
+      {
+        "id": "servicer",
+        "name": "服务商",
+        "description": "负责收取贷款还款的金融服务机构。改编自 fibo-loan-ln-ln:Servicer。",
+        "icon": "🧾",
+        "color": "#008272",
+        "properties": [
+          {
+            "name": "servicerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "organizationName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "paymentHistory",
+        "name": "还款记录",
+        "description": "记录贷款账户全部还款事件的档案。改编自 fibo-fbc-pas-caa:PaymentHistory。",
+        "icon": "📚",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "paymentHistoryId",
+            "type": "string",
+            "isIdentifier": true
+          }
+        ]
+      },
+      {
+        "id": "paymentTransaction",
+        "name": "还款交易",
+        "description": "构成还款记录的单笔还款事件。改编自 fibo-fbc-pas-caa:IndividualTransaction。",
+        "icon": "💸",
+        "color": "#E81123",
+        "properties": [
+          {
+            "name": "paymentTransactionId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "postedAt",
+            "type": "datetime"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "owedBy",
+        "name": "由…负担",
+        "from": "loan",
+        "to": "borrower",
+        "cardinality": "many-to-one",
+        "description": "指明贷款的还款义务人。"
+      },
+      {
+        "id": "originatedBy",
+        "name": "由…发起",
+        "from": "loan",
+        "to": "lender",
+        "cardinality": "many-to-one",
+        "description": "指明发起该笔贷款的出借机构。"
+      },
+      {
+        "id": "securedBy",
+        "name": "由…担保",
+        "from": "loan",
+        "to": "collateral",
+        "cardinality": "one-to-many",
+        "description": "指明有担保贷款所对应的质押资产。"
+      },
+      {
+        "id": "repaidBySchedule",
+        "name": "按计划还款",
+        "from": "loan",
+        "to": "loanPaymentSchedule",
+        "cardinality": "one-to-one",
+        "description": "指明贷款对应的还款计划。"
+      },
+      {
+        "id": "servicedBy",
+        "name": "由…服务",
+        "from": "loan",
+        "to": "servicer",
+        "cardinality": "many-to-one",
+        "description": "指明负责收取还款的服务机构。"
+      },
+      {
+        "id": "hasPaymentHistory",
+        "name": "有还款记录",
+        "from": "loanPaymentSchedule",
+        "to": "paymentHistory",
+        "cardinality": "one-to-one",
+        "description": "关联还款计划与其还款记录。"
+      },
+      {
+        "id": "hasIndividualPayment",
+        "name": "含单笔还款",
+        "from": "paymentHistory",
+        "to": "paymentTransaction",
+        "cardinality": "one-to-many",
+        "description": "关联还款记录与其中每笔还款交易。"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

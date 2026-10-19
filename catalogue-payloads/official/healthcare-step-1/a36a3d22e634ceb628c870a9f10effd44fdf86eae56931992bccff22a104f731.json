@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "official/healthcare-step-1",
+  "ontology": {
+    "name": "医疗系统 — 第 1 步",
+    "description": "患者、诊疗提供方与预约就诊实体，以及基本的排期关系。",
+    "entityTypes": [
+      {
+        "id": "patient",
+        "name": "患者",
+        "description": "在医疗系统就诊的患者",
+        "icon": "🏥",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "patientId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "mrn",
+            "type": "string"
+          },
+          {
+            "name": "dateOfBirth",
+            "type": "date"
+          },
+          {
+            "name": "bloodType",
+            "type": "string"
+          },
+          {
+            "name": "allergies",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "provider",
+        "name": "诊疗提供方",
+        "description": "提供医疗服务的机构或人员",
+        "icon": "👨‍⚕️",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "providerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "specialty",
+            "type": "string"
+          },
+          {
+            "name": "licenseNumber",
+            "type": "string"
+          },
+          {
+            "name": "department",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "appointment",
+        "name": "预约就诊",
+        "description": "患者与诊疗提供方之间的一次预约就诊",
+        "icon": "📅",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "appointmentId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "scheduledTime",
+            "type": "datetime"
+          },
+          {
+            "name": "duration",
+            "type": "integer",
+            "unit": "minutes"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "patient_has_appt",
+        "name": "有预约",
+        "from": "patient",
+        "to": "appointment",
+        "cardinality": "one-to-many",
+        "description": "患者的预约就诊"
+      },
+      {
+        "id": "provider_sees",
+        "name": "接诊",
+        "from": "provider",
+        "to": "appointment",
+        "cardinality": "one-to-many",
+        "description": "诊疗提供方的接诊安排"
+      }
+    ],
+    "rdfMetadata": {
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

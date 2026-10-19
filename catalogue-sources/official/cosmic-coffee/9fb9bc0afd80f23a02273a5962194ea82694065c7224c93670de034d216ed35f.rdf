@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xml:base="http://example.org/ontology/cosmic-coffee-company/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:ont="http://example.org/ontology/cosmic-coffee-company/">
+
+    <owl:Ontology rdf:about="http://example.org/ontology/cosmic-coffee-company/">
+        <rdfs:label>Fourth Coffee</rdfs:label>
+        <rdfs:comment>一个示例本体，描述现代咖啡连锁企业中的供应商、商品、门店、客户与订单。</rdfs:comment>
+    </owl:Ontology>
+
+    <!-- ===================== -->
+    <!-- Entity Types (Classes) -->
+    <!-- ===================== -->
+
+    <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-company/Customer">
+        <rdfs:label>客户</rdfs:label>
+        <rdfs:comment>在本店购买咖啡产品的顾客</rdfs:comment>
+        <ont:icon>👤</ont:icon>
+        <ont:color>#0078D4</ont:color>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-company/Order">
+        <rdfs:label>订单</rdfs:label>
+        <rdfs:comment>顾客在门店完成的一次购买交易</rdfs:comment>
+        <ont:icon>🧾</ont:icon>
+        <ont:color>#107C10</ont:color>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-company/Product">
+        <rdfs:label>商品</rdfs:label>
+        <rdfs:comment>可供销售的咖啡商品或其他货品</rdfs:comment>
+        <ont:icon>☕</ont:icon>
+        <ont:color>#5C2D91</ont:color>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-company/Store">
+        <rdfs:label>门店</rdfs:label>
+        <rdfs:comment>一家线下咖啡门店</rdfs:comment>
+        <ont:icon>🏪</ont:icon>
+        <ont:color>#FFB900</ont:color>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-company/Supplier">
+        <rdfs:label>供应商</rdfs:label>
+        <rdfs:comment>供应咖啡豆或其他货品的合作伙伴</rdfs:comment>
+        <ont:icon>🚚</ont:icon>
+        <ont:color>#D83B01</ont:color>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/ontology/cosmic-coffee-company/Shipment">
+        <rdfs:label>发运</rdfs:label>
+        <rdfs:comment>由供应商发往门店的一批货物</rdfs:comment>
+        <ont:icon>📦</ont:icon>
+        <ont:color>#00A9E0</ont:color>
+    </owl:Class>
+
+    <!-- ================ -->
+    <!-- Data Properties -->
+    <!-- ================ -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_customerId">
+        <rdfs:label>customerId</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Unique customer identifier</rdfs:comment>
+        <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_name">
+        <rdfs:label>name</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Full name of the customer</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_email">
+        <rdfs:label>email</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Contact email address</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_loyaltyTier">
+        <rdfs:label>loyaltyTier</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Loyalty program tier</rdfs:comment>
+        <ont:enumValues>Bronze,Silver,Gold,Platinum</ont:enumValues>
+        <ont:propertyType>enum</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_joinDate">
+        <rdfs:label>joinDate</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <rdfs:comment>Date the customer joined</rdfs:comment>
+        <ont:propertyType>date</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_totalSpend">
+        <rdfs:label>totalSpend</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Lifetime spend amount</rdfs:comment>
+        <ont:unit>USD</ont:unit>
+        <ont:propertyType>decimal</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_orderId">
+        <rdfs:label>orderId</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Unique order identifier</rdfs:comment>
+        <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_timestamp">
+        <rdfs:label>timestamp</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>When the order was placed</rdfs:comment>
+        <ont:propertyType>datetime</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_total">
+        <rdfs:label>total</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Total order amount</rdfs:comment>
+        <ont:unit>USD</ont:unit>
+        <ont:propertyType>decimal</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_status">
+        <rdfs:label>status</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Current order status</rdfs:comment>
+        <ont:enumValues>Pending,Preparing,Ready,Completed,Cancelled</ont:enumValues>
+        <ont:propertyType>enum</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_paymentMethod">
+        <rdfs:label>paymentMethod</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Payment method used</rdfs:comment>
+        <ont:enumValues>Card,Cash,Mobile,Gift Card</ont:enumValues>
+        <ont:propertyType>enum</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_productId">
+        <rdfs:label>productId</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Unique product identifier</rdfs:comment>
+        <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_name">
+        <rdfs:label>name</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Product name</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_category">
+        <rdfs:label>category</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Product category</rdfs:comment>
+        <ont:enumValues>Espresso,Brewed,Cold Brew,Tea,Food,Merchandise</ont:enumValues>
+        <ont:propertyType>enum</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_price">
+        <rdfs:label>price</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Unit price</rdfs:comment>
+        <ont:unit>USD</ont:unit>
+        <ont:propertyType>decimal</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_origin">
+        <rdfs:label>origin</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Coffee bean origin country</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_isOrganic">
+        <rdfs:label>isOrganic</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment>Whether the product is certified organic</rdfs:comment>
+        <ont:propertyType>boolean</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/store_storeId">
+        <rdfs:label>storeId</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Unique store identifier</rdfs:comment>
+        <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/store_name">
+        <rdfs:label>name</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Store name</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/store_city">
+        <rdfs:label>city</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>City location</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/store_state">
+        <rdfs:label>state</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>State/Province</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/store_openDate">
+        <rdfs:label>openDate</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <rdfs:comment>Store opening date</rdfs:comment>
+        <ont:propertyType>date</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/store_capacity">
+        <rdfs:label>capacity</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment>Seating capacity</rdfs:comment>
+        <ont:propertyType>integer</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/supplier_supplierId">
+        <rdfs:label>supplierId</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Unique supplier identifier</rdfs:comment>
+        <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/supplier_name">
+        <rdfs:label>name</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Supplier company name</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/supplier_country">
+        <rdfs:label>country</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Country of operation</rdfs:comment>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/supplier_certification">
+        <rdfs:label>certification</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Sustainability certification</rdfs:comment>
+        <ont:enumValues>Fair Trade,Rainforest Alliance,Organic,Direct Trade,None</ont:enumValues>
+        <ont:propertyType>enum</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/supplier_rating">
+        <rdfs:label>rating</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Quality rating (1-5)</rdfs:comment>
+        <ont:propertyType>decimal</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_shipmentId">
+        <rdfs:label>shipmentId</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Unique shipment identifier</rdfs:comment>
+        <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
+        <ont:propertyType>string</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_dispatchDate">
+        <rdfs:label>dispatchDate</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <rdfs:comment>Date shipped from supplier</rdfs:comment>
+        <ont:propertyType>date</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_arrivalDate">
+        <rdfs:label>arrivalDate</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <rdfs:comment>Date arrived at store</rdfs:comment>
+        <ont:propertyType>date</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_status">
+        <rdfs:label>status</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Shipment status</rdfs:comment>
+        <ont:enumValues>In Transit,Delivered,Delayed</ont:enumValues>
+        <ont:propertyType>enum</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_weight">
+        <rdfs:label>weight</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Total shipment weight</rdfs:comment>
+        <ont:unit>kg</ont:unit>
+        <ont:propertyType>decimal</ont:propertyType>
+    </owl:DatatypeProperty>
+
+    <!-- ================== -->
+    <!-- Object Properties -->
+    <!-- ================== -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/customer_places_order">
+        <rdfs:label>下单</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:comment>客户可以下一笔或多笔订单</rdfs:comment>
+        <ont:cardinality>one-to-many</ont:cardinality>
+        <ont:fromEntityId>customer</ont:fromEntityId>
+        <ont:toEntityId>order</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_contains_product">
+        <rdfs:label>包含</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:comment>一笔订单包含一件或多件商品</rdfs:comment>
+        <ont:cardinality>many-to-many</ont:cardinality>
+        <ont:fromEntityId>order</ont:fromEntityId>
+        <ont:toEntityId>product</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_contains_product_quantity">
+        <rdfs:label>quantity</rdfs:label>
+        <rdfs:comment>Relationship attribute for contains</rdfs:comment>
+        <ont:relationshipAttributeOf>order_contains_product</ont:relationshipAttributeOf>
+        <ont:attributeType>integer</ont:attributeType>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_contains_product_customizations">
+        <rdfs:label>customizations</rdfs:label>
+        <rdfs:comment>Relationship attribute for contains</rdfs:comment>
+        <ont:relationshipAttributeOf>order_contains_product</ont:relationshipAttributeOf>
+        <ont:attributeType>string</ont:attributeType>
+    </owl:DatatypeProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/order_processed_at_store">
+        <rdfs:label>在门店处理</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:comment>订单在指定的门店完成处理</rdfs:comment>
+        <ont:cardinality>many-to-one</ont:cardinality>
+        <ont:fromEntityId>order</ont:fromEntityId>
+        <ont:toEntityId>store</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/product_sourced_from_supplier">
+        <rdfs:label>货源来自</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:comment>商品的原料来自供应商</rdfs:comment>
+        <ont:cardinality>many-to-one</ont:cardinality>
+        <ont:fromEntityId>product</ont:fromEntityId>
+        <ont:toEntityId>supplier</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_from_supplier">
+        <rdfs:label>由供应商发出</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Supplier"/>
+        <rdfs:comment>一次发运由供应商发出</rdfs:comment>
+        <ont:cardinality>many-to-one</ont:cardinality>
+        <ont:fromEntityId>shipment</ont:fromEntityId>
+        <ont:toEntityId>supplier</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_to_store">
+        <rdfs:label>送达门店</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Store"/>
+        <rdfs:comment>发运的货物送达门店</rdfs:comment>
+        <ont:cardinality>many-to-one</ont:cardinality>
+        <ont:fromEntityId>shipment</ont:fromEntityId>
+        <ont:toEntityId>store</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_contains_product">
+        <rdfs:label>运载</rdfs:label>
+        <rdfs:domain rdf:resource="http://example.org/ontology/cosmic-coffee-company/Shipment"/>
+        <rdfs:range rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <rdfs:comment>一次发运运载若干商品</rdfs:comment>
+        <ont:cardinality>many-to-many</ont:cardinality>
+        <ont:fromEntityId>shipment</ont:fromEntityId>
+        <ont:toEntityId>product</ont:toEntityId>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="http://example.org/ontology/cosmic-coffee-company/shipment_contains_product_quantity">
+        <rdfs:label>quantity</rdfs:label>
+        <rdfs:comment>Relationship attribute for carries</rdfs:comment>
+        <ont:relationshipAttributeOf>shipment_contains_product</ont:relationshipAttributeOf>
+        <ont:attributeType>integer</ont:attributeType>
+    </owl:DatatypeProperty>
+
+    <!-- ============= -->
+    <!-- Data Bindings -->
+    <!-- ============= -->
+
+    <ont:DataBinding rdf:about="http://example.org/ontology/cosmic-coffee-company/binding_customer">
+        <ont:boundClass rdf:resource="http://example.org/ontology/cosmic-coffee-company/Customer"/>
+        <ont:boundEntityId>customer</ont:boundEntityId>
+        <ont:source>Data Lakehouse</ont:source>
+        <ont:table>lakehouse.bronze.customers</ont:table>
+        <ont:columnMapping>customerId=customer_id</ont:columnMapping>
+        <ont:columnMapping>name=full_name</ont:columnMapping>
+        <ont:columnMapping>email=email_address</ont:columnMapping>
+        <ont:columnMapping>loyaltyTier=loyalty_status</ont:columnMapping>
+        <ont:columnMapping>joinDate=registration_date</ont:columnMapping>
+        <ont:columnMapping>totalSpend=lifetime_value</ont:columnMapping>
+    </ont:DataBinding>
+
+    <ont:DataBinding rdf:about="http://example.org/ontology/cosmic-coffee-company/binding_order">
+        <ont:boundClass rdf:resource="http://example.org/ontology/cosmic-coffee-company/Order"/>
+        <ont:boundEntityId>order</ont:boundEntityId>
+        <ont:source>Data Lakehouse</ont:source>
+        <ont:table>lakehouse.silver.orders</ont:table>
+        <ont:columnMapping>orderId=order_id</ont:columnMapping>
+        <ont:columnMapping>timestamp=order_timestamp</ont:columnMapping>
+        <ont:columnMapping>total=order_total</ont:columnMapping>
+        <ont:columnMapping>status=order_status</ont:columnMapping>
+        <ont:columnMapping>paymentMethod=payment_type</ont:columnMapping>
+    </ont:DataBinding>
+
+    <ont:DataBinding rdf:about="http://example.org/ontology/cosmic-coffee-company/binding_product">
+        <ont:boundClass rdf:resource="http://example.org/ontology/cosmic-coffee-company/Product"/>
+        <ont:boundEntityId>product</ont:boundEntityId>
+        <ont:source>Semantic model</ont:source>
+        <ont:table>semantic_model.Products</ont:table>
+        <ont:columnMapping>productId=ProductKey</ont:columnMapping>
+        <ont:columnMapping>name=ProductName</ont:columnMapping>
+        <ont:columnMapping>category=ProductCategory</ont:columnMapping>
+        <ont:columnMapping>price=UnitPrice</ont:columnMapping>
+        <ont:columnMapping>origin=OriginCountry</ont:columnMapping>
+    </ont:DataBinding>
+
+</rdf:RDF>

@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "id": "official/iq-lab-retail-step-3",
+  "ontology": {
+    "name": "零售供应链 — 第 3 步：地理区域",
+    "description": "用区域与门店描述订单的履约地点",
+    "entityTypes": [
+      {
+        "id": "customer",
+        "name": "客户",
+        "description": "与订单关联的买家",
+        "icon": "👤",
+        "color": "#0078D4",
+        "properties": [
+          {
+            "name": "customerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "name": "loyaltyTier",
+            "type": "string"
+          },
+          {
+            "name": "lifetimeValue",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "order",
+        "name": "订单",
+        "description": "客户的一次购买交易",
+        "icon": "📋",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "orderId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "orderDate",
+            "type": "datetime"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "totalAmount",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "product",
+        "name": "商品",
+        "description": "可供销售的商品",
+        "icon": "📦",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "productId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "unitCost",
+            "type": "decimal",
+            "unit": "USD"
+          },
+          {
+            "name": "discountPercent",
+            "type": "decimal",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "id": "orderline",
+        "name": "订单明细",
+        "description": "订单中的各条明细",
+        "icon": "📝",
+        "color": "#00B7C3",
+        "properties": [
+          {
+            "name": "orderLineId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "quantity",
+            "type": "integer"
+          },
+          {
+            "name": "lineTotal",
+            "type": "decimal",
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "id": "productcategory",
+        "name": "商品分类",
+        "description": "相关商品的归类",
+        "icon": "🏷️",
+        "color": "#8764B8",
+        "properties": [
+          {
+            "name": "categoryId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "categoryName",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "name": "地区",
+        "description": "包含门店与仓库的地理区域",
+        "icon": "🌐",
+        "color": "#E74C3C",
+        "properties": [
+          {
+            "name": "regionId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "regionName",
+            "type": "string"
+          },
+          {
+            "name": "timezone",
+            "type": "string"
+          },
+          {
+            "name": "coldChainRequired",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "store",
+        "name": "门店",
+        "description": "订单产生的零售场所",
+        "icon": "🏪",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "storeId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "storeName",
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "order-placedby-customer",
+        "name": "由客户下单",
+        "from": "order",
+        "to": "customer",
+        "cardinality": "many-to-one",
+        "description": "下单的客户"
+      },
+      {
+        "id": "order-contains-product",
+        "name": "包含商品",
+        "from": "order",
+        "to": "product",
+        "cardinality": "many-to-many",
+        "description": "订单中包含的商品"
+      },
+      {
+        "id": "order-has-lineitem",
+        "name": "包含明细",
+        "from": "order",
+        "to": "orderline",
+        "cardinality": "one-to-many",
+        "description": "订单中的明细行"
+      },
+      {
+        "id": "orderline-refs-product",
+        "name": "指向商品",
+        "from": "orderline",
+        "to": "product",
+        "cardinality": "many-to-one",
+        "description": "该明细行对应的商品"
+      },
+      {
+        "id": "product-in-category",
+        "name": "属于分类",
+        "from": "product",
+        "to": "productcategory",
+        "cardinality": "many-to-one",
+        "description": "商品所属的分类"
+      },
+      {
+        "id": "order-to-region",
+        "name": "在区域履约",
+        "from": "order",
+        "to": "region",
+        "cardinality": "many-to-one",
+        "description": "订单履约所在的区域"
+      },
+      {
+        "id": "store-in-region",
+        "name": "位于区域",
+        "from": "store",
+        "to": "region",
+        "cardinality": "many-to-one",
+        "description": "门店所在的区域"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/retail-supply-chain-step-3-geography/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}

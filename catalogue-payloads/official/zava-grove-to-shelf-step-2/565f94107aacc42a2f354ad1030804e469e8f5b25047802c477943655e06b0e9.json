@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "id": "official/zava-grove-to-shelf-step-2",
+  "ontology": {
+    "name": "Zava Grove-to-Shelf — 第 2 步：采收与质检",
+    "description": "加入采收批次与质检，记录采收事件和四道质检流程。",
+    "entityTypes": [
+      {
+        "id": "grower",
+        "name": "种植户",
+        "description": "生产新鲜果蔬的合作种植方",
+        "icon": "👨‍🌾",
+        "color": "#498205",
+        "properties": [
+          {
+            "name": "growerId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "isMasterGrower",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "farm",
+        "name": "农场",
+        "description": "种植户自有或签约的一处产地",
+        "icon": "🌾",
+        "color": "#6EAA1F",
+        "properties": [
+          {
+            "name": "farmId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          }
+        ]
+      },
+      {
+        "id": "plot",
+        "name": "地块",
+        "description": "农场内种植单一品种的一块管理地块",
+        "icon": "🌱",
+        "color": "#107C10",
+        "properties": [
+          {
+            "name": "plotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "hectares",
+            "type": "decimal",
+            "unit": "ha"
+          },
+          {
+            "name": "plantingYear",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "fruitvariety",
+        "name": "水果品种",
+        "description": "商业化种植的水果或蔬菜品种",
+        "icon": "🍊",
+        "color": "#FFB900",
+        "properties": [
+          {
+            "name": "varietyId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "commercialName",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "shelfLifeDays",
+            "type": "integer",
+            "unit": "days"
+          }
+        ]
+      },
+      {
+        "id": "harvestlot",
+        "name": "采收批次",
+        "description": "某一日期从单一地块采收、可追溯的一次采收记录",
+        "icon": "📦",
+        "color": "#D83B01",
+        "properties": [
+          {
+            "name": "lotId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "harvestDate",
+            "type": "date"
+          },
+          {
+            "name": "kilograms",
+            "type": "decimal",
+            "unit": "kg"
+          },
+          {
+            "name": "qcGrade",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "qualitycheck",
+        "name": "质检",
+        "description": "四道质检之一（田间、包装厂、配送中心、门店）",
+        "icon": "🔍",
+        "color": "#C239B3",
+        "properties": [
+          {
+            "name": "checkId",
+            "type": "string",
+            "isIdentifier": true
+          },
+          {
+            "name": "stage",
+            "type": "integer"
+          },
+          {
+            "name": "passed",
+            "type": "boolean"
+          },
+          {
+            "name": "defectRate",
+            "type": "decimal",
+            "unit": "%"
+          },
+          {
+            "name": "checkedAt",
+            "type": "datetime"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "grower-owns-farm",
+        "name": "拥有农场",
+        "from": "grower",
+        "to": "farm",
+        "cardinality": "one-to-many",
+        "description": "种植户拥有或经营一个或多个农场"
+      },
+      {
+        "id": "farm-contains-plot",
+        "name": "包含地块",
+        "from": "farm",
+        "to": "plot",
+        "cardinality": "one-to-many",
+        "description": "一个农场包含多块地块"
+      },
+      {
+        "id": "plot-grows-fruitvariety",
+        "name": "种植品种",
+        "from": "plot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one",
+        "description": "每块地块在每个种植季只种一个水果品种"
+      },
+      {
+        "id": "harvestlot-fromplot-plot",
+        "name": "来自地块",
+        "from": "harvestlot",
+        "to": "plot",
+        "cardinality": "many-to-one",
+        "description": "每个采收批次都来自一块地块"
+      },
+      {
+        "id": "harvestlot-ofvariety-fruitvariety",
+        "name": "属于品种",
+        "from": "harvestlot",
+        "to": "fruitvariety",
+        "cardinality": "many-to-one",
+        "description": "每个采收批次对应一个水果品种"
+      },
+      {
+        "id": "qualitycheck-checks-harvestlot",
+        "name": "检查批次",
+        "from": "qualitycheck",
+        "to": "harvestlot",
+        "cardinality": "many-to-one",
+        "description": "每次质检针对某一环节的一个采收批次"
+      }
+    ],
+    "rdfMetadata": {
+      "ontologyIri": "http://example.org/ontology/zava-grove-to-shelf-step-2/",
+      "imports": [],
+      "preservedSourceFeatures": []
+    }
+  },
+  "bindings": []
+}
