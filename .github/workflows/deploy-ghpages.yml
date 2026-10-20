@@ -4,6 +4,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # 只改说明文档时不触发构建；课程内容在 content/ 下，仍然会触发
+    paths-ignore:
+      - 'README*.md'
+      - 'docs/**'
+      - '.github/workflows-disabled/**'
   workflow_dispatch:
 
 permissions:

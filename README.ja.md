@@ -1,6 +1,6 @@
 # Ontology Playground（プレビュー）☕
 
-[English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
+[English](README.en.md) · [简体中文](README.md) · [日本語](README.ja.md)
 
 > **翻訳に関する注意:** この日本語訳は、利便性向上のため**現状有姿 (as is)**で提供されています。用語と内容は Microsoft Learn の公式日本語ドキュメントに照らして **AI により検証**されていますが、Microsoft による公式な翻訳または認定ではありません。内容に差異がある場合は、[英語版 README](README.md) を正本とします。
 
