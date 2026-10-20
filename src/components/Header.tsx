@@ -121,7 +121,7 @@ export function Header({ onAboutClick, onHelpClick, onDataSourcesClick, onImport
         </svg>
         <div>
           <span className="header-title">
-            {t('Ontology Playground')} <span className="header-title-preview">{t('(Preview)')}</span>
+            {t('Ontology Playground')}
           </span>
           <span className="header-context">{ontologyDisplayName}</span>
         </div>

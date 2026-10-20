@@ -7,7 +7,7 @@
 | 英文 | 中文 | 说明 |
 |---|---|---|
 | Ontology | 本体 | 不改用"知识图谱"，两者不是同一概念 |
-| Ontology Playground | 本体演练场 | 站点名 |
+| Ontology Playground | 本体建模练习 | 站点名 |
 | Ontology School | 本体学堂 | 课程模块名 |
 | Entity / Entity Type | 实体 / 实体类型 | |
 | Property | 属性 | |

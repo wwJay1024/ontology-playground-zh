@@ -47,7 +47,7 @@ export const zhCN: Record<string, string> = {
   Unknown: '未知',
 
   // ── 顶栏 ──
-  'Ontology Playground': '本体演练场',
+  'Ontology Playground': '本体建模练习',
   '(Preview)': '（预览版）',
   'Untitled Ontology': '未命名本体',
   points: '积分',
@@ -93,7 +93,7 @@ export const zhCN: Record<string, string> = {
   'Failed to load catalogue ontology': '本体目录加载失败',
 
   // ── 欢迎页 ──
-  'Welcome to Ontology Playground (Preview)': '欢迎来到本体演练场（预览版）',
+  'Welcome to Ontology Playground (Preview)': '欢迎来到本体建模练习',
   'Explore Microsoft Fabric IQ Ontology through the lens of Fourth Coffee':
     '借 Fourth Coffee 这家咖啡连锁，认识 Microsoft Fabric IQ 本体',
   'Entity Types': '实体类型',
@@ -113,17 +113,17 @@ export const zhCN: Record<string, string> = {
     '完成任务赚取徽章，顺带弄懂 Microsoft Fabric IQ 本体',
 
   // ── 关于 ──
-  'About Ontology Playground': '关于本体演练场',
+  'About Ontology Playground': '关于本体建模练习',
   'Close about dialog': '关闭关于对话框',
   'Ontology Playground is a community learning and design experience for building RDF/OWL ontologies, exploring graph relationships, and preparing models compatible with Microsoft Fabric IQ workflows.':
-    '本体演练场是一个面向社区的学习与设计工具：构建 RDF/OWL 本体，查看图谱中的关系，并让模型与 Microsoft Fabric IQ 的工作流相容。',
+    '本体建模练习是一个面向社区的学习与设计工具：构建 RDF/OWL 本体，查看图谱中的关系，并让模型与 Microsoft Fabric IQ 的工作流相容。',
   'Learn more about Microsoft Fabric IQ:': '进一步了解 Microsoft Fabric IQ：',
   'Trademark Notice': '商标声明',
   'Trademarks This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow Microsoft\u2019s Trademark & Brand Guidelines. Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party\u2019s policies.':
     '商标 本项目中可能含有微软及其产品、服务的商标或标识。经授权使用微软商标或标识，须遵循微软《商标与品牌指南》。在本项目的修改版本中使用微软商标或标识，不得引起混淆，也不得暗示微软提供赞助或认可。第三方商标或标识适用第三方各自的政策。',
 
   // ── 帮助 ──
-  'How to Use Ontology Playground (Preview)': '本体演练场使用说明（预览版）',
+  'How to Use Ontology Playground (Preview)': '本体建模练习使用说明',
   'Explore the Graph': '图谱漫游',
   'Click on any entity type (colored node) to see its properties, relationships, and data bindings. Click on relationship lines to see how entities connect. Use the controls in the bottom-left to zoom and reset the layout.':
     '点击任一「实体类型」（彩色节点），可查看它的属性、关系与数据绑定；点击「关系连线」，能看出实体之间如何相连。左下角控件用于缩放画布和重排版面。',
@@ -295,7 +295,7 @@ export const zhCN: Record<string, string> = {
   "Edit RDF": "编辑 RDF",
   "Paste or edit RDF/XML content here…": "在此粘贴或编辑 RDF/XML 内容…",
   "Submit to Catalogue": "提交到目录",
-  "Ontology Playground repo": "本体演练场仓库",
+  "Ontology Playground repo": "本体建模练习仓库",
   "How to submit": "提交方式",
   "Download your ontology RDF and metadata files below.": "先在下方下载本体的 RDF 和元数据文件。",
   "Fork the repository": "复刻仓库",
