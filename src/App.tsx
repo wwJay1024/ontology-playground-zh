@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion';
 import { 
   Header, 
   OntologyGraph, 
-  QuestPanel, 
   InspectorPanel, 
   QueryPlayground,
   SearchFilter,
@@ -32,7 +31,7 @@ import { useRoute } from './hooks/useRoute';
 import { navigate } from './lib/router';
 import { decodeSharePayload } from './lib/shareCodec';
 import { loadCatalogueEntry } from './lib/catalogue';
-import { Search, MessageSquare, Info, Compass, LayoutGrid, PenTool, BookOpen, FileJson, HelpCircle, Database, Palette, FileText } from 'lucide-react';
+import { Search, MessageSquare, Info, LayoutGrid, PenTool, BookOpen, FileJson, HelpCircle, Database, Palette, FileText } from 'lucide-react';
 import { useT } from './i18n';
 import './styles/app.css';
 
@@ -206,7 +205,6 @@ function App() {
         onNLBuilderClick={AI_BUILDER_ENABLED ? () => setShowNLBuilder(true) : undefined}
         onSummaryClick={() => setShowSummary(true)}
       />
-      <QuestPanel />
       <OntologyGraph />
       <div className="right-sidebar">
         <OntologyStatsPanel />
@@ -221,9 +219,6 @@ function App() {
         <button className={`mobile-tab ${mobilePanel === 'graph' ? 'active' : ''}`} onClick={() => setMobilePanel('graph')}>
           <Search size={18} /> {t('Graph')}
         </button>
-        <button className={`mobile-tab ${mobilePanel === 'quests' ? 'active' : ''}`} onClick={() => setMobilePanel('quests')}>
-          <Compass size={18} /> {t('Quests')}
-        </button>
         <button className={`mobile-tab ${mobilePanel === 'inspector' ? 'active' : ''}`} onClick={() => setMobilePanel('inspector')}>
           <Info size={18} /> {t('Inspector')}
         </button>
@@ -236,7 +231,6 @@ function App() {
       {mobilePanel !== 'graph' && (
         <div className="mobile-panel-drawer">
           <button className="mobile-panel-close" onClick={() => setMobilePanel('graph')}>✕ {t('Close')}</button>
-          {mobilePanel === 'quests' && <QuestPanel />}
           {mobilePanel === 'inspector' && (
             <>
               <SearchFilter />
