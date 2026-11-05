@@ -5,6 +5,7 @@
   --ms-blue: #0078D4;
   --ms-blue-dark: #106EBE;
   --ms-blue-light: #2B88D8;
+  --ontology-active-fg: #6CB8F0;
   --ms-green: #107C10;
   --ms-green-light: #159118;
   --ms-yellow: #FFB900;
@@ -90,6 +91,7 @@
   --text-tertiary: #666666;
   --border-color: #C0C0C0;
   --border-subtle: #D8D8D8;
+  --ontology-active-fg: #005A9E;
   /* Stat-card foregrounds for a light sidebar (light + crimson themes). */
   --stat-blue: #0067C0;
   --stat-green: #107C10;
@@ -122,6 +124,7 @@
   --ms-blue: #2AAA92;
   --ms-blue-dark: #1F8D78;
   --ms-blue-light: #3FD0B4;
+  --ontology-active-fg: #6FE0C8;
   --info: #2AAA92;
   --ms-cyan: #6AD6F9;
   /* Keep the mint accent as the progress-bar start (clears 3:1 on the track). */
@@ -159,6 +162,7 @@
   --ms-blue: #D6002A;
   --ms-blue-dark: #A8001F;
   --ms-blue-light: #E63956;
+  --ontology-active-fg: #A8001F;
   --info: #D6002A;
   /* Crimson accent as the progress-bar start (clears 3:1 on the light track). */
   --progress-from: #D6002A;
@@ -258,6 +262,16 @@
   white-space: nowrap;
 }
 
+.ontology-switcher-caret {
+  flex: 0 0 auto;
+  color: var(--text-tertiary);
+  transition: transform 160ms ease-out;
+}
+
+.ontology-switcher-caret.open {
+  transform: rotate(180deg);
+}
+
 .ontology-switcher-dirty-dot {
   width: 6px;
   height: 6px;
@@ -277,11 +291,23 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-  padding: 6px;
+  padding: 8px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  animation: ontology-switcher-in 160ms ease-out;
+}
+
+@keyframes ontology-switcher-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .ontology-switcher-menu-title {
@@ -296,7 +322,8 @@
 .ontology-switcher-item {
   display: flex;
   align-items: stretch;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .ontology-switcher-item:hover,
@@ -310,8 +337,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2px 8px;
-  padding: 8px 10px;
+  gap: 3px 8px;
+  padding: 10px 12px;
   border: none;
   background: none;
   color: var(--text-primary);
@@ -324,40 +351,40 @@
   flex: 1 1 auto;
   min-width: 0;
   font-size: 13px;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .ontology-switcher-item.active .ontology-switcher-item-name {
-  color: var(--ms-blue);
+  color: var(--ontology-active-fg, var(--ms-blue));
   font-weight: 600;
 }
 
 .ontology-switcher-item-meta {
   flex: 1 1 100%;
-  font-size: 11px;
-  color: var(--text-tertiary);
-}
-
-.ontology-switcher-check {
-  margin-left: auto;
-  flex: 0 0 auto;
-  color: var(--ms-blue);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-secondary);
 }
 
 .ontology-switcher-delete {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
+  flex: 0 0 auto;
   border: none;
   background: none;
   color: var(--text-tertiary);
   cursor: pointer;
   opacity: 0;
   border-radius: var(--radius-sm);
-  transition: opacity var(--transition-fast), color var(--transition-fast);
+  transition: opacity var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
 }
 
 .ontology-switcher-item:hover .ontology-switcher-delete,
@@ -367,6 +394,7 @@
 
 .ontology-switcher-delete:hover {
   color: var(--ms-red);
+  background: var(--bg-secondary);
 }
 
 .ontology-switcher-empty {
@@ -387,7 +415,7 @@
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: none;
   background: none;
   color: var(--ms-blue);
@@ -532,6 +560,16 @@
 @media (hover: none) {
   .ontology-switcher-delete {
     opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ontology-switcher-menu {
+    animation: none;
+  }
+
+  .ontology-switcher-caret {
+    transition: none;
   }
 }
 

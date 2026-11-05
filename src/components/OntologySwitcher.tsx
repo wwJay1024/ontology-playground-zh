@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BookMarked, Check, ChevronDown, Plus, Trash2 } from 'lucide-react';
+import { BookMarked, ChevronDown, Plus, Trash2 } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
 import type { SavedOntologyRecord } from '../lib/ontologyStorage';
 import { useT } from '../i18n';
@@ -73,7 +73,6 @@ export function OntologySwitcher({
                   {' · '}
                   {new Date(record.savedAt).toLocaleDateString()}
                 </span>
-                {isActive && <Check size={14} className="ontology-switcher-check" />}
               </button>
               <button
                 type="button"
@@ -135,7 +134,7 @@ export function OntologySwitcher({
             title={t('Unsaved changes')}
           />
         )}
-        <ChevronDown size={14} />
+        <ChevronDown size={14} className={`ontology-switcher-caret ${open ? 'open' : ''}`} />
       </button>
 
       {open && (
