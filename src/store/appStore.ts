@@ -5,6 +5,17 @@ import type { Ontology, DataBinding } from '../data/ontology';
 import { cosmicCoffeeOntology, sampleBindings } from '../data/ontology';
 import { generateQuestsForOntology } from '../data/questGenerator';
 import type { CatalogueEntry } from '../types/catalogue';
+import {
+  ONTOLOGY_LIBRARY_VERSION,
+  createSavedOntologyId,
+  normalizeOntologyName,
+  readOntologyLibrary,
+  removeOntologyRecord,
+  serializeOntologyPayload,
+  upsertOntologyRecord,
+  writeOntologyLibrary,
+  type SavedOntologyRecord,
+} from '../lib/ontologyStorage';
 
 export type ThemeId = 'dark' | 'light' | 'aurora' | 'crimson';
 
@@ -57,11 +68,65 @@ function getInitialTheme(): ThemeId {
 
 const initialTheme = getInitialTheme();
 
+export type SaveOutcome =
+  | { ok: true; name: string; overwritten: boolean }
+  | { ok: false; reason: 'empty-name' | 'quota' | 'unavailable' };
+
+/**
+ * 深链优先：分享链接和目录详情要按 URL 加载，设计器与学堂不渲染顶栏，
+ * 这几种情况下都不恢复上次保存的本体。
+ */
+function shouldSkipRestore(): boolean {
+  if (typeof window === 'undefined') return true;
+  const hash = window.location.hash || '';
+  if (hash.startsWith('#/share/')) return true;
+  if (/^#\/catalogue\/[^/?#]+/.test(hash)) return true;
+  if (hash.startsWith('#/designer') || hash.startsWith('#/learn')) return true;
+  return false;
+}
+
+/** 换本体时要重置的全部字段，四处共用（加载、重置、从库加载、初始化）。 */
+function ontologyStatePatch(
+  ontology: Ontology,
+  bindings: DataBinding[],
+  catalogueEntry: CatalogueEntry | null,
+  quests: Quest[],
+) {
+  return {
+    currentOntology: ontology,
+    dataBindings: bindings,
+    currentCatalogueEntry: catalogueEntry,
+    selectedEntityId: null,
+    selectedRelationshipId: null,
+    highlightedEntities: [] as string[],
+    highlightedRelationships: [] as string[],
+    activeQuest: null,
+    currentStepIndex: 0,
+    availableQuests: quests,
+    completedQuests: [] as string[],
+  };
+}
+
+const libraryRead = readOntologyLibrary();
+const restoredRecord: SavedOntologyRecord | null = shouldSkipRestore()
+  ? null
+  : libraryRead.library.entries.find((entry) => entry.id === libraryRead.library.activeId) ?? null;
+
+const initialOntology = restoredRecord?.ontology ?? cosmicCoffeeOntology;
+const initialBindings = restoredRecord?.bindings ?? sampleBindings;
+const initialQuests = restoredRecord ? generateQuestsForOntology(initialOntology) : defaultQuests;
+
 interface AppState {
   // Ontology State
   currentOntology: Ontology;
   dataBindings: DataBinding[];
   currentCatalogueEntry: CatalogueEntry | null;
+
+  // Saved Ontologies (browser storage)
+  savedOntologies: SavedOntologyRecord[];
+  activeSavedId: string | null;
+  baselinePayload: string | null;
+  storageAvailable: boolean;
   
   // UI State
   selectedEntityId: string | null;
@@ -92,6 +157,12 @@ interface AppState {
   ) => void;
   resetToDefault: () => void;
   exportOntology: () => string;
+
+  // Saved Ontology Actions
+  saveCurrentOntology: (name: string) => SaveOutcome;
+  loadSavedOntology: (id: string) => boolean;
+  deleteSavedOntology: (id: string) => boolean;
+  hasUnsavedChanges: () => boolean;
   
   // Actions
   selectEntity: (id: string | null) => void;
@@ -117,9 +188,17 @@ interface AppState {
 
 export const useAppStore = create<AppState>((set, get) => ({
   // Initial Ontology State
-  currentOntology: cosmicCoffeeOntology,
-  dataBindings: sampleBindings,
+  currentOntology: initialOntology,
+  dataBindings: initialBindings,
   currentCatalogueEntry: null,
+
+  // Initial Saved Ontology State
+  savedOntologies: libraryRead.library.entries,
+  activeSavedId: restoredRecord?.id ?? null,
+  baselinePayload: restoredRecord
+    ? serializeOntologyPayload(restoredRecord.ontology, restoredRecord.bindings)
+    : null,
+  storageAvailable: libraryRead.available,
   
   // Initial UI State
   selectedEntityId: null,
@@ -130,8 +209,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   theme: initialTheme,
   darkMode: isDarkTheme(initialTheme),
   
-  // Initial Quest State - use default quests for Fourth Coffee
-  availableQuests: defaultQuests,
+  // Initial Quest State
+  availableQuests: initialQuests,
   activeQuest: null,
   currentStepIndex: 0,
   completedQuests: [],
@@ -144,37 +223,108 @@ export const useAppStore = create<AppState>((set, get) => ({
   
   // Ontology Actions
   loadOntology: (ontology, bindings = [], catalogueEntry = null) => {
-    // Generate new quests based on the loaded ontology
-    const newQuests = generateQuestsForOntology(ontology);
     set({
-      currentOntology: ontology,
-      dataBindings: bindings,
-      currentCatalogueEntry: catalogueEntry,
-      selectedEntityId: null,
-      selectedRelationshipId: null,
-      highlightedEntities: [],
-      highlightedRelationships: [],
-      activeQuest: null,
-      currentStepIndex: 0,
-      availableQuests: newQuests,
-      // Reset completed quests when loading a new ontology
-      completedQuests: []
+      ...ontologyStatePatch(ontology, bindings, catalogueEntry, generateQuestsForOntology(ontology)),
+      // 换成本体后与存档解绑；是否算「未保存」由内容比对决定
+      activeSavedId: null,
+      baselinePayload: null,
     });
   },
   
   resetToDefault: () => set({
-    currentOntology: cosmicCoffeeOntology,
-    dataBindings: sampleBindings,
-    currentCatalogueEntry: null,
-    selectedEntityId: null,
-    selectedRelationshipId: null,
-    highlightedEntities: [],
-    highlightedRelationships: [],
-    availableQuests: defaultQuests,
-    activeQuest: null,
-    currentStepIndex: 0,
-    completedQuests: []
+    ...ontologyStatePatch(cosmicCoffeeOntology, sampleBindings, null, defaultQuests),
+    activeSavedId: null,
+    baselinePayload: null,
   }),
+
+  // Saved Ontology Actions
+  saveCurrentOntology: (rawName) => {
+    const name = normalizeOntologyName(rawName);
+    if (!name) return { ok: false, reason: 'empty-name' };
+
+    const { currentOntology, dataBindings, savedOntologies, activeSavedId } = get();
+    const existing = savedOntologies.find((entry) => entry.name === name);
+    const record: SavedOntologyRecord = {
+      id: existing?.id ?? createSavedOntologyId(),
+      name,
+      savedAt: Date.now(),
+      ontology: currentOntology,
+      bindings: dataBindings,
+    };
+
+    const nextLibrary = upsertOntologyRecord(
+      { version: ONTOLOGY_LIBRARY_VERSION, activeId: activeSavedId, entries: savedOntologies },
+      record,
+    );
+    const written = writeOntologyLibrary(nextLibrary);
+    if (!written.ok) {
+      return { ok: false, reason: written.reason };
+    }
+
+    set({
+      savedOntologies: nextLibrary.entries,
+      activeSavedId: nextLibrary.activeId,
+      baselinePayload: serializeOntologyPayload(currentOntology, dataBindings),
+      storageAvailable: true,
+    });
+    return { ok: true, name, overwritten: Boolean(existing) };
+  },
+
+  loadSavedOntology: (id) => {
+    const { savedOntologies } = get();
+    const record = savedOntologies.find((entry) => entry.id === id);
+    if (!record) return false;
+
+    set({
+      ...ontologyStatePatch(
+        record.ontology,
+        record.bindings,
+        null,
+        generateQuestsForOntology(record.ontology),
+      ),
+      activeSavedId: id,
+      baselinePayload: serializeOntologyPayload(record.ontology, record.bindings),
+    });
+
+    // 记住当前选中项，下次打开页面时恢复
+    writeOntologyLibrary({
+      version: ONTOLOGY_LIBRARY_VERSION,
+      activeId: id,
+      entries: savedOntologies,
+    });
+    return true;
+  },
+
+  deleteSavedOntology: (id) => {
+    const { savedOntologies, activeSavedId } = get();
+    const nextLibrary = removeOntologyRecord(
+      { version: ONTOLOGY_LIBRARY_VERSION, activeId: activeSavedId, entries: savedOntologies },
+      id,
+    );
+    const written = writeOntologyLibrary(nextLibrary);
+    if (!written.ok) return false;
+
+    set({
+      savedOntologies: nextLibrary.entries,
+      activeSavedId: nextLibrary.activeId,
+      // 删掉当前条目后，画面内容仍在，但已不属于任何存档
+      baselinePayload: nextLibrary.activeId === activeSavedId ? get().baselinePayload : null,
+    });
+    return true;
+  },
+
+  hasUnsavedChanges: () => {
+    const { activeSavedId, baselinePayload, savedOntologies, currentOntology, dataBindings } = get();
+    const payload = serializeOntologyPayload(currentOntology, dataBindings);
+
+    if (activeSavedId && baselinePayload !== null) {
+      return payload !== baselinePayload;
+    }
+    // 当前内容不属于任何存档时，库里存在同样内容才算干净
+    return !savedOntologies.some(
+      (entry) => serializeOntologyPayload(entry.ontology, entry.bindings) === payload,
+    );
+  },
 
   exportOntology: () => {
     const { currentOntology, dataBindings } = get();

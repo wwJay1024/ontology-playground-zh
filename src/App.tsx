@@ -22,7 +22,9 @@ import {
   isTourDismissed,
   AppFooter,
   OntologyStatsPanel,
-  PathFinderPanel
+  PathFinderPanel,
+  SaveOntologyDialog,
+  ConfirmDialog
 } from './components';
 import type { CommandItem } from './components';
 import { useAppStore, themeClass, THEME_OPTIONS } from './store/appStore';
@@ -57,7 +59,54 @@ function App() {
   const [toast, setToast] = useState<{ message: string; icon: string } | null>(null);
   const [mobilePanel, setMobilePanel] = useState<'graph' | 'quests' | 'inspector' | 'query'>('graph');
   const [showCommandPalette, setShowCommandPalette] = useState(false);
-  const { theme, setTheme, earnedBadges, loadOntology } = useAppStore();
+  const [showSaveOntology, setShowSaveOntology] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [pendingSwitchId, setPendingSwitchId] = useState<string | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+  const {
+    theme,
+    setTheme,
+    earnedBadges,
+    loadOntology,
+    currentOntology,
+    savedOntologies,
+    activeSavedId,
+    saveCurrentOntology,
+    loadSavedOntology,
+    deleteSavedOntology,
+    hasUnsavedChanges,
+  } = useAppStore();
+
+  const requestSelectSavedOntology = useCallback((id: string) => {
+    if (id === activeSavedId) return;
+    if (hasUnsavedChanges()) {
+      setPendingSwitchId(id);
+      return;
+    }
+    loadSavedOntology(id);
+  }, [activeSavedId, hasUnsavedChanges, loadSavedOntology]);
+
+  const handleSaveOntology = useCallback((name: string) => {
+    const result = saveCurrentOntology(name);
+    if (result.ok) {
+      setShowSaveOntology(false);
+      setSaveError(null);
+      setToast({
+        message: result.overwritten
+          ? t('Updated "{name}"', { name: result.name })
+          : t('Saved "{name}"', { name: result.name }),
+        icon: '💾',
+      });
+      return;
+    }
+    setSaveError(
+      result.reason === 'empty-name'
+        ? t('Ontology name is required.')
+        : result.reason === 'quota'
+          ? t('Not enough browser storage. Delete an unused ontology and try again.')
+          : t('Browser storage is unavailable.'),
+    );
+  }, [saveCurrentOntology, t]);
 
   // Show toast when a new badge is earned
   useEffect(() => {
@@ -204,6 +253,12 @@ function App() {
         onLearnClick={openLearn}
         onNLBuilderClick={AI_BUILDER_ENABLED ? () => setShowNLBuilder(true) : undefined}
         onSummaryClick={() => setShowSummary(true)}
+        onSaveOntologyClick={() => {
+          setSaveError(null);
+          setShowSaveOntology(true);
+        }}
+        onSelectSavedOntology={requestSelectSavedOntology}
+        onDeleteSavedOntology={setPendingDeleteId}
       />
       <OntologyGraph />
       <div className="right-sidebar">
@@ -285,6 +340,60 @@ function App() {
 
       <AnimatePresence>
         {showSummary && <OntologySummaryModal onClose={() => setShowSummary(false)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showSaveOntology && (
+          <SaveOntologyDialog
+            open
+            initialName={currentOntology.name}
+            existingNames={savedOntologies.map((record) => record.name)}
+            errorMessage={saveError}
+            onCancel={() => {
+              setShowSaveOntology(false);
+              setSaveError(null);
+            }}
+            onConfirm={handleSaveOntology}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {pendingSwitchId && (
+          <ConfirmDialog
+            open
+            title={t('Switch ontology')}
+            message={t('The current ontology has unsaved changes. Switch anyway?')}
+            confirmLabel={t('Switch')}
+            onCancel={() => setPendingSwitchId(null)}
+            onConfirm={() => {
+              loadSavedOntology(pendingSwitchId);
+              setPendingSwitchId(null);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {pendingDeleteId && (
+          <ConfirmDialog
+            open
+            danger
+            title={t('Delete saved ontology')}
+            message={t('Delete "{name}"? This cannot be undone.', {
+              name: savedOntologies.find((record) => record.id === pendingDeleteId)?.name ?? '',
+            })}
+            confirmLabel={t('Delete')}
+            onCancel={() => setPendingDeleteId(null)}
+            onConfirm={() => {
+              const deleted = deleteSavedOntology(pendingDeleteId);
+              setPendingDeleteId(null);
+              if (!deleted) {
+                setToast({ message: t('Browser storage is unavailable.'), icon: '⚠️' });
+              }
+            }}
+          />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>

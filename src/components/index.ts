@@ -24,3 +24,6 @@ export type { CommandItem } from './CommandPalette';
 export { GuidedTour, isTourDismissed } from './GuidedTour';
 export { OntologyStatsPanel } from './OntologyStatsPanel';
 export { PathFinderPanel } from './PathFinderPanel';
+export { OntologySwitcher } from './OntologySwitcher';
+export { SaveOntologyDialog } from './SaveOntologyDialog';
+export { ConfirmDialog } from './ConfirmDialog';

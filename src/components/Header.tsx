@@ -4,8 +4,9 @@ import { useRoute } from '../hooks/useRoute';
 import { routeToHash } from '../lib/router';
 import { encodeSharePayload } from '../lib/shareCodec';
 import { serializeToRDF } from '../lib/rdf/serializer';
-import { Palette, Check, Database, Trophy, HelpCircle, FileJson, LayoutGrid, Sparkles, FileText, Share2, PenTool, BookOpen, Menu, X, Download, Info } from 'lucide-react';
+import { Palette, Check, Database, Trophy, HelpCircle, FileJson, LayoutGrid, Sparkles, FileText, Share2, PenTool, BookOpen, Menu, X, Download, Info, Save } from 'lucide-react';
 import { useT, useI18nStore } from '../i18n';
+import { OntologySwitcher } from './OntologySwitcher';
 
 
 interface HeaderProps {
@@ -18,9 +19,12 @@ interface HeaderProps {
   onLearnClick: () => void;
   onNLBuilderClick?: () => void;
   onSummaryClick: () => void;
+  onSaveOntologyClick: () => void;
+  onSelectSavedOntology: (id: string) => void;
+  onDeleteSavedOntology: (id: string) => void;
 }
 
-export function Header({ onAboutClick, onHelpClick, onDataSourcesClick, onImportExportClick, onGalleryClick, onDesignerClick, onLearnClick, onNLBuilderClick, onSummaryClick }: HeaderProps) {
+export function Header({ onAboutClick, onHelpClick, onDataSourcesClick, onImportExportClick, onGalleryClick, onDesignerClick, onLearnClick, onNLBuilderClick, onSummaryClick, onSaveOntologyClick, onSelectSavedOntology, onDeleteSavedOntology }: HeaderProps) {
   const { theme, setTheme, totalPoints, earnedBadges, currentOntology, dataBindings } = useAppStore();
   const route = useRoute();
   const t = useT();
@@ -141,6 +145,19 @@ export function Header({ onAboutClick, onHelpClick, onDataSourcesClick, onImport
       </div>
 
       <div className="header-actions">
+        <OntologySwitcher
+          onSelect={onSelectSavedOntology}
+          onSaveClick={onSaveOntologyClick}
+          onDelete={(record) => onDeleteSavedOntology(record.id)}
+        />
+        <button
+          className="icon-btn"
+          onClick={onSaveOntologyClick}
+          data-tooltip={t('Save ontology')}
+          aria-label={t('Save ontology')}
+        >
+          <Save size={20} />
+        </button>
         <button
           className="header-text-btn"
           onClick={handleShare}
@@ -235,6 +252,24 @@ export function Header({ onAboutClick, onHelpClick, onDataSourcesClick, onImport
               <span className="stat-value">{earnedBadges.length}</span>
               <span>{t('badges')}</span>
             </div>
+            <div className="mobile-menu-ontologies">
+              <div className="mobile-menu-section-title">{t('Saved ontologies')}</div>
+              <OntologySwitcher
+                variant="inline"
+                onSelect={(id) => {
+                  setMenuOpen(false);
+                  onSelectSavedOntology(id);
+                }}
+                onSaveClick={() => {
+                  setMenuOpen(false);
+                  onSaveOntologyClick();
+                }}
+                onDelete={(record) => onDeleteSavedOntology(record.id)}
+              />
+            </div>
+            <button className="mobile-menu-item" onClick={menuAction(onSaveOntologyClick)}>
+              <Save size={18} /> {t('Save ontology')}
+            </button>
             <button className="mobile-menu-item" onClick={menuAction(handleShare)}>
               <Share2 size={18} /> {shareLabel}
             </button>
