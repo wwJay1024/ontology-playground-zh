@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { OntologySwitcher } from './OntologySwitcher';
 import { useAppStore } from '../store/appStore';
 import type { SavedOntologyRecord } from '../lib/ontologyStorage';
@@ -41,11 +41,14 @@ describe('OntologySwitcher', () => {
     render(<OntologySwitcher onSelect={vi.fn()} onSaveClick={vi.fn()} onDelete={vi.fn()} />);
 
     const trigger = screen.getByRole('button', { expanded: false });
+    expect(within(trigger).getByText('甲本体')).toBeTruthy();
+
     fireEvent.click(trigger);
 
-    expect(await screen.findByText('已保存的本体')).toBeTruthy();
-    expect(screen.getByText('甲本体')).toBeTruthy();
-    expect(screen.getByText('乙本体')).toBeTruthy();
+    const menu = await screen.findByRole('menu');
+    expect(within(menu).getByText('已保存的本体')).toBeTruthy();
+    expect(within(menu).getByText('甲本体')).toBeTruthy();
+    expect(within(menu).getByText('乙本体')).toBeTruthy();
   });
 
   it('当前条目带 aria-checked', async () => {
@@ -62,7 +65,8 @@ describe('OntologySwitcher', () => {
     render(<OntologySwitcher onSelect={onSelect} onSaveClick={vi.fn()} onDelete={vi.fn()} />);
     fireEvent.click(screen.getByRole('button', { expanded: false }));
 
-    fireEvent.click(await screen.findByText('乙本体'));
+    const menu = await screen.findByRole('menu');
+    fireEvent.click(within(menu).getByText('乙本体'));
 
     expect(onSelect).toHaveBeenCalledWith('r2');
     await waitFor(() => {
@@ -85,7 +89,7 @@ describe('OntologySwitcher', () => {
   it('Escape 收起面板', async () => {
     render(<OntologySwitcher onSelect={vi.fn()} onSaveClick={vi.fn()} onDelete={vi.fn()} />);
     fireEvent.click(screen.getByRole('button', { expanded: false }));
-    await screen.findByText('已保存的本体');
+    await screen.findByRole('menu');
 
     fireEvent.keyDown(document, { key: 'Escape' });
 
