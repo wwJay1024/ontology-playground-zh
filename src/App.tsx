@@ -33,7 +33,7 @@ import { useRoute } from './hooks/useRoute';
 import { navigate } from './lib/router';
 import { decodeSharePayload } from './lib/shareCodec';
 import { loadCatalogueEntry } from './lib/catalogue';
-import { Search, MessageSquare, Info, LayoutGrid, PenTool, BookOpen, FileJson, HelpCircle, Database, Palette, FileText } from 'lucide-react';
+import { Search, MessageSquare, Info, LayoutGrid, PenTool, BookOpen, FileJson, HelpCircle, Database, Palette, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useT } from './i18n';
 import './styles/app.css';
 
@@ -75,6 +75,8 @@ function App() {
     loadSavedOntology,
     deleteSavedOntology,
     hasUnsavedChanges,
+    sidebarCollapsed,
+    toggleSidebar,
   } = useAppStore();
 
   const requestSelectSavedOntology = useCallback((id: string) => {
@@ -242,7 +244,7 @@ function App() {
   }
 
   return (
-    <div className={`app-container ${themeClass(theme)}`}>
+    <div className={`app-container ${themeClass(theme)}${sidebarCollapsed ? ' sidebar-collapsed' : ''}`}>
       <Header 
         onAboutClick={() => setShowAbout(true)}
         onHelpClick={() => setShowHelp(true)} 
@@ -268,6 +270,17 @@ function App() {
         <InspectorPanel />
         <QueryPlayground />
       </div>
+
+      <button
+        type="button"
+        className="sidebar-toggle"
+        onClick={toggleSidebar}
+        aria-label={sidebarCollapsed ? t('Expand info panel') : t('Collapse info panel')}
+        aria-expanded={!sidebarCollapsed}
+        title={sidebarCollapsed ? t('Expand info panel') : t('Collapse info panel')}
+      >
+        {sidebarCollapsed ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
+      </button>
 
       {/* Mobile bottom tabs — visible only on small screens via CSS */}
       <div className="mobile-panel-tabs">

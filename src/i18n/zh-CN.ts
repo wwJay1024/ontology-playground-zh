@@ -455,4 +455,8 @@ export const zhCN: Record<string, string> = {
   "The current ontology has unsaved changes. Switch anyway?": "当前本体有未保存的内容，确定切换？",
   "Delete saved ontology": "删除已保存的本体",
   "Delete \"{name}\"? This cannot be undone.": "删除「{name}」？此操作无法撤销。",
+
+  // ── 信息面板 ──
+  "Collapse info panel": "收起信息面板",
+  "Expand info panel": "展开信息面板",
 };

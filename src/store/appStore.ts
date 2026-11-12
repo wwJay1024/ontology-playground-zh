@@ -66,6 +66,17 @@ function getInitialTheme(): ThemeId {
   }
 }
 
+const SIDEBAR_STORAGE_KEY = 'ontology-playground.sidebar-collapsed';
+
+function getInitialSidebarCollapsed(): boolean {
+  if (typeof window === 'undefined' || !('localStorage' in window)) return false;
+  try {
+    return window.localStorage.getItem(SIDEBAR_STORAGE_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 const initialTheme = getInitialTheme();
 
 export type SaveOutcome =
@@ -136,6 +147,7 @@ interface AppState {
   showDataBindings: boolean;
   theme: ThemeId;
   darkMode: boolean;
+  sidebarCollapsed: boolean;
   
   // Quest State
   availableQuests: Quest[];
@@ -173,6 +185,7 @@ interface AppState {
   toggleDataBindings: () => void;
   setTheme: (theme: ThemeId) => void;
   toggleDarkMode: () => void;
+  toggleSidebar: () => void;
   
   // Quest Actions
   startQuest: (questId: string) => void;
@@ -208,6 +221,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   showDataBindings: false,
   theme: initialTheme,
   darkMode: isDarkTheme(initialTheme),
+  sidebarCollapsed: getInitialSidebarCollapsed(),
   
   // Initial Quest State
   availableQuests: initialQuests,
@@ -358,6 +372,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   toggleDarkMode: () => {
     const next: ThemeId = isDarkTheme(get().theme) ? 'light' : 'dark';
     get().setTheme(next);
+  },
+
+  toggleSidebar: () => {
+    const next = !get().sidebarCollapsed;
+    try {
+      localStorage.setItem(SIDEBAR_STORAGE_KEY, next ? '1' : '0');
+    } catch {
+      // 持久化失败不影响本次切换
+    }
+    set({ sidebarCollapsed: next });
   },
   
   // Quest Actions

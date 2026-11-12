@@ -629,12 +629,51 @@ body {
 
 /* App Layout */
 .app-container {
+  --sidebar-width: 360px;
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr var(--sidebar-width);
   grid-template-rows: 64px 1fr;
   height: 100vh;
   height: 100dvh;
   gap: 0;
+}
+
+.app-container.sidebar-collapsed {
+  --sidebar-width: 0px;
+}
+
+.app-container.sidebar-collapsed .right-sidebar {
+  display: none;
+}
+
+/* 侧栏收起/展开把手：贴在侧栏左边缘，收起后贴到视口右侧 */
+.sidebar-toggle {
+  position: fixed;
+  top: 50%;
+  right: calc(var(--sidebar-width) + 8px);
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  opacity: 0.72;
+  box-shadow: var(--shadow-sm);
+  transition: right 180ms ease, opacity 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.sidebar-toggle:hover,
+.sidebar-toggle:focus-visible {
+  opacity: 1;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
 }
 
 /* Header */
@@ -2107,11 +2146,7 @@ body {
 /* Responsive */
 @media (max-width: 1200px) {
   .app-container {
-    grid-template-columns: 1fr 320px;
-  }
-  .app-container .app-footer {
-    left: 0;
-    right: 320px;
+    --sidebar-width: 320px;
   }
 }
 
@@ -2135,6 +2170,10 @@ body {
   }
 
   .quest-panel,
+  .sidebar-toggle {
+    display: none;
+  }
+
   .right-sidebar {
     display: none;
   }
@@ -3927,7 +3966,7 @@ body {
   position: fixed;
   bottom: 4px;
   left: 0;
-  right: 360px;
+  right: var(--sidebar-width);
   padding: 6px 12px;
   z-index: 50;
   pointer-events: none;
